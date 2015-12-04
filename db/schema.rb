@@ -13,4 +13,17 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
+  create_table "tasks", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.text     "description", limit: 65535
+    t.datetime "due_date"
+    t.integer  "status",      limit: 4
+    t.integer  "priority",    limit: 4
+    t.integer  "category_id", limit: 4
+    t.integer  "group_id",    limit: 4
+    t.integer  "user_id",     limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
 end
