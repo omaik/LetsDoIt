@@ -29,7 +29,7 @@ gem 'resque', '1.25.2'
 gem 'devise', '3.5.2'
 #  API for performing paginated queries with Active Record
 gem 'will_paginate', '3.0.7'
-
+gem 'responders', '~> 2.0'
 
 group :development, :test do
   # Local development server
@@ -54,5 +54,5 @@ group :production do
   # Use Unicorn as the production server
   gem 'unicorn'
   # Gem for AWS
-  
+
 end
