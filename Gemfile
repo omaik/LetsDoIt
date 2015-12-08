@@ -29,6 +29,8 @@ gem 'resque', '1.25.2'
 gem 'devise', '3.5.2'
 #  API for performing paginated queries with Active Record
 gem 'will_paginate', '3.0.7'
+# Protection from CSRF
+gem 'angular_rails_csrf'
 
 
 group :development, :test do
