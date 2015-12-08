@@ -243,6 +243,7 @@ DEPENDENCIES
   pry-byebug (~> 3.3)
   pry-rails (~> 0.3.4)
   rails (= 4.2.4)
+  responders (~> 2.0)
   resque (= 1.25.2)
   rspec-rails (~> 3.4)
   sass-rails (~> 5.0)
@@ -254,3 +255,6 @@ DEPENDENCIES
   unicorn
   web-console (~> 2.0)
   will_paginate (= 3.0.7)
+
+BUNDLED WITH
+   1.10.6
