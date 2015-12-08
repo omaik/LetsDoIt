@@ -30,6 +30,9 @@ gem 'devise', '3.5.2'
 #  API for performing paginated queries with Active Record
 gem 'will_paginate', '3.0.7'
 gem 'responders', '~> 2.0'
+# Protection from CSRF
+gem 'angular_rails_csrf'
+
 
 group :development, :test do
   # Local development server
