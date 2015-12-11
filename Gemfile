@@ -25,6 +25,8 @@ gem 'paperclip', '4.3.2'
 gem 'resque', '1.25.2'
 # Flexible authentication solution for Rails with Warden
 gem 'devise', '3.5.2'
+# For sending mails in background
+gem "devise-async", '0.10.1'
 #  API for performing paginated queries with Active Record
 gem 'will_paginate', '3.0.7'
 gem 'responders', '~> 2.0'
