@@ -33,4 +33,17 @@ ActiveRecord::Schema.define(version: 20151202214137) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 
+  create_table "tasks", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.text     "description", limit: 65535
+    t.datetime "due_date"
+    t.integer  "status",      limit: 4
+    t.integer  "priority",    limit: 4
+    t.integer  "category_id", limit: 4
+    t.integer  "group_id",    limit: 4
+    t.integer  "user_id",     limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
 end
