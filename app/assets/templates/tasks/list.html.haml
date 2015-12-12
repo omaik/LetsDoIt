@@ -1,0 +1,28 @@
+%div{"ng-controller": "TasksController"}
+  .add-task
+    %form{"ng-submit": "addTask()"}
+      %p
+        %h2 My tasks
+      %p
+        .alert.alert-danger{"ng-show": "emptyName"}
+          %p{"ng-bind": "taskErrMsg"}
+        %input{"ng-model": "task.name", placeholder: "Add new task", type: "text"}/
+        %input.btn.btn-success{name: "add-task", type: "submit", value: "Add task"}/
+      %span Priority
+      %select{"ng-model": "task.priority"}
+        %option{value: "1"} High
+        %option{value: "2"} Medium
+        %option{value: "3"} Low
+      %span Status
+      %select{"ng-model": "task.status"}
+        %option{value: "1"} In progress
+        %option{value: "2"} Set Aside
+  .task-list{"ng-repeat": "task in tasks | orderBy: '-created_at'"}
+    %div
+      %p.task-name
+        %a{"ng-href": "#"}
+          %span{"ng-bind": "task.name"}
+        %input.btn.btn-danger{name: "delete-task", "ng-click": "deleteTask(task)", type: "submit", value: "Delete"}/
+      %p
+        Added:
+        %span{"ng-bind": "task.created_at | date:'MM/dd/yyyy HH:mm'"}
