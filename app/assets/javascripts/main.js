@@ -1,4 +1,4 @@
-angular.module('letsDoIt', ['ui.router', 'ngMaterial', 'ngResource','ngMessages', 'Devise', 'templates'])
+angular.module('letsDoIt', ['ui.router', 'ngMaterial', 'ngResource','ngMessages', 'ngAnimate', 'Devise', 'templates'])
 
 .config(['$stateProvider',
   function($stateProvider) {
@@ -43,8 +43,13 @@ angular.module('letsDoIt', ['ui.router', 'ngMaterial', 'ngResource','ngMessages'
             controller: 'signUpController'
           },
           'groups': {
+<<<<<<< HEAD
             templateUrl: 'signup/new.html',
             controller: 'signUpController'
+=======
+            templateUrl: '/assets/groups/list.html',
+            controller: 'GroupsController'
+>>>>>>> develop_LVLET-54: Add Group entity and rspec tests
           }
         }
       }).

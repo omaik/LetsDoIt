@@ -3,9 +3,11 @@ Rails.application.routes.draw do
   root 'static_pages#index'
 
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
-
+  get '/edit' => 'tasks#index'
+  
   resources :tasks
   resources :priorities
+  resources :groups
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

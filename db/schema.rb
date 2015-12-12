@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 20151231073039) do
 
   add_index "priorities", ["user_id"], name: "index_priorities_on_user_id", using: :btree
 
+  create_table "groups", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.text     "description", limit: 65535
+    t.integer  "user_id",     limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "groups", ["user_id"], name: "index_groups_on_user_id", using: :btree
+
   create_table "tasks", force: :cascade do |t|
     t.integer  "priority_id", limit: 4
     t.string   "name",        limit: 255

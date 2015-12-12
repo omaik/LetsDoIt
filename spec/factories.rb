@@ -22,4 +22,9 @@ FactoryGirl.define do
     color '#ff0000'
     association :user_id, factory: :user
   end
+
+  factory :group do
+    name 'Test'
+    description 'My first group'
+  end
 end
