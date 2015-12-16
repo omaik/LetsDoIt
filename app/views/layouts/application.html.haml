@@ -1,10 +1,50 @@
 !!!
-%html{'ng-app': 'letsDoIt'}
+%html{ 'ng-app': 'letsDoIt' }
   %head
-    %meta{content: 'text/html; charset=UTF-8', 'http-equiv': 'Content-Type'}/
+    %meta{ content: 'text/html; charset=UTF-8', 'http-equiv': 'Content-Type' }/
     %title LetsDoIt
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
   %body
     = yield
+
+    %header
+      .container-fluid
+        .row
+          .head.navbar.navbar-inverse.navbar-static-top
+            .container-fluid
+              .row
+                .navbar-header.col-lg-7.col-lg-offset-1.col-md-6.col-md-offset-1.col-sm-offset-1
+                  %button.navbar-toggle{ 'data-target': '#drop', 'data-toggle': 'collapse', type: 'button' }
+                    %span.icon-bar
+                    %span.icon-bar
+                    %span.icon-bar
+                  %p#logo.hidden-sm.hidden-xs LetsDoIt
+                  %p.choose
+                    Choose your language:
+                    = image_tag('United-Kingdom.png', class: 'lang', alt: 'United-Kingdom')
+                    = image_tag('ukraine.png', class: 'lang', alt: 'Ukraine')
+                .collapse.navbar-collapse.col-lg-offset-9.col-md-offset-8.col-sm-offset-7.hidden-xs
+                  %ul.nav.navbar-nav
+                    %li.head_li
+                      %a{ href: '#' } Home
+                    %li.head_li
+                      %a{ href: '#' } Sign in
+                    %li.head_li
+                      %a{ href: '#' } Sign up
+                / Меню при розширенi телефона
+                #drop.collapse.navbar-collapse.hidden-sm.hidden-md.hidden-lg
+                  %ul.nav.navbar-nav.hidden-sm.hidden-md.hidden-lg
+                    %li
+                      %a{ href: '#' } Home
+                    %li
+                      %a{ href: '#' } Sign in
+                    %li
+                      %a{ href: '#' } Sign up
+    %section
+      .container-fluid
+        .row
+          #left_side.col-lg-4.col-md-4.col-sm-4.col-xs-12
+          #right_side
+            %ng-view
