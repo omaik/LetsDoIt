@@ -9,8 +9,6 @@ gem 'mysql2', '~> 0.3.18'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -27,12 +25,14 @@ gem 'resque', '1.25.2'
 gem 'devise', '3.5.2'
 # For sending mails in background
 gem "devise-async", '0.10.1'
+# OAuth gem for facebook authentication
+gem 'omniauth-facebook'
 #  API for performing paginated queries with Active Record
 gem 'will_paginate', '3.0.7'
 gem 'responders', '~> 2.0'
 # Protection from CSRF
 gem 'angular_rails_csrf'
-
+# Haml generators for Rails 4, also enables Haml as the templating engine
 gem "haml-rails", "~> 0.9"
 
 group :development, :test do
@@ -58,3 +58,4 @@ group :production do
   # Use Unicorn as the production server
   gem 'unicorn'
 end
+
