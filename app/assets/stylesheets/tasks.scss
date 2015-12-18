@@ -1,3 +1,28 @@
 // Place all the styles related to the Tasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.add-task {
+  margin: 15px auto 40px;
+  padding: 10px;
+}
+
+.task-list {
+  -webkit-box-shadow: 0 0 3px rgba(65,115,120,.5);
+  -moz--box-shadow: 0 0 3px rgba(65,115,120,.5);
+  box-shadow: 0 0 3px rgba(65,115,120,.5);
+  margin: 15px;
+  padding: 10px;
+}
+
+.task-name a {
+  width: 100%;
+  color: #33332D;
+  font-size: 24px;
+  text-decoration: none;
+  padding: 5px;
+}
+
+.btn {
+  float: right;
+}

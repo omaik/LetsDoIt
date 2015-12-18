@@ -15,4 +15,5 @@
 //= require bootstrap.min
 //= require underscore-min
 //= require angular.min.js
+//= require angular-route.min.js
 //= require app.js
