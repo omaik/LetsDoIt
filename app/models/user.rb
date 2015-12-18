@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
-
+  enum role: [:user, :admin]
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :async,
          :omniauthable, omniauth_providers: [:facebook]
-        
+
   validates :username, presence: true, length: { maximum: 20}, uniqueness: true
   validates :first_name, presence: true, format: { with: /[\p{L}]/}
   validates :last_name, presence: true, format: { with: /[\p{L}]/}
