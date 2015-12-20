@@ -1,8 +1,12 @@
 class TasksController < ApplicationController
-  respond_to :json, :html
+  respond_to :json
 
   def index
     respond_with Task.all
+  end
+
+  def show
+    respond_with Task.find(params[:id])
   end
 
   def create
@@ -10,7 +14,7 @@ class TasksController < ApplicationController
   end
 
   def update
-    respond_with Task.find(params[:id])
+    respond_with Task.find(params[:id]).update_attributes(task_params)
   end
 
   def destroy
@@ -20,7 +24,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:name, :description, :status, :priority, :category_id, :group_id, :user_id)
+    params.require(:task).permit(:name, :description, :due_date, :status, :priority, :category_id, :group_id, :user_id)
   end
 
 end

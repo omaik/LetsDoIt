@@ -1,0 +1,29 @@
+.task-edit
+  %form{"ng-submit": "updateTask(task)"}
+    %div
+    %p
+      .alert.alert-danger{"ng-show": "errHandle"}
+        %p{"ng-bind": "taskErrMsg"}
+    %md-input-container.md-block
+      %label Name
+      %input{"ng-model": "task.name", type: "text"}/
+    %div
+      %md-input-container.md-block
+        %label Description
+        %textarea{columns: "1", "ng-model": "task.description", rows: "5"}
+    %div
+      %label.label.label-default Priority
+      %md-input-container
+        %md-select{"ng-model": "task.priority", "aria-label": "Priority"}
+          %md-option{value: "1"} High
+          %md-option{value: "2"} Medium
+          %md-option{value: "3"} Low
+      %label.label.label-default Status
+      %md-input-container
+        %md-select{"ng-model": "task.status", "aria-label": "Status"}
+          %md-option{value: "1"} In progress
+          %md-option{value: "2"} Set aside
+      %md-datepicker{"md-placeholder": "Enter date", "ng-model": "task.due_date"}
+    %div
+      %input.btn.btn-success{type: "submit", value: "Save"}/
+      %a.btn.btn-default{"ui-sref": "tasks"} Cancel

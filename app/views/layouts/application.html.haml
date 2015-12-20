@@ -1,7 +1,6 @@
 !!!
 %html{ 'ng-app': 'letsDoIt' }
   %head
-    %base{:href => "/"}/
     %meta{ content: 'text/html; charset=UTF-8', 'http-equiv': 'Content-Type' }/
     %title LetsDoIt
     = stylesheet_link_tag    'application', media: 'all'
@@ -32,4 +31,4 @@
                 #drop.collapse.navbar-collapse.hidden-sm.hidden-md.hidden-lg
                   %ul.nav.navbar-nav.hidden-sm.hidden-md.hidden-lg
     %section
-      %ng-view
+      %ui-view
