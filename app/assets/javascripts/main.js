@@ -50,8 +50,8 @@ angular.module('letsDoIt', [
             controller: 'TasksListController'
           },
           'categories': {
-            templateUrl: 'signup/new.html',
-            controller: 'signUpController'
+            templateUrl: 'categories/categories.html',
+            controller: 'CategoriesController'
           },
           'groups': {
             templateUrl: 'groups/list.html',

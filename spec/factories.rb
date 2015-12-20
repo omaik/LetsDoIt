@@ -27,4 +27,8 @@ FactoryGirl.define do
     sequence (:name) { |n| 'Group#{n}' }
     sequence (:description) { |n| 'My {n} group' }
   end
+    
+  factory :category do
+    sequence (:name) { |n| "Category #{n}" }
+  end
 end

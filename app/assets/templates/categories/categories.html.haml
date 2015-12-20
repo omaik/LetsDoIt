@@ -1,0 +1,19 @@
+%div{'ng-controller': 'CategoriesController'}
+  %div.add-new{'ng-click': 'toggleCategories()'}
+    Categories
+  .add-category{'class': 'category-slide', 'ng-class': 'showCategories', 'class': 'slide'} 
+    %form{'ng-submit': 'addCategory()'}
+      %div.alert.alert-danger{'ng-show':'isError'}
+        Name has already been taken
+      .input-group
+        %input.category-input.form-control{'ng-model': 'category.name', placeholder: 'Name of category', type: 'text'}/
+        %span.input-group-btn
+          %input.btn.btn-success{name: 'add-category', type: 'submit', value: '+'}/
+    %div.all-categories
+      .category-list{'ng-repeat': "category in categories | orderBy: '-created_at'", 'ng-drop': 'true', 'data-drop': "true", 'data-jqyoui-options': "{revert: 'invalid', helper: 'clone'}", 'jqyoui-droppable': "{index: {{$index}}, onDrop:'onDropCategory(category, $index)', onOver:'onOver', onOut:'onOut'}", 'ng-class': '{over:over}'}
+        %div
+          %p.category-name
+            %a{'ng-href': '#'}
+              %span{'ng-bind': 'category.name'}
+            %span.category-delete.glyphicon.glyphicon-remove{name: 'delete-category', 'ng-click': 'deleteCategory(category)', type: 'submit', value: 'Delete'}/
+    %hr        
