@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe TasksController, type: :controller do
 
-    let(:task) { FactoryGirl.create(:task) }
+  let(:task) { FactoryGirl.create(:task) }
 
   describe 'GET #index' do
     it 'call tasks form database' do
@@ -15,12 +15,6 @@ RSpec.describe TasksController, type: :controller do
     it 'creates task' do
       post :create, task: {name: 'My task', priority: '1', status: '2'}, format: :json
       expect(Task.all).to include task
-    end
-  end
-
-  describe 'PUT #update' do
-    it 'updates task params' do
-      put :update,
     end
   end
 

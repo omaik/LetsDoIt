@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 describe User do
-
   let(:user) { FactoryGirl.create(:user) }
+  let(:second_user) {FactoryGirl.create(:user)}
 
   subject { user }
+
 
   it { should respond_to(:username) }
   it { should respond_to(:email) }
@@ -23,9 +24,9 @@ describe User do
 
   describe "when username is already taken" do
     before do
-      user_with_same_username = user.dup
-      user_with_same_username.save
+      user.username = second_user.username
     end
     it { should_not be_valid }
   end
 end
+
