@@ -19,31 +19,17 @@
                     %span.icon-bar
                     %span.icon-bar
                     %span.icon-bar
-                  %p#logo.hidden-sm.hidden-xs LetsDoIt
-                  %p.choose
-                    Choose your language:
+                  %p#logo.col-xs-2 LetsDoIt
+                  %p.choose.choose_xs.visible-xs.col-xs-7
                     = image_tag('United-Kingdom.png', class: 'lang', alt: 'United-Kingdom')
                     = image_tag('ukraine.png', class: 'lang', alt: 'Ukraine')
-                .collapse.navbar-collapse.col-lg-offset-9.col-md-offset-8.col-sm-offset-7.hidden-xs
+                .collapse.navbar-collapse.col-lg-offset-10.col-md-offset-9.col-sm-offset-8.hidden-xs
                   %ul.nav.navbar-nav
-                    %li.head_li
-                      %a{ href: '#' } Home
-                    %li.head_li
-                      %a{ href: '#' } Sign in
-                    %li.head_li
-                      %a{ href: '#' } Sign up
+                    %li.head_li.choose
+                      = image_tag('United-Kingdom.png', class: 'lang', alt: 'United-Kingdom')
+                      = image_tag('ukraine.png', class: 'lang', alt: 'Ukraine')
                 / Меню при розширенi телефона
                 #drop.collapse.navbar-collapse.hidden-sm.hidden-md.hidden-lg
                   %ul.nav.navbar-nav.hidden-sm.hidden-md.hidden-lg
-                    %li
-                      %a{ href: '#' } Home
-                    %li
-                      %a{ href: '#' } Sign in
-                    %li
-                      %a{ href: '#' } Sign up
     %section
-      .container-fluid
-        .row
-          #left_side.col-lg-4.col-md-4.col-sm-4.col-xs-12
-          #right_side
-            = yield
+      %ng-view
