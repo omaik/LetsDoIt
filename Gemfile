@@ -51,7 +51,7 @@ end
 group :test do
   # Unit test framework
   gem 'rspec-rails', '~> 3.4'
-  gem 'factory_girl', '~> 4.5'
+  gem 'factory_girl_rails', '4.2.1'
 end
 
 group :production do
