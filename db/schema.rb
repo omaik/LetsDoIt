@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151216112814) do
+ActiveRecord::Schema.define(version: 20151218170113) do
 
   create_table "tasks", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20151216112814) do
     t.string   "provider",               limit: 20
     t.string   "uid",                    limit: 60
     t.string   "social_avatar",          limit: 255
+    t.integer  "role",                   limit: 4,   default: 0
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
