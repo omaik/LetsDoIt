@@ -15,5 +15,11 @@
 //= require bootstrap.min
 //= require underscore-min
 //= require angular.min.js
-//= require angular-route.min.js
+//= require angular-ui-router.min.js
+//= require angular-resource.min.js
+//= require angular-material.min.js
+//= require angular-animate.min.js
+//= require angular-aria.min.js
+//= require angular-messages.min.js
+//= require main.js
 //= require app.js

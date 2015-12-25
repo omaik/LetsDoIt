@@ -3,26 +3,48 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .add-task {
-  margin: 15px auto 40px;
+  margin: 15px 15px 40px;
   padding: 10px;
 }
 
 .task-list {
-  -webkit-box-shadow: 0 0 3px rgba(65,115,120,.5);
-  -moz--box-shadow: 0 0 3px rgba(65,115,120,.5);
-  box-shadow: 0 0 3px rgba(65,115,120,.5);
+  border-bottom: solid 2px #c9c9c9;
   margin: 15px;
   padding: 10px;
 }
 
 .task-name a {
   width: 100%;
-  color: #33332D;
+  color: #333;
   font-size: 24px;
   text-decoration: none;
   padding: 5px;
 }
 
-.btn {
+.task-list-btn {
   float: right;
+}
+
+.task-option-select {
+  margin: 15px;
+  font-size: 16px;
+  border: none;
+  border-bottom: solid 2px #c9c9c9;
+  background: transparent;
+}
+
+.task-edit {
+  margin: 15px;
+  padding: 15px;
+  font-size: 16px;
+    div {
+      margin: 20px auto;
+    }
+}
+
+.task-input {
+  padding: 10px;
+  border: none;
+  border-bottom: solid 2px #c9c9c9;
+  transition: border 0.3s;
 }
