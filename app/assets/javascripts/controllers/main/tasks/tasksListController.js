@@ -1,13 +1,17 @@
 angular.module('letsDoIt')
 
-.controller('TasksController', ['$scope', 'taskList', function($scope, taskList) {
+.controller('TasksListController', [
+  '$scope',
+  'tasksResource',
+  function($scope, taskList) {
   var STATUS = '1', PRIORITY = '2';
+  $scope.tasks = { list: [] };
   $scope.task = {
     priority: PRIORITY,
     status: STATUS
   };
   taskList.query(function(data) {
-    $scope.tasks = data;
+    $scope.tasks.list = data;
   },
   function(data, status) {
     console.log('Status is: ' + status);
@@ -26,7 +30,7 @@ angular.module('letsDoIt')
       status: $scope.task.status
     });
     $scope.task.$save(function() {
-      $scope.tasks.push($scope.task);
+      $scope.tasks.list.push($scope.task);
       $scope.task = {
         name: '',
         priority: PRIORITY,
@@ -40,9 +44,9 @@ angular.module('letsDoIt')
   };
 
   $scope.deleteTask = function(task) {
-    var index = $scope.tasks.indexOf(task);
+    var index = $scope.tasks.list.indexOf(task);
     task.$delete(function() {
-      $scope.tasks.splice(index, 1);
+      $scope.tasks.list.splice(index, 1);
     },
     function(data, status) {
       console.log('Status is: ' + status);

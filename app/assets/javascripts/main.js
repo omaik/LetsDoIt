@@ -6,7 +6,7 @@ angular.module('letsDoIt', ['ui.router', 'ngMaterial', 'ngResource','ngMessages'
       state('tasks', {
         url: '/tasks',
         templateUrl: '/assets/tasks/list.html',
-        controller: 'TasksController'
+        controller: 'TasksListController'
       }).
       state('editTask', {
         url: ':id/edit',
