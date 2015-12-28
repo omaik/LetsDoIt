@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.2.1'
 
+gem 'therubyracer', '0.12.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use mysql as the database for Active Record
@@ -48,10 +49,11 @@ group :development, :test do
   gem 'spring'
 end
 
-group :test do
+group :test, :gitlabci do
   # Unit test framework
   gem 'rspec-rails', '~> 3.4'
   gem 'factory_girl_rails', '4.2.1'
+  gem 'shoulda-matchers', '3.0.1'
 end
 
 group :production do
