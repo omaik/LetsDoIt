@@ -22,9 +22,10 @@
                   %p#logo.col-xs-2 LetsDoIt
                   %ul.nav.navbar-nav{'ng-show':'signedIn'}
                     %li
-                      %img{'alt':'{{user.first_name}}', 'ng-src':'{{user.social_avatar}}'}
+                      %img{'ng-src': '{{user.social_avatar}}', 'ui-sref': 'profile({id:user.id})', id: 'user', 'ng-show': 'user.social_avatar'}
+                      = image_tag('user.png', id: 'user', 'ng-show': '!user.social_avatar', 'ui-sref': 'profile({id:user.id})')
                     %li
-                      %a#names{'ui-sref': 'profile({id:1})'} {{user.first_name}} {{user.last_name}}
+                      %a#names{'ui-sref': 'profile({id:user.id})'} {{user.first_name}} {{user.last_name}}
                     %li
                       %a{'title': 'Friends'}
                         %i.fa.fa-users

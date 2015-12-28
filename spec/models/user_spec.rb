@@ -31,5 +31,15 @@ describe User do
     end
     it { should_not be_valid }
   end
+
+  describe "when country is too long" do
+    before { user.country = "a" * 51 }
+    it { should_not be_valid }
+  end
+
+  describe "when city is too long" do
+    before { user.city = "a" * 51 }
+    it { should_not be_valid }
+  end
 end
 

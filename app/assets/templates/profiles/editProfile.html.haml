@@ -1,0 +1,52 @@
+%div.col-sm-4.col-sm-offset-4{'class':'editProfileClass'}
+  %h2 Edit your profile:
+  %form{'name':'editProfile', 'ng-submit':'updateProfile(avatar)', 'multipart':'true' }
+    %div{'ng-messages':'editProfile.name.$error', 'role':'alert', 'class':'errors'}
+    %p
+      .alert.alert-danger{'ng-show': 'errHandle'}
+        %p{'ng-bind': 'profileErrMsg'}
+    %md-input-container.md-block
+      %input{'ng-model': 'profile.first_name', type: 'text', 'placeholder':'First name', 'maxlength':'30', 'ng-pattern':'namePattern', 'name':'fName'}
+      %div{'ng-messages':'editProfile.fName.$error', 'role':'alert', 'class':'errors'}
+        %div{'ng-repeat':'(type, message) in errorMessages'}
+          %div{'ng-message-exp':'type'}
+            First name {{message}}
+
+    %md-input-container.md-block
+      %input{'ng-model': 'profile.last_name', type: 'text', 'placeholder':'Last name', 'maxlength':'30', 'ng-pattern':'namePattern', 'name':'lName'}
+      %div{'ng-messages':'editProfile.lName.$error', 'role':'alert', 'class':'errors'}
+        %div{'ng-repeat':'(type, message) in errorMessages'}
+          %div{'ng-message-exp':'type'}
+            Last name {{message}}
+
+    %md-input-container.md-block
+      %md-select{'ng-model': 'profile.sex', 'placeholder':'Sex'}
+        %md-option{value: 'Male'} Male
+        %md-option{value: 'Female'} Female
+        %md-option{value: 'No'} -
+
+    %md-input-container
+      %md-select{'ng-model': 'profile.day', 'placeholder':'Day'}
+        %md-option{ 'ng-repeat': 'd in day', value: '{{d}}' } {{d}}
+
+    %md-input-container
+      %md-select{'ng-model': 'profile.month', 'placeholder':'Month'}
+        %md-option{ 'ng-repeat': 'm in month', value: '{{m}}' } {{m}}
+
+    %md-input-container
+      %md-select{'ng-model': 'profile.year', 'placeholder':'Year'}
+        %md-option{ 'ng-repeat': 'y in year', value: '{{y}}' } {{y}}
+
+    %md-input-container.md-block
+      %input{'ng-model': 'profile.country', type: 'text', 'placeholder':'Country', 'maxlength':'20'}
+
+    %md-input-container.md-block
+      %input{'ng-model': 'profile.city', type: 'text', 'placeholder':'City', 'maxlength':'20'}
+    %input{type: 'file', 'ngf-select':'', 'ng-model':'avatar'}
+    %br
+    %p
+    %div
+    %input.btn.btn-success{type: 'submit', value: 'Save'}
+
+
+

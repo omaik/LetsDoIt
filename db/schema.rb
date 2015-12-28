@@ -92,6 +92,16 @@ ActiveRecord::Schema.define(version: 20160111134227) do
     t.string   "uid",                    limit: 60
     t.string   "social_avatar",          limit: 255
     t.integer  "role",                   limit: 4,   default: 0
+    t.string   "avatar_file_name",       limit: 255
+    t.string   "avatar_content_type",    limit: 255
+    t.integer  "avatar_file_size",       limit: 4
+    t.datetime "avatar_updated_at"
+    t.string   "sex",                    limit: 60
+    t.integer  "day",                    limit: 2
+    t.integer  "month",                  limit: 2
+    t.integer  "year",                   limit: 4
+    t.string   "country",                limit: 60
+    t.string   "city",                   limit: 60
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
