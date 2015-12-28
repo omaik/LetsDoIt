@@ -1,4 +1,4 @@
-angular.module('letsDoIt', ['ui.router', 'ngMaterial', 'ngResource'])
+angular.module('letsDoIt', ['ui.router', 'ngMaterial', 'ngResource','ngMessages'])
 
 .config(['$stateProvider',
   function($stateProvider) {
@@ -12,5 +12,10 @@ angular.module('letsDoIt', ['ui.router', 'ngMaterial', 'ngResource'])
         url: ':id/edit',
         templateUrl: '/assets/tasks/edit.html',
         controller: 'EditTaskController'
-      })
+      }).
+      state('signUp', {
+        url:'/users/sign_up',
+        templateUrl: '/assets/signup/new.html',
+        controller: 'signUpController'
+      });
   }]);

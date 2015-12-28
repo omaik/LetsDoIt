@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
          :omniauthable, omniauth_providers: [:facebook]
 
   validates :username, presence: true, length: { maximum: 20}, uniqueness: true
-  validates :first_name, presence: true, format: { with: /[\p{L}]/}
-  validates :last_name, presence: true, format: { with: /[\p{L}]/}
+  validates :first_name, presence: true, format: { with: /\A[\p{L}]+\z/}
+  validates :last_name, presence: true, format: { with: /\A[\p{L}]+\z/}
 
   # Method which allows us to save data from facebook callback in our DB
   def self.from_omniauth(auth)

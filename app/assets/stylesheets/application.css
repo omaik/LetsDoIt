@@ -13,6 +13,7 @@
  *= require_tree
  *= require_self
  *= require_tasks
+ *= require_signup
  *= require_bootstrap.min
  *= require_angular-material.min
 */
