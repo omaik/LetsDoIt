@@ -9,7 +9,7 @@ angular.module('letsDoIt', ['ui.router', 'ngMaterial', 'ngResource','ngMessages'
         controller: 'TasksListController'
       }).
       state('editTask', {
-        url: ':id/edit',
+        url: 'tasks/:id/edit',
         templateUrl: '/assets/tasks/edit.html',
         controller: 'EditTaskController'
       }).
@@ -17,5 +17,8 @@ angular.module('letsDoIt', ['ui.router', 'ngMaterial', 'ngResource','ngMessages'
         url:'/users/sign_up',
         templateUrl: '/assets/signup/new.html',
         controller: 'signUpController'
-      });
+      }).
+      state('root', {
+        url:'/'
+      })
   }]);
