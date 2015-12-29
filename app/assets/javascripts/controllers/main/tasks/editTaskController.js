@@ -1,6 +1,11 @@
 angular.module('letsDoIt')
 
-.controller('EditTaskController', ['$scope', '$state', '$stateParams', 'taskList', function($scope, $state, $stateParams, taskList) {
+.controller('EditTaskController', [
+  '$scope',
+  '$state',
+  '$stateParams',
+  'tasksResource',
+  function($scope, $state, $stateParams, taskList) {
   $scope.task = taskList.get({ id: $stateParams.id }, function() {
     $scope.task.due_date = $scope.task.due_date? new Date($scope.task.due_date): new Date();
   });

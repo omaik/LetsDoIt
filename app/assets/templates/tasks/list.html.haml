@@ -1,34 +1,34 @@
 %div
   .add-task
-    %form{"ng-submit": "addTask()"}
+    %form{'ng-submit': 'addTask()'}
       %p
         %h2 My tasks
       %p
-        .alert.alert-danger{"ng-show": "errHandle"}
-          %p{"ng-bind": "taskErrMsg"}
+        .alert.alert-danger{'ng-show': 'errHandle'}
+          %p{'ng-bind': 'taskErrMsg'}
         %md-input-container.md-block
           %label Add new task
-          %input{"ng-model": "task.name", type: "text"}/
-        %input.btn.btn-success.task-list-btn{name: "add-task", type: "submit", value: "Add task"}/
+          %input{'ng-model': 'task.name', type: 'text'}/
+        %input.btn.btn-success.task-list-btn{name: 'add-task', type: 'submit', value: 'Add task'}/
       %label.label.label-default Priority
       %md-input-container
-        %md-select{"ng-model": "task.priority", "aria-label": "Priority"}
-          %md-option{value: "1"} High
-          %md-option{value: "2"} Medium
-          %md-option{value: "3"} Low
+        %md-select{'ng-model': 'task.priority', 'aria-label': 'Priority'}
+          %md-option{value: '1'} High
+          %md-option{value: '2'} Medium
+          %md-option{value: '3'} Low
       %label.label.label-default Status
       %md-input-container
-        %md-select{"ng-model": "task.status", "aria-label": "Status"}
-          %md-option{value: "1"} In progress
-          %md-option{value: "2"} Set aside
-  .task-list{"ng-repeat": "task in tasks | orderBy: '-created_at'"}
+        %md-select{'ng-model': 'task.status', 'aria-label': 'Status'}
+          %md-option{value: '1'} In progress
+          %md-option{value: '2'} Set aside
+  .task-list{'ng-repeat': "task in tasks.list | orderBy: '-created_at'"}
     %div
       %p.task-name
-        %a{"ui-sref": "editTask({id:task.id})"}
-          %span{"ng-bind": "task.name"}
-        %input.btn.btn-danger.task-list-btn{name: "delete-task", "ng-click": "deleteTask(task)", type: "submit", value: "Delete"}/
+        %a{'ui-sref': 'editTask({id:task.id})'}
+          %span{'ng-bind': 'task.name'}
+        %input.btn.btn-danger.task-list-btn{name: 'delete-task', 'ng-click': 'deleteTask(task)', type: 'submit', value: 'Delete'}/
       %p
         %label.label.label-default Added:
-        %span{"ng-bind": "task.created_at | date:'MM/dd/yyyy HH:mm'"}
+        %span{'ng-bind': "task.created_at | date:'MM/dd/yyyy HH:mm'"}
         %label.label.label-default Due date:
-        %span{"ng-bind": "task.due_date | date:'MM/dd/yyyy'"}
+        %span{'ng-bind': "task.due_date | date:'MM/dd/yyyy'"}
