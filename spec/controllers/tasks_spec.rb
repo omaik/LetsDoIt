@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe TasksController, type: :controller do
 
   include Devise::TestHelpers
-  let(:task) { FactoryGirl.create(:task, user_id: user.id) }
-  let(:task2) { FactoryGirl.create(:task, user_id: user2.id) }
+  let(:task) { user.tasks.create(FactoryGirl.attributes_for(:task)) }
+  let(:task2) { user2.tasks.create(FactoryGirl.attributes_for(:task)) }
   let(:user) { FactoryGirl.create(:user) }
   let(:user2) { FactoryGirl.create(:user) }
   before { sign_in user }
@@ -14,7 +14,7 @@ RSpec.describe TasksController, type: :controller do
       get :index, format: :json
       expect(response.body).to include
         ({ id: task.id, name: task.name, description: task.description, due_date: task.due_date,
-        status: task.status, priority: task.priority, category_id: nil, group_id: 13 }.to_json)
+        status: task.status, category_id: nil, group_id: 13, priority_id: task.priority_id }.to_json)
     end
   end
 
@@ -23,13 +23,13 @@ RSpec.describe TasksController, type: :controller do
       get :show, id: task.id, format: :json
       expect(response.body).to include
         ({ id: task.id, name: task.name, description: task.description, due_date: task.due_date,
-        status: task.status, priority: task.priority, category_id: nil, group_id: 13 }.to_json)
+        status: task.status, category_id: nil, group_id: 13, priority_id: task.priority_id }.to_json)
     end
   end
 
   describe 'POST #create' do
     it 'creates task' do
-      post :create, task: {name: 'My task', priority: '1', status: '2'}, format: :json
+      post :create, task: {name: 'My task', priority_id: '1', status: '2'}, format: :json
       expect(Task.all).to include task
     end
   end

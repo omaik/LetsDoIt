@@ -9,8 +9,8 @@ describe Task do
   it { should respond_to(:name) }
   it { should respond_to(:description) }
   it { should respond_to(:status) }
-  it { should respond_to(:priority) }
   it { should have_and_belong_to_many(:users)}
+  it { should belong_to(:priority)}
   it { should be_valid }
 
   describe 'when name is not present' do
@@ -32,10 +32,4 @@ describe Task do
     before { task.status = 17 }
     it { should_not be_valid }
   end
-
-  describe 'when priority is too longe' do
-    before { task.priority = 32 }
-    it { should_not be_valid }
-  end
-
 end
