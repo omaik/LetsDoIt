@@ -19,7 +19,6 @@ angular.module('letsDoIt')
       task = $scope.draggableTask;
       task.group_id = $scope.droppableGroup.id;
       task.$update();
-      console.log(task.group_id);
   	};
 
   	$scope.onDropCategory=function(evt, ui, data) {
@@ -27,7 +26,6 @@ angular.module('letsDoIt')
       task = $scope.draggableTask;
       task.category_id = $scope.droppableCategory.id;
       task.$update();
-      console.log(task.category_id);
   	};
 
 }]);

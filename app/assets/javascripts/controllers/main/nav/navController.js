@@ -4,7 +4,11 @@ angular.module('letsDoIt')
   'Auth',
   '$state',
   '$rootScope',
-  function($scope, Auth, $state, $rootScope){
+  '$translate',
+  function($scope, Auth, $state, $rootScope, $translate){
+  $scope.changeLanguage = function (langKey) {
+    $translate.use(langKey);
+  };
   $scope.logout = function() {
   var config = {
     headers: {

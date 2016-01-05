@@ -1,47 +1,80 @@
 .head {
-	border-bottom: 2px solid grey;
-	margin-bottom: 0;
+  border-bottom: 2px solid grey;
+  margin-bottom: 0;
 }
-
 #logo {
-	font-size: 20px;
-	color: white;
-	margin-left:-60px;
-	margin-top: 10px;
-	width: 15%;
-	float: left;
+  font-size: 20px;
+  color: white;
+  margin-top: 10px;
+  float: left;
+  text-decoration: none;
 }
-
+#logo:hover {
+  color: #55acee;
+}
 .head_li {
-	font-size: 20px;
+  font-size: 20px;
 }
-
+ul li .eng {
+  font-size: 17px;
+  color: #fff !important;
+  height: 49px;
+}
+ul li .eng:hover {
+  color: #55acee !important;
+  border-bottom: 3px solid #55acee;
+  cursor: pointer;
+}
+.line {
+  height: 25px;
+  width: 1px;
+  background: #fff;
+  position: absolute;
+  margin-top: 12px;
+}
 .choose {
-	color: white;
-	font-size: 17px;
-	float: left;
-	margin-top: 10px;
+  color: white;
+  font-size: 17px;
+  float: left;
+  padding-top: 8px;
+  list-style-type: none;
 }
-
+.choose a {
+  color: white;
+  font-size: 17px;
+  float: left;
+  margin-top: 5px;
+  margin-right:20px;
+}
+.choose a:hover {
+  text-decoration: none;
+  color: #55acee;
+  cursor: pointer;
+}
 .choose_xs {
-	text-align: center;
-	padding-left: 24%;
+  text-align: center;
+  padding-left: 11%;
 }
+@media only screen and (max-width : 768px) {
+  .choose_xs {
+    padding-top: 0px;
+    padding-left: 20%;
 
-.lang {
-	width: 30px;
-	height: 30px;
-	cursor: pointer;
+  }
+  .line {
+	width: 0px;
+  }
 }
 
 #user {
 	display: block;
-	padding-top:2px;
-	padding-bottom:2px;
 	border-radius: 50%;
 	width: 50px;
 	height: 50px;
 	cursor: pointer;
+  float: left;
+  margin-right: 10px;
+  margin-top: -5px;
 }
 
 #names {

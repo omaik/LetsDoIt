@@ -8,11 +8,13 @@ angular.module('letsDoIt', [
   'ngDraggable',
   'Devise',
   'templates',
-  'ngFileUpload'
+  'ngFileUpload',
+  'pascalprecht.translate',
+  'ngCookies'
   ])
 
-.config(['$stateProvider',
-  function($stateProvider) {
+.config(['$stateProvider', '$translateProvider',
+  function($stateProvider, $translateProvider) {
     var redirect = [
       '$state',
        'Auth',
@@ -24,6 +26,12 @@ angular.module('letsDoIt', [
           }, function(error) {
           });
     }];
+    $translateProvider.useStaticFilesLoader( {
+      prefix: 'translations/',
+      suffix: '.json'
+    });
+    $translateProvider.preferredLanguage('en');
+    $translateProvider.useCookieStorage();
     $stateProvider.
       state('editTask', {
         url: 'tasks/:id/edit',
@@ -74,6 +82,7 @@ angular.module('letsDoIt', [
         templateUrl: 'priorities/show.html',
         controller: 'prioritiesController'
       });
+
   }])
   .config(function($httpProvider){
     var interceptor = function($q, $location, $rootScope) {

@@ -1,4 +1,4 @@
-describe('prioritiesController', function() {
+/*describe('prioritiesController', function() {
   var scope, ctrl, prior, defaultPriority, service;
   beforeEach(function() {
     module('letsDoIt');
@@ -47,3 +47,4 @@ describe('prioritiesController', function() {
     });
   });
 });
+*/
