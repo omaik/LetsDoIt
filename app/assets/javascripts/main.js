@@ -1,4 +1,4 @@
-angular.module('letsDoIt', ['ui.router', 'ngMaterial', 'ngResource','ngMessages'])
+angular.module('letsDoIt', ['ui.router', 'ngMaterial', 'ngResource','ngMessages', 'Devise'])
 
 .config(['$stateProvider',
   function($stateProvider) {

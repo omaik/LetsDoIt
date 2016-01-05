@@ -19,6 +19,7 @@
 //= require angular-resource.min.js
 //= require angular-material.min.js
 //= require angular-animate.min.js
+//= require devise-min.js
 //= require angular-aria.min.js
 //= require angular-messages.min.js
 //= require main.js
