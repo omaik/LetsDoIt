@@ -1,12 +1,11 @@
 before_script:
-  - gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-  - \curl -sSL https://get.rvm.io | bash -s stable --ruby
-  - source /usr/local/rvm/scripts/rvm
-  - rvm use ruby -v 2.2.1
-  - gem install bundler
   - bundle install
-  - RAILS_ENV=gitlabci bundle exec rake db:create db:schema:load
+  - RAILS_ENV=test bundle exec rake db:create db:schema:load
 
 rspec:
   script:
-    - RAILS_ENV=gitlabci bundle exec rspec
+    - RAILS_ENV=test bundle exec rspec
+
+jasmine:
+  script:
+    - bundle exec rake jasmine:ci
