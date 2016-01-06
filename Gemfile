@@ -47,6 +47,8 @@ group :development, :test do
   gem 'pry-byebug', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  # Testing framework for JavaScript
+  gem 'jasmine', '2.4.0'
 end
 
 group :test, :gitlabci do
