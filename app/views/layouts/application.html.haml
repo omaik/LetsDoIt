@@ -13,13 +13,21 @@
         .row
           .head.navbar.navbar-inverse.navbar-static-top
             .container-fluid
-              .row
+              .row{'ng-controller':'NavController'}
                 .navbar-header.col-lg-7.col-lg-offset-1.col-md-6.col-md-offset-1.col-sm-offset-1
-                  %button.navbar-toggle{ 'data-target': '#drop', 'data-toggle': 'collapse', type: 'button' }
+                  %button.navbar-toggle{ 'data-target': '#drop', 'data-toggle': 'collapse', type: 'button'}
                     %span.icon-bar
                     %span.icon-bar
                     %span.icon-bar
                   %p#logo.col-xs-2 LetsDoIt
+                  %ul.nav.navbar-nav
+                    %li{'ng-show':'signedIn'}
+                      %img{'alt':'{{user.first_name}}', 'ng-src':'{{user.social_avatar}}'}
+                    %li{'ng-show':'signedIn'}
+                      %a#names{'ui-sref': 'profile({id:1})'} {{user.first_name}} {{user.last_name}}
+                    %li{'ng-show':'signedIn'}
+                      %a{'title': 'Friends'}
+                        %i.fa.fa-users
                   %p.choose.choose_xs.visible-xs.col-xs-7
                     = image_tag('United-Kingdom.png', class: 'lang', alt: 'United-Kingdom')
                     = image_tag('ukraine.png', class: 'lang', alt: 'Ukraine')
@@ -28,6 +36,9 @@
                     %li.head_li.choose
                       = image_tag('United-Kingdom.png', class: 'lang', alt: 'United-Kingdom')
                       = image_tag('ukraine.png', class: 'lang', alt: 'Ukraine')
+                    %li{'ng-show':'signedIn'}
+                      %a{'ng-click':'logout()'} Log Out
+
                 / Меню при розширенi телефона
                 #drop.collapse.navbar-collapse.hidden-sm.hidden-md.hidden-lg
                   %ul.nav.navbar-nav.hidden-sm.hidden-md.hidden-lg

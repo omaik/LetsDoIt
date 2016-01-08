@@ -1,0 +1,40 @@
+%div.container
+  %div.col-md-5.col-md-offset-2
+  %div.col-md-3{'class':'authclass'}
+    %h1 Login:
+    %div.alert.alert-danger{'ng-show':'err.isError'}
+      %div{'ng-repeat':'(field, error) in err.errors'}
+        {{error}}
+    %form{'name':'signInForm'}
+      .error{'ng-show':'error.message'}
+      %div
+        %md-input-container.md-block
+          %input{'type':'email', 'placeholder':'Email','ng-model':'user.email', 'required':'required', 'name':'emailField', 'autocomplete':'off'}
+          %div{'ng-messages':'signInForm.emailField.$error', 'role':'alert', 'class':'errors'}
+            %div{'ng-repeat':'(type, message) in errorMessages'}
+              %div{'ng-message-exp':'type'}
+                %span.glyphicon.glyphicon-remove{}
+                Email {{message}}
+      %div
+        %md-input-container.md-block
+          %input{'type':'password', 'placeholder':'Password','ng-model':'user.password', 'required':'required', 'name':'passwordField', 'autocomplete':'off'}
+          %div{'ng-show':'error.errors.password'}
+            %div{'ng-repeat':'field_error in error.errors.password'}
+      %div
+        %p
+          %a{'ui-sref': '#', 'title': 'I forgot my password'}
+            Forgot your password?
+      %div
+        %button.btn.btn-block.btn-primary{'ng-click':'login()', 'ng-disabled':'signInForm.$invalid'} Login
+      %div
+        %br
+      %div
+        %a.btn.btn-block.btn-social.btn-facebook{href:'/users/auth/facebook'}
+          %span.fa.fa-facebook
+          Sign in with Facebook
+      %div
+        %br
+        %p
+          New User?
+          %a{'ui-sref': 'signUp', 'title': 'SignUp Page'}
+            Sign Up
