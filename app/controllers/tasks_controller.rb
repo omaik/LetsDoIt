@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   respond_to :json
 
   def index
-    respond_with Task.all
+    respond_with current_user.tasks
   end
 
   def show
@@ -10,7 +10,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    respond_with Task.create(task_params)
+    respond_with current_user.tasks.create(task_params)
   end
 
   def update
@@ -24,7 +24,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:name, :description, :due_date, :status, :priority, :category_id, :group_id, :user_id)
+    params.require(:task).permit(:name, :description, :due_date, :status, :priority, :category_id, :group_id)
   end
 
 end

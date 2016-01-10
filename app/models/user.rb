@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :async,
          :omniauthable, omniauth_providers: [:facebook]
 
-  validates :username, presence: true, length: { maximum: 20}, uniqueness: true
+  validates :username, presence: true, length: { maximum: 35}, uniqueness: true
   validates :first_name, presence: true, format: { with: /\A[\p{L}]+\z/}
   validates :last_name, presence: true, format: { with: /\A[\p{L}]+\z/}
 
