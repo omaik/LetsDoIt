@@ -25,7 +25,7 @@ gem 'resque', '1.25.2'
 # Flexible authentication solution for Rails with Warden
 gem 'devise', '3.5.2'
 # For sending mails in background
-gem "devise-async", '0.10.1'
+gem 'devise-async', '0.10.1'
 # OAuth gem for facebook authentication
 gem 'omniauth-facebook'
 #  API for performing paginated queries with Active Record
@@ -34,7 +34,11 @@ gem 'responders', '~> 2.0'
 # Protection from CSRF
 gem 'angular_rails_csrf'
 # Haml generators for Rails 4, also enables Haml as the templating engine
-gem "haml-rails", "~> 0.9"
+gem 'haml-rails', '~> 0.9'
+# Font Awesome Rails Gem for awesome fonts in rails
+gem 'font-awesome-rails', '~> 4.5'
+# State machine
+gem 'aasm'
 
 group :development, :test do
   # Local development server

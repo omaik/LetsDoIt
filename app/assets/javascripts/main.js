@@ -2,6 +2,7 @@ angular.module('letsDoIt', ['ui.router', 'ngMaterial', 'ngResource','ngMessages'
 
 .config(['$stateProvider',
   function($stateProvider) {
+
     $stateProvider.
       state('tasks', {
         url: '/tasks',
@@ -18,7 +19,18 @@ angular.module('letsDoIt', ['ui.router', 'ngMaterial', 'ngResource','ngMessages'
         templateUrl: '/assets/signup/new.html',
         controller: 'signUpController'
       }).
-      state('root', {
-        url:'/'
-      })
-  }]);
+      state( 'login', {
+        url: '/',
+        templateUrl: '/assets/signin/new.html',
+        controller: 'SignInController',
+        resolve: ['$state', 'Auth', function($state, Auth) {
+          Auth.currentUser().then(function (){
+          if(user.id !== undefined) {
+            $state.go('tasks');
+          }
+          }, function(error) {
+          });
+        }]
+      });
+  }])
+;
