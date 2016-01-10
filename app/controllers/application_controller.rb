@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :authenticate
   respond_to :json
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -18,6 +19,12 @@ class ApplicationController < ActionController::Base
 
   def verified_request?
     super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
+  end
+
+  def authenticate
+    unless request.env['PATH_INFO'] == '/' || request.env['PATH_INFO'] == '/users/sign_up'
+      authenticate_user!
+    end
   end
 
 end

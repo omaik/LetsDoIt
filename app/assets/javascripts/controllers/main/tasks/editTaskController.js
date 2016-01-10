@@ -18,7 +18,7 @@ angular.module('letsDoIt')
       return;
     };
     $scope.task.$update(function() {
-      $state.go('tasks');
+      $state.go('home');
     },
     function(data, status) {
       console.log('Status is: ' + status);

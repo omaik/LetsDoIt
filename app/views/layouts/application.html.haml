@@ -20,12 +20,12 @@
                     %span.icon-bar
                     %span.icon-bar
                   %p#logo.col-xs-2 LetsDoIt
-                  %ul.nav.navbar-nav
-                    %li{'ng-show':'signedIn'}
+                  %ul.nav.navbar-nav{'ng-show':'signedIn'}
+                    %li
                       %img{'alt':'{{user.first_name}}', 'ng-src':'{{user.social_avatar}}'}
-                    %li{'ng-show':'signedIn'}
+                    %li
                       %a#names{'ui-sref': 'profile({id:1})'} {{user.first_name}} {{user.last_name}}
-                    %li{'ng-show':'signedIn'}
+                    %li
                       %a{'title': 'Friends'}
                         %i.fa.fa-users
                   %p.choose.choose_xs.visible-xs.col-xs-7
@@ -42,5 +42,11 @@
                 / Меню при розширенi телефона
                 #drop.collapse.navbar-collapse.hidden-sm.hidden-md.hidden-lg
                   %ul.nav.navbar-nav.hidden-sm.hidden-md.hidden-lg
-    %section
+    %section{}
       %ui-view
+      %aside.col-sm-4
+        %div{'ui-view':'categories'}
+        %div{'ui-view':'groups'}
+      %section.col-sm-8
+        %div{'ui-view':'tasks'}
+
