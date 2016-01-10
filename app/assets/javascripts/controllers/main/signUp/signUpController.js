@@ -1,23 +1,35 @@
 angular.module('letsDoIt')
 
-.controller('signUpController', ['$scope', function ($scope) {
-  $scope.emailPattern =/.+@.+\..+/i;
-  $scope.namePattern = /^[a-zA-Z\u0400-\u04FF]+$/;
-  $scope.errorMessages = {
-    'pattern':'has incorrect format',
-    'minlength':'is too short',
-    'maxlength':'is too long'
-  };
-  $scope.isEmpty = function()  {
-    for(var i = 0; i < arguments.length; i++) {
-        for(var prop in arguments[i]) {
-            if(arguments[i].hasOwnProperty(prop))
-                return false;
-        }
-      }
-    return true;
+.controller('signUpController', [
+  '$scope',
+  '$state',
+  'Auth',
+  function ($scope, $state, Auth) {
+    $scope.emailPattern =/.+@.+\..+/i;
+    $scope.namePattern = /^[a-zA-Z\u0400-\u04FF]+$/;
+    $scope.errorMessages = {
+      'pattern':'has incorrect format',
+      'minlength':'is too short',
+      'maxlength':'is too long'
+    };
+    $scope.err = {
+      errors: {},
+      isError: false
     }
-  $scope.isTotalEmpty = function(obj) {
-    return $scope.isEmpty(obj.emailField.$error, obj.userNameField.$error, obj.passwordField.$error,obj.passwordConfirmationField.$error,obj.firstNameField.$error,obj.lastNameField.$error)
-  };
-}]);
+    $scope.addUser = function() {
+      var credentials = $scope.user;
+      var config = {
+          headers: {
+              'X-HTTP-Method-Override': 'POST'
+          }
+      };
+      Auth.register(credentials, config).then(function(registeredUser) {
+            Auth._currentUser = registeredUser;
+            $state.go('root');
+        }, function(error) {
+          $scope.err.errors = error.data.errors;
+          $scope.err.isError = true;
+      });
+    };
+  }
+]);
