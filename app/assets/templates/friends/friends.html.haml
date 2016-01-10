@@ -1,0 +1,52 @@
+.container#friendship-content
+  .col-xs-12
+    %ul.nav.nav-tabs{'role':'tablist'}
+      %li{'ng-class':'{active:isSelected(1)}', 'role':'presentation'}
+        %a{'aria-controls':'friends', 'ng-click':'select(1)', 'role':'tab', 'href':'#'} 
+          %span Friends
+      %li{'ng-class':'{active:isSelected(2)}', 'role':'presentation'}
+        %a{'aria-controls':'friendship-request', 'ng-click':'select(2)', 'role':'tab','href':'#'}
+          %span Friendship requests
+      %li{'ng-class':'{active:isSelected(3)}', 'role':'presentation'}
+        %a{'aria-controls':'pending', 'ng-click':'select(3)', 'role':'tab','href':'#'}
+          %span Pending
+      %li{'ng-class':'{active:isSelected(4)}', 'role':'presentation'}
+        %a{'aria-controls':'pending', 'ng-click':'select(4)', 'role':'tab','href':'#'}
+          %span Find new friend          
+    .tab-content
+      .section{'ng-show':'settings.tab != 4'}
+        %ul.media-list.tab-pane.fade.in.active
+          %li.media{'ng-repeat':'user in users'}
+            .media-left.media-middle
+              %a{'ng-show':'user.social_avatar'}
+                %img.media-object.img-thumbnail{'alt':'{{user.first_name}}', 'ng-src':'{{user.social_avatar}}'}/
+              %a{'ng-show':'user.social_avatar == null'}
+                %img.media-object.img-thumbnail{'alt':'{{user.first_name}}', 'ng-src':'http://inkscapestuff.org/usermanager/nopic.png'}/ 
+            .media-body
+              %h2.media-heading
+                {{user.first_name}}
+                {{user.last_name}}
+              %a.btn.btn-info{'ng-click':'delete(user)', 'ng-show':'settings.tab == 1'} Delete
+              %a.btn.btn-info{'ng-click':'accept(user)', 'ng-show':'settings.tab == 2'} Accept
+              
+      .section{'ng-show':'settings.tab == 4'}
+        .section.tab-pane.fade.in.active 
+          %form.form-inline{'ng-submit':'find(search)', 'name':'searchForm'}
+            .form-group
+              %input.form-control{'placeholder':'Enter First name or Last name', 'type':"search", 'ng-model':'search', 'autofocus':'autofocus', 'size':'35'}/
+              %button.btn.btn-info{'type':'submit'} Find
+          %hr  
+          %ul.media-list{'ng-show':'results.length != 0'}              
+            %li.media{'ng-repeat':'result in results'}
+              .media-left.media-middle
+                %a{'ng-show':'result.social_avatar != null'}
+                  %img.media-object.img-thumbnail{'alt':'{{result.first_name}}', 'ng-src':'{{result.social_avatar}}'}/
+                %a{'ng-show':'result.social_avatar == null'}
+                  %img.media-object.img-thumbnail{'alt':'{{result.first_name}}', 'ng-src':'http://inkscapestuff.org/usermanager/nopic.png'}/                  
+              .media-body
+                %h2.media-heading
+                  {{result.first_name}}
+                  {{result.last_name}}
+                %a.btn.btn-info{'ng-click':'request(result); showBtn=!showBtn', 'ng-show':'showBtn'} Send request
+                %i{'ng-show':'!showBtn'} Your request has been sent!
+

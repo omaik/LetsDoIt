@@ -30,8 +30,8 @@ angular.module('letsDoIt', [
       prefix: 'translations/',
       suffix: '.json'
     });
-    $translateProvider.preferredLanguage('en');
-    $translateProvider.useCookieStorage();
+    // $translateProvider.preferredLanguage('en');
+    // $translateProvider.useCookieStorage();
     $stateProvider.
       state('editTask', {
         url: 'tasks/:id/edit',
@@ -81,6 +81,11 @@ angular.module('letsDoIt', [
         url: '/priorities',
         templateUrl: 'priorities/show.html',
         controller: 'prioritiesController'
+      }).
+      state('friendship', {
+        url: '/friends',
+        templateUrl: 'friends/friends.html',
+        controller: 'FriendshipController'
       });
 
   }])
@@ -100,3 +105,4 @@ angular.module('letsDoIt', [
     };
     $httpProvider.interceptors.push(interceptor);
   });
+  
