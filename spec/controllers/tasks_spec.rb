@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe TasksController, type: :controller do
-
+  include Devise::TestHelpers
   let(:task) { FactoryGirl.create(:task) }
-
+  let(:user) { FactoryGirl.create(:user) }
+  before { sign_in user }
   describe 'GET #index' do
     it 'call tasks form database' do
       get :index, format: :json

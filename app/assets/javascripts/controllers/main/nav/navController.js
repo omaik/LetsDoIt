@@ -5,12 +5,6 @@ angular.module('letsDoIt')
   '$state',
   '$rootScope',
   function($scope, Auth, $state, $rootScope){
-    if(!Auth.isAuthenticated()) {
-      Auth.currentUser().then(function(data) {
-        $rootScope.signedIn = Auth.isAuthenticated();
-      }, function(error) {
-      });
-    }
   $scope.logout = function() {
   var config = {
     headers: {
@@ -18,25 +12,32 @@ angular.module('letsDoIt')
     }
   };
   Auth.logout(config).then(function(user) {
-    $state.go('signUp');
     $rootScope.signedIn = Auth.isAuthenticated();
+    $state.go('login');
     }, function(error) {
       console.log(error.data);
     });
     $scope.$on('devise:logout', function(event, user) {
-    $state.go('/');
+      $scope.user = {};
+      $rootScope.signedIn = false;
     });
   }
   Auth.currentUser().then(function (user){
-    $scope.user = user;
-  })
+    if (user.id !== undefined) {
+      $scope.user = user;
+      $rootScope.signedIn = Auth.isAuthenticated();
+    }
+  });
   $scope.$on('devise:new-registration', function (e, user){
     $scope.user = user;
-  })
+    $rootScope.signedIn = true;
+  });
+  $scope.$on('devise:new-session', function (e, user){
+    $scope.user = user;
+    $rootScope.signedIn = true;
+  });
   $scope.$on('devise:login', function (e, user){
     $scope.user = user;
-  })
-  $scope.$on('devise:logout', function (e, user){
-    $scope.user = {};
   });
+
 }]);

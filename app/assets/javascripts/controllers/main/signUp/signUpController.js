@@ -24,8 +24,7 @@ angular.module('letsDoIt')
           }
       };
       Auth.register(credentials, config).then(function(registeredUser) {
-            Auth._currentUser = registeredUser;
-            $state.go('root');
+            $state.go('home');
         }, function(error) {
           $scope.err.errors = error.data.errors;
           $scope.err.isError = true;

@@ -25,31 +25,11 @@ angular.module('letsDoIt')
           $scope.err.isError = true;
       });
       $scope.$on('devise:login', function(event, currentUser) {
-        $state.go('tasks');
+        $state.go('home');
       });
       $scope.$on('devise:new-session', function(event, currentUser) {
-        $state.go('tasks');
+        $state.go('home');
       });
     }
-  }])
-  .config(function($httpProvider){
-    var interceptor = function($q, $location, $rootScope) {
-      return {
-        'responseError': function(rejection) {
-          if (rejection.status !== 401 && $location.path() == '/') {
-            $rootScope.$broadcast('event:authorized');
-              $location.path('/tasks');
-          return rejection;
-          }
-          if (rejection.status == 401 && $location.path() !== '/') {
-            $rootScope.$broadcast('event:unauthorized');
-            if($location.path() !== '/users/sign_up')
-              $location.path('/');
-          return rejection;
-          }
-          return $q.reject(rejection);
-        }
-      };
-    };
-    $httpProvider.interceptors.push(interceptor);
-  });
+  }]);
+
