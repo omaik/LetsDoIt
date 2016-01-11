@@ -11,20 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151225123210) do
+ActiveRecord::Schema.define(version: 20151231073039) do
+
+  create_table "priorities", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.string   "name",       limit: 255
+    t.integer  "value",      limit: 4
+    t.string   "color",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "priorities", ["user_id"], name: "index_priorities_on_user_id", using: :btree
 
   create_table "tasks", force: :cascade do |t|
+    t.integer  "priority_id", limit: 4
     t.string   "name",        limit: 255
     t.text     "description", limit: 65535
     t.datetime "due_date"
     t.integer  "status",      limit: 4
-    t.integer  "priority",    limit: 4
     t.integer  "category_id", limit: 4
     t.integer  "group_id",    limit: 4
-    t.integer  "user_id",     limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
+
+  add_index "tasks", ["priority_id"], name: "index_tasks_on_priority_id", using: :btree
 
   create_table "tasks_users", id: false, force: :cascade do |t|
     t.integer "user_id", limit: 4

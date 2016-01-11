@@ -12,8 +12,14 @@ FactoryGirl.define do
     sequence (:name) { |n| "Test #{n}" }
     sequence (:description) { |n| "Description #{n}"}
     status 2
-    priority 1
     group_id 13
+    association :priority_id, factory: :priority
+  end
+
+  factory :priority do
+    sequence (:name) {|n| "Name#{n}"}
+    sequence (:value) {|n| "#{n}"}
+    color '#ff0000'
     association :user_id, factory: :user
   end
 end

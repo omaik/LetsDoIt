@@ -47,6 +47,11 @@ angular.module('letsDoIt', ['ui.router', 'ngMaterial', 'ngResource','ngMessages'
             controller: 'signUpController'
           }
         }
+      }).
+      state('priority', {
+        url: '/priorities',
+        templateUrl: '/assets/priorities/show.html',
+        controller: 'prioritiesController'
       });
   }])
   .config(function($httpProvider){
