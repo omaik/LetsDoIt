@@ -1,16 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe TasksController, type: :controller do
+
   include Devise::TestHelpers
-  let(:task) { FactoryGirl.create(:task) }
+  let(:task) { FactoryGirl.create(:task, user_id: user.id) }
+  let(:task2) { FactoryGirl.create(:task, user_id: user2.id) }
   let(:user) { FactoryGirl.create(:user) }
+  let(:user2) { FactoryGirl.create(:user) }
   before { sign_in user }
+
   describe 'GET #index' do
     it 'call tasks form database' do
       get :index, format: :json
       expect(response.body).to include
         ({ id: task.id, name: task.name, description: task.description, due_date: task.due_date,
-        status: task.status, priority: task.priority, category_id: nil, group_id: 13, user_id: task.user_id }.to_json)
+        status: task.status, priority: task.priority, category_id: nil, group_id: 13 }.to_json)
     end
   end
 
@@ -19,7 +23,7 @@ RSpec.describe TasksController, type: :controller do
       get :show, id: task.id, format: :json
       expect(response.body).to include
         ({ id: task.id, name: task.name, description: task.description, due_date: task.due_date,
-        status: task.status, priority: task.priority, category_id: nil, group_id: 13, user_id: task.user_id }.to_json)
+        status: task.status, priority: task.priority, category_id: nil, group_id: 13 }.to_json)
     end
   end
 
@@ -46,6 +50,24 @@ RSpec.describe TasksController, type: :controller do
     it 'deletes task' do
       delete :destroy, id: task.id, format: :json
       expect(Task.all).not_to include task
+    end
+  end
+
+  describe 'User should see only his own tasks' do
+    before { sign_in user2 }
+
+    it 'should not get other user task' do
+      get :index, format: :json
+      expect(response.body).not_to include
+        ({ id: task.id, name: task.name, description: task.description, due_date: task.due_date,
+        status: task.status, priority: task.priority, category_id: nil, group_id: 13 }.to_json)
+    end
+
+    it 'should get user2 task' do
+      get :index, format: :json
+      expect(response.body).to include
+        ({ id: task2.id, name: task2.name, description: task2.description, due_date: task2.due_date,
+        status: task2.status, priority: task2.priority, category_id: nil, group_id: 13 }.to_json)
     end
   end
 end
