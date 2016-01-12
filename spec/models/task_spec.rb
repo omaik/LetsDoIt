@@ -11,6 +11,7 @@ describe Task do
   it { should respond_to(:status) }
   it { should have_and_belong_to_many(:users)}
   it { should belong_to(:priority)}
+  it { should belong_to(:group)}
   it { should be_valid }
 
   describe 'when name is not present' do

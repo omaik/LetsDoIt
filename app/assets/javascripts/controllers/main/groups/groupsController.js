@@ -12,13 +12,8 @@ angular.module('letsDoIt')
     $scope.groups.list = data;
   },
   function(data, status) {
-    if($rootScope.setup.environment != 'production') {
-      console.log('Status is: ' + status);
-    }
     
   });
-
-
 
   $scope.addGroup = function() {
     if(!$scope.group.name || $scope.group.name === '') {
@@ -37,9 +32,7 @@ angular.module('letsDoIt')
       };
     },
     function(data, status) {
-      if($rootScope.setup.environment != 'production') {
-        console.log('Status is: ' + status);
-      }
+      
     });
     $scope.errorSettings.groupErrHandle = false;
   };
@@ -50,9 +43,7 @@ angular.module('letsDoIt')
       $scope.groups.list.splice(index, 1);
     },
     function(data, status) {
-      if($rootScope.setup.environment != 'production') {
-        console.log('Status is: ' + status);
-      }
+
     });
   };
 
@@ -70,9 +61,10 @@ angular.module('letsDoIt')
         $scope.showGroups = '';
       }
   };
-}]);
 
-angular.module('letsDoIt')
+  
+
+}])
 
 .animation('.slide', [function() {
   return {
