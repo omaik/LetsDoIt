@@ -3,18 +3,30 @@ angular.module('letsDoIt')
 .controller('TasksListController', [
   '$scope',
   'tasksResource',
-  function($scope, taskList) {
-  var STATUS = '1', PRIORITY = '2';
+  'prioritiesResource',
+  function($scope, tasksResource, prioritiesResource) {
+  var STATUS = '1', PRIORITY_ID = '3';
   $scope.tasks = { list: [] };
+  $scope.priorities = { list: [] };
   $scope.task = {
-    priority: PRIORITY,
+    priority_id: PRIORITY_ID,
     status: STATUS
   };
-  taskList.query(function(data) {
+
+  tasksResource.query(function(data) {
+    var tLength, tli, i;
     $scope.tasks.list = data;
-  },
-  function(data, status) {
-    console.log('Status is: ' + status);
+    tLength = $scope.tasks.list.length;
+    prioritiesResource.query(function(data) {
+      $scope.priorities.list = data;
+      for(i = 0; i < tLength; ++i) {
+        tli = $scope.tasks.list[i];
+        tli.priority = $scope.priorities.list.filter(
+          function(v) {
+            return v.id === tli.priority_id;
+          })[0];
+      };
+    });
   });
 
   $scope.addTask = function() {
@@ -24,22 +36,19 @@ angular.module('letsDoIt')
       $scope.taskErrMsg = NOT_BLANK;
       return;
     };
-    $scope.task = new taskList({
+    $scope.task = new tasksResource({
       name: $scope.task.name,
-      priority: $scope.task.priority,
+      priority_id: $scope.task.priority_id,
       status: $scope.task.status
     });
     $scope.task.$save(function() {
       $scope.tasks.list.push($scope.task);
       $scope.task = {
         name: '',
-        priority: PRIORITY,
+        priority_id: PRIORITY_ID,
         status: STATUS
       };
-    },
-    function(data, status) {
-        console.log('Status is: ' + status);
-      });
+    });
     $scope.errHandl = false;
   };
 
@@ -47,9 +56,6 @@ angular.module('letsDoIt')
     var index = $scope.tasks.list.indexOf(task);
     task.$delete(function() {
       $scope.tasks.list.splice(index, 1);
-    },
-    function(data, status) {
-      console.log('Status is: ' + status);
     });
   };
 }])
