@@ -19,17 +19,17 @@ describe Task do
     it { should_not be_valid }
   end
 
-  describe 'when name is too longe' do
+  describe 'when name is too long' do
     before { task.name = 'a' * 31 }
     it { should_not be_valid }
   end
 
-  describe 'when decription is too longe' do
+  describe 'when decription is too long' do
     before { task.description = 'a' * 501 }
     it { should_not be_valid }
   end
 
-  describe 'when status is too longe' do
+  describe 'when status is too long' do
     before { task.status = 17 }
     it { should_not be_valid }
   end

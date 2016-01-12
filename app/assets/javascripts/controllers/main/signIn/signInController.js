@@ -6,6 +6,10 @@ angular.module('letsDoIt')
     'Auth',
     '$rootScope',
     function($scope, $state, Auth, $rootScope){
+    $scope.errorMessages = {
+      'minlength':'is too short',
+      'maxlength':'is too long'
+    };
     $scope.err = {
       errors: {},
       isError: false

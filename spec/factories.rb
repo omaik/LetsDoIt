@@ -4,7 +4,7 @@ FactoryGirl.define do
     last_name "Last"
     country "Ukraine"
     city "Lviv"
-    sequence (:username) { |n| "User#{n}" }
+    sequence (:username) { |n| "Username#{n}" }
     sequence (:email) { |n| "user#{n}@example.com" }
     password "qwerty123"
     password_confirmation "qwerty123"
@@ -29,7 +29,7 @@ FactoryGirl.define do
     sequence (:name) { |n| 'Group#{n}' }
     sequence (:description) { |n| 'My {n} group' }
   end
-    
+
   factory :category do
     sequence (:name) { |n| "Category #{n}" }
   end
