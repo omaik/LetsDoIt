@@ -1,0 +1,22 @@
+%div.col-sm-12
+  .groups
+    %h3{'ng-click': 'toggleGroups()'} My groups
+    %div.slide{'ng-class': 'showGroups'}
+      %form.add-group-form{'ng-submit': 'addGroup()'}
+        %div
+          .alert.alert-danger{'ng-show': 'errorSettings.groupErrHandle'}
+            %p{'ng-bind': 'errorSettings.groupErrMsg'}
+          .input-group
+            %input.form-control{'ng-model': 'group.name', type: 'text'}/
+              
+            %span.input-group-btn
+              %input.btn.btn-secondary.btn-success{name: 'add-group', type: 'submit', value: 'Add'}/
+        
+      .group-list{'ng-repeat': 'group in groups.list | orderBy: \'-created_at\'', 'ng-drop': 'true', 'data-drop': "true", 'data-jqyoui-options': "{revert: 'invalid', helper: 'clone'}", 'jqyoui-droppable': "{index: {{$index}}, onDrop:'onDrop(group, $index)', onOver:'onOver', onOut:'onOut'}", 'ng-class': '{over:over}'}
+        %div
+          %p.group-name
+            %span{'ng-bind': 'group.name'}
+            %button.btn.delete-btn{name: 'delete-group', 'ng-click': 'deleteGroup(group)', type: 'submit'}
+              %span.glyphicon.glyphicon-remove
+
+

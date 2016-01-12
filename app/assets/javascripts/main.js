@@ -1,4 +1,15 @@
-angular.module('letsDoIt', ['ui.router', 'ngMaterial', 'ngResource','ngMessages', 'Devise', 'templates'])
+
+angular.module('letsDoIt', [
+  'ui.router',
+  'ngMaterial', 
+  'ngResource', 
+  'ngMessages', 
+  'ngAnimate', 
+  'ngDragDrop',
+  'ngDraggable',
+  'Devise',
+  'templates'
+  ])
 
 .config(['$stateProvider',
   function($stateProvider) {
@@ -43,8 +54,8 @@ angular.module('letsDoIt', ['ui.router', 'ngMaterial', 'ngResource','ngMessages'
             controller: 'signUpController'
           },
           'groups': {
-            templateUrl: 'signup/new.html',
-            controller: 'signUpController'
+            templateUrl: 'groups/list.html',
+            controller: 'GroupsController'
           }
         }
       }).

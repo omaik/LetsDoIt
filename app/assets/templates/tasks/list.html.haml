@@ -25,8 +25,8 @@
     %div
       %p.task-name
         %a{'ui-sref': 'editTask({id:task.id})'}
-          %span{'ng-bind': 'task.name'}
-        %input.btn.btn-danger.task-list-btn{name: 'delete-task', 'ng-click': 'deleteTask(task)', type: 'submit', value: 'Delete'}/
+          %span{'ng-bind': 'task.name', 'ng-drag': 'true','data-drag': "true", 'data-jqyoui-options': "{revert: 'invalid', helper: 'clone'}", 'jqyoui-draggable': "{index: {{$index}}, animate: true, placeholder: 'keep', onStart:'onDrag(task, $index)'}"}
+        %input.btn.btn-danger.task-list-btn{name: 'delete-task', 'ng-click': 'deleteTask(task)', type: 'submit', value: 'Delete', 'ng-prevent-drag': "true"}/
       %p
         %label.label.label-default Priority:
         %span{'ng-bind': 'task.priority.name', 'style':'background:{{task.priority.color}}'}

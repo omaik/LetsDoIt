@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui.min.js
 //= require bootstrap.min
 //= require underscore-min
 //= require angular.min.js
@@ -24,5 +25,7 @@
 //= require angular-messages.min.js
 //= require angular-rails-templates
 //= require_tree ../templates
+//= require angular-dragdrop.min.js
+//= require ngDraggable.js
 //= require main.js
 //= require app.js
