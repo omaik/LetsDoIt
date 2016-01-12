@@ -5,9 +5,14 @@ angular.module('letsDoIt')
   '$state',
   '$stateParams',
   'tasksResource',
-  function($scope, $state, $stateParams, taskList) {
-  $scope.task = taskList.get({ id: $stateParams.id }, function() {
+  'prioritiesResource',
+  function($scope, $state, $stateParams, tasksResource, prioritiesResource) {
+  $scope.task = tasksResource.get({ id: $stateParams.id }, function() {
     $scope.task.due_date = $scope.task.due_date? new Date($scope.task.due_date): new Date();
+  });
+  $scope.priorities = { list: [] };
+  prioritiesResource.query(function(data) {
+    $scope.priorities.list = data;
   });
 
   $scope.updateTask = function() {
@@ -19,9 +24,6 @@ angular.module('letsDoIt')
     };
     $scope.task.$update(function() {
       $state.go('home');
-    },
-    function(data, status) {
-      console.log('Status is: ' + status);
     });
   };
 }])

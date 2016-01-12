@@ -10,12 +10,12 @@
           %label Add new task
           %input{'ng-model': 'task.name', type: 'text'}/
         %input.btn.btn-success.task-list-btn{name: 'add-task', type: 'submit', value: 'Add task'}/
-      %label.label.label-default Priority
+      %label.label.label-default.label-link{title: 'Edit priorities'}
+        %a{'ui-sref':'priority'} Priority
       %md-input-container
-        %md-select{'ng-model': 'task.priority', 'aria-label': 'Priority'}
-          %md-option{value: '1'} High
-          %md-option{value: '2'} Medium
-          %md-option{value: '3'} Low
+        %md-select{'ng-model': 'task.priority_id', 'aria-label': 'Priority'}
+          %md-option{ 'ng-repeat':'priority in priorities.list', value: '{{priority.id}}'}
+            %span{'ng-bind': 'priority.name', 'style':'background:{{priority.color}}'}
       %label.label.label-default Status
       %md-input-container
         %md-select{'ng-model': 'task.status', 'aria-label': 'Status'}
@@ -28,7 +28,10 @@
           %span{'ng-bind': 'task.name'}
         %input.btn.btn-danger.task-list-btn{name: 'delete-task', 'ng-click': 'deleteTask(task)', type: 'submit', value: 'Delete'}/
       %p
-        %label.label.label-default Added:
-        %span{'ng-bind': "task.created_at | date:'MM/dd/yyyy HH:mm'"}
+        %label.label.label-default Priority:
+        %span{'ng-bind': 'task.priority.name', 'style':'background:{{task.priority.color}}'}
         %label.label.label-default Due date:
         %span{'ng-bind': "task.due_date | date:'MM/dd/yyyy'"}
+        %label.label.label-default Added:
+        %span{'ng-bind': "task.created_at | date:'MM/dd/yyyy HH:mm'"}
+

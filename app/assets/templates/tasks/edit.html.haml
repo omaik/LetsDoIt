@@ -14,10 +14,9 @@
     %div
       %label.label.label-default Priority
       %md-input-container
-        %md-select{'ng-model': 'task.priority', 'aria-label': 'Priority'}
-          %md-option{value: '1'} High
-          %md-option{value: '2'} Medium
-          %md-option{value: '3'} Low
+        %md-select{'ng-model': 'task.priority_id', 'aria-label': 'Priority'}
+          %md-option{ 'ng-repeat':'priority in priorities.list', value: '{{priority.id}}'}
+            %span{'ng-bind': 'priority.name', 'style':'background:{{priority.color}}'}
       %label.label.label-default Status
       %md-input-container
         %md-select{'ng-model': 'task.status', 'aria-label': 'Status'}
