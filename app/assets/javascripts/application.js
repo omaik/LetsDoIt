@@ -22,5 +22,7 @@
 //= require devise-min.js
 //= require angular-aria.min.js
 //= require angular-messages.min.js
+//= require angular-rails-templates
+//= require_tree ../templates
 //= require main.js
 //= require app.js

@@ -39,6 +39,8 @@ gem 'haml-rails', '~> 0.9'
 gem 'font-awesome-rails', '~> 4.5'
 # State machine
 gem 'aasm'
+#
+gem 'angular-rails-templates', '0.2.0'
 
 group :development, :test do
   # Local development server

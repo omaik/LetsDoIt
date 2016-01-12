@@ -1,4 +1,4 @@
-angular.module('letsDoIt', ['ui.router', 'ngMaterial', 'ngResource','ngMessages', 'Devise'])
+angular.module('letsDoIt', ['ui.router', 'ngMaterial', 'ngResource','ngMessages', 'Devise', 'templates'])
 
 .config(['$stateProvider',
   function($stateProvider) {
@@ -16,18 +16,18 @@ angular.module('letsDoIt', ['ui.router', 'ngMaterial', 'ngResource','ngMessages'
     $stateProvider.
       state('editTask', {
         url: 'tasks/:id/edit',
-        templateUrl: '/assets/tasks/edit.html',
+        templateUrl: 'tasks/edit.html',
         controller: 'EditTaskController'
       }).
       state('signUp', {
         url:'/users/sign_up',
-        templateUrl: '/assets/signup/new.html',
+        templateUrl: 'signup/new.html',
         controller: 'signUpController',
         resolve: redirect
       }).
       state( 'login', {
         url: '/',
-        templateUrl: '/assets/signin/new.html',
+        templateUrl: 'signin/new.html',
         controller: 'SignInController',
         resolve: redirect
       }).
@@ -35,22 +35,22 @@ angular.module('letsDoIt', ['ui.router', 'ngMaterial', 'ngResource','ngMessages'
         url: '/home',
         views: {
           'tasks': {
-            templateUrl: 'assets/tasks/list.html',
+            templateUrl: 'tasks/list.html',
             controller: 'TasksListController'
           },
           'categories': {
-            templateUrl: '/assets/signup/new.html',
+            templateUrl: 'signup/new.html',
             controller: 'signUpController'
           },
           'groups': {
-            templateUrl: '/assets/signup/new.html',
+            templateUrl: 'signup/new.html',
             controller: 'signUpController'
           }
         }
       }).
       state('priority', {
         url: '/priorities',
-        templateUrl: '/assets/priorities/show.html',
+        templateUrl: 'priorities/show.html',
         controller: 'prioritiesController'
       });
   }])
