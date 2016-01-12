@@ -55,5 +55,5 @@ gitlabci:
 production:
   <<: *default
   database: LetsDoIt_production
-  username: LetsDoIt
+  username: root
   password: <%= ENV['LETSDOIT_DATABASE_PASSWORD'] %>
