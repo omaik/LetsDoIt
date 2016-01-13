@@ -14,8 +14,6 @@ angular.module('letsDoIt')
   Auth.logout(config).then(function(user) {
     $rootScope.signedIn = Auth.isAuthenticated();
     $state.go('login');
-    }, function(error) {
-      console.log(error.data);
     });
     $scope.$on('devise:logout', function(event, user) {
       $scope.user = {};
