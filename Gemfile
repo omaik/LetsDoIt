@@ -42,7 +42,7 @@ gem 'aasm'
 #
 gem 'angular-rails-templates', '0.2.0'
 
-group :development, :test do
+group :development, :test, :gitlabci do
   # Local development server
   gem 'thin', '~> 1.6', '>= 1.6.4'
   # Access an IRB console on exception pages or by using <%= console %> in views
