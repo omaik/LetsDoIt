@@ -1,14 +1,14 @@
-
 angular.module('letsDoIt', [
   'ui.router',
-  'ngMaterial', 
-  'ngResource', 
-  'ngMessages', 
-  'ngAnimate', 
+  'ngMaterial',
+  'ngResource',
+  'ngMessages',
+  'ngAnimate',
   'ngDragDrop',
   'ngDraggable',
   'Devise',
-  'templates'
+  'templates',
+  'ngFileUpload'
   ])
 
 .config(['$stateProvider',
@@ -41,6 +41,16 @@ angular.module('letsDoIt', [
         templateUrl: 'signin/new.html',
         controller: 'SignInController',
         resolve: redirect
+      }).
+      state('profile', {
+        url: '/users/:id',
+        templateUrl: 'profiles/profile.html',
+        controller: 'ProfilesController'
+      }).
+      state('editProfile', {
+        url: '/users/:id/edit',
+        templateUrl: 'profiles/editProfile.html',
+        controller: 'EditProfilesController'
       }).
       state( 'home', {
         url: '/home',

@@ -4,11 +4,12 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
   get '/edit' => 'tasks#index'
-  
+
   resources :tasks
   resources :priorities
   resources :groups
   resources :categories
+  resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

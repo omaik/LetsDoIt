@@ -26,6 +26,7 @@
 //= require angular-rails-templates
 //= require angular-dragdrop.min.js
 //= require ngDraggable.js
+//= require ng-file-upload.js
 //= require main.js
 //= require app.js
 

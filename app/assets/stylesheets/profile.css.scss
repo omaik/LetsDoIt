@@ -1,0 +1,36 @@
+.editProfileClass {
+	h2 {
+		text-align:center;
+	}
+	font-size:16px;
+	input {
+	 margin-top:-12px;
+	}
+	input[type='submit'] {
+	margin:auto;
+	width:60%;
+	}
+ }
+
+.profileClass {
+	h2 { text-align:center;
+	}
+	image_tag {
+		max-height:200px;
+		width:auto;
+	}
+	form {
+	p {
+		font-weight:bold;
+	}
+	font-size:20px;
+	#photo {
+		float: right;
+		width:auto;
+		height:200px;
+	}
+	a {
+		width:60%;
+	}
+	}
+ }

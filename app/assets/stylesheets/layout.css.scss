@@ -6,6 +6,7 @@
 #logo {
 	font-size: 20px;
 	color: white;
+	margin-left:-60px;
 	margin-top: 10px;
 	width: 15%;
 	float: left;
@@ -32,3 +33,19 @@
 	height: 30px;
 	cursor: pointer;
 }
+
+#user {
+	display: block;
+	padding-top:2px;
+	padding-bottom:2px;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	cursor: pointer;
+}
+
+#names {
+	font-size: 17px;
+	color: white;
+}
+

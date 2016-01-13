@@ -39,5 +39,7 @@ angular.module('letsDoIt')
   $scope.$on('devise:login', function (e, user){
     $scope.user = user;
   });
-
+  $scope.$on('profile-updated', function(event, resp) {
+    $scope.user = resp;
+  });
 }]);
