@@ -9,17 +9,25 @@ angular.module('letsDoIt')
 
     $scope.draggableTask;
     $scope.droppableGroup;
+    $scope.droppableCategory;
     $scope.onDrag=function(evt, ui, data) {
       $scope.draggableTask = data;
   	};
 
-	$scope.onDrop=function(evt, ui, data) {
+	$scope.onDropGroup=function(evt, ui, data) {
       $scope.droppableGroup = data;
       task = $scope.draggableTask;
       task.group_id = $scope.droppableGroup.id;
       task.$update();
       console.log(task.group_id);
+  	};
 
+  	$scope.onDropCategory=function(evt, ui, data) {
+      $scope.droppableCategory = data;
+      task = $scope.draggableTask;
+      task.category_id = $scope.droppableCategory.id;
+      task.$update();
+      console.log(task.category_id);
   	};
 
 }]);
