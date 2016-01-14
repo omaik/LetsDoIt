@@ -5,14 +5,14 @@
       .alert.alert-danger{'ng-show': 'errHandle'}
         %p{'ng-bind': 'taskErrMsg'}
     %md-input-container.md-block
-      %label Name
+      %label {{ 'editTasksName' | translate }}
       %input{'ng-model': 'task.name', type: 'text'}/
     %div
       %md-input-container.md-block
-        %label Description
+        %label {{ 'editTasksDescription' | translate }}
         %textarea{columns: '1', 'ng-model': 'task.description', rows: '5'}
     %div
-      %label.label.label-default Priority
+      %label.label.label-default {{ 'priority' | translate }}
       %md-input-container
         %md-select{'ng-model': 'task.priority_id', 'aria-label': 'Priority'}
           %md-option{ 'ng-repeat':'priority in priorities.list', value: '{{priority.id}}'}
@@ -20,9 +20,9 @@
       %label.label.label-default Status
       %md-input-container
         %md-select{'ng-model': 'task.status', 'aria-label': 'Status'}
-          %md-option{value: '1'} In progress
-          %md-option{value: '2'} Set aside
-      %md-datepicker{'md-placeholder': 'Enter date', 'ng-model': 'task.due_date'}
+          %md-option{value: '1'} {{ 'inProgress' | translate }}
+          %md-option{value: '2'} {{ 'setAside' | translate }}
+      %md-datepicker{'md-placeholder': "{{ 'editTasksEnterDate' | translate }}", 'ng-model': 'task.due_date'}
     %div
-      %input.btn.btn-success{type: 'submit', value: 'Save'}/
-      %a.btn.btn-default{'ui-sref': 'home'} Cancel
+      %input.btn.btn-success{type: 'submit', value: "{{ 'editTasksSave' | translate }}"}/
+      %a.btn.btn-default{'ui-sref': 'home'} {{ 'editTasksCancel' | translate }}

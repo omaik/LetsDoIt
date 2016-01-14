@@ -5,7 +5,6 @@ angular.module('letsDoIt')
     $scope.categories = data;
   },
   function(data, status) {
-    console.log('Status is: ' + status);
   });
 
   $scope.err = {
@@ -36,7 +35,6 @@ angular.module('letsDoIt')
       $scope.categories.splice(index, 1);
     },
     function(data, status) {
-      console.log('Status is: ' + status);
     });
   };
 

@@ -27,6 +27,10 @@
 //= require angular-dragdrop.min.js
 //= require ngDraggable.js
 //= require ng-file-upload.js
+//= require angular-translate.min.js
+//= require angular-translate-loader-static-files.min.js
+//= require angular-cookies.min.js
+//= require angular-translate-storage-local.min.js
+//= require angular-translate-storage-cookie.min.js
 //= require main.js
 //= require app.js
-

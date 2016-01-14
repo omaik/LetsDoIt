@@ -2,12 +2,12 @@
   .add-task
     %form{'ng-submit': 'addTask()'}
       %p
-        %h2 My tasks
+        %h2 {{ 'tasks' | translate }}
       %p
         .alert.alert-danger{'ng-show': 'errHandle'}
           %p{'ng-bind': 'taskErrMsg'}
         %md-input-container.md-block
-          %label Add new task
+          %label {{ 'addNewTask' | translate }}
           %input{'ng-model': 'task.name', type: 'text'}/
         %input.btn.btn-success.task-list-btn{name: 'add-task', type: 'submit', value: 'Add task'}/
       %label.label.label-default.label-link{title: 'Edit priorities'}
@@ -19,8 +19,8 @@
       %label.label.label-default Status
       %md-input-container
         %md-select{'ng-model': 'task.status', 'aria-label': 'Status'}
-          %md-option{value: '1'} In progress
-          %md-option{value: '2'} Set aside
+          %md-option{value: '1'} {{ 'inProgress' | translate }}
+          %md-option{value: '2'} {{ 'setAside' | translate }}
   .task-list{'ng-repeat': "task in tasks.list | orderBy: '-created_at'"}
     %div
       %p.task-name
