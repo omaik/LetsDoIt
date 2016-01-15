@@ -1,4 +1,4 @@
-/*describe('signUpController', function  () {
+describe('signUpController', function  () {
   var scope, ctrl, auth;
   beforeEach(function() {
     module('letsDoIt');
@@ -35,4 +35,4 @@
   });
 });
 
-*/
+
