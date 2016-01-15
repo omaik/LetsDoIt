@@ -3,40 +3,39 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .add-task {
-  margin: 15px 15px 40px;
   padding: 10px;
 }
 
-.task-list {
-  border-bottom: solid 2px #c9c9c9;
-  margin: 15px;
-  padding: 10px;
+md-toolbar, .tasks-list {
+  h2 {
+    padding-left: 10px;
+  }
 }
 
-.task-name a {
-  width: 100%;
-  color: #333;
-  font-size: 24px;
-  text-decoration: none;
-  padding: 5px;
+.add-task-btn {
+  position: fixed !important;
+  bottom: 15px;
+  right: 15px;
+}
+
+.tasks-list {
+  h2 {
+    padding: 10px;
+    margin: auto 8px;
+    color: #fff;
+    background-color: rgb(63,81,181);
+    border-radius: 5px 5px 0 0;
+  }
 }
 
 .task-list-btn {
+  bottom: -10px;
   float: right;
-}
-
-.task-option-select {
-  margin: 15px;
-  font-size: 16px;
-  border: none;
-  border-bottom: solid 2px #c9c9c9;
-  background: transparent;
 }
 
 .task-edit {
   margin: 15px;
   padding: 15px;
-  font-size: 16px;
     div {
       margin: 20px auto;
     }
@@ -54,4 +53,15 @@
   line-height: 1;
   color: #fff;
   text-decoration: none;
+}
+
+.back-home {
+    vertical-align: top !important;
+}
+
+.priority-style {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  border-radius: 10px;
 }
