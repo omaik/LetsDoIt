@@ -1,4 +1,4 @@
-%div.container.col-sm-4.col-sm-offset-4{'class':'authclass'}
+%div.container.col-sm-4.col-sm-offset-4{'class':'authclass', 'ng-hide':'isRegistrated'}
   %h1 Sign up:
   %div.alert.alert-danger{'ng-show':'err.isError'}
     %div{'ng-repeat':'(field, error) in err.errors'}
@@ -12,7 +12,7 @@
             %span.glyphicon.glyphicon-remove{}
             Email {{message}}
     %md-input-container.md-block
-      %input{'type':'text', 'placeholder':'Username','ng-model':'user.username', 'minlength':'1', 'maxlength':'30', 'name':'userNameField', required:'required', 'autocomplete':'off'}
+      %input{'type':'text', 'placeholder':'Username','ng-model':'user.username', 'minlength':'6', 'maxlength':'30', 'name':'userNameField', required:'required', 'autocomplete':'off'}
       %div{'ng-messages':'signUpForm.userNameField.$error', 'role':'alert', 'class':'errors'}
         %div{'ng-repeat':'(type, message) in errorMessages'}
           %div{'ng-message-exp':'type'}
@@ -47,3 +47,5 @@
             %span.glyphicon.glyphicon-remove{}
             Don't match with password
     %input.btn.btn-block.btn-primary{'type':'submit', 'ng-disabled':'signUpForm.$invalid', 'value':'Go!'}
+%div.container.col-sm-6.col-sm-offset-3.alert.alert-success.reg-success{'ng-show':'isRegistrated'}
+  Registration successful. Please check your email for conformation instructions.

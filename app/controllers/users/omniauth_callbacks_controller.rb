@@ -6,6 +6,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       # sign_in @user
       # head :created
       if @user.persisted?
+        @user.confirm!
         sign_in @user
         redirect_to '/#/home'
       else

@@ -30,10 +30,6 @@ angular.module('letsDoIt')
       $rootScope.signedIn = Auth.isAuthenticated();
     }
   });
-  $scope.$on('devise:new-registration', function (e, user){
-    $scope.user = user;
-    $rootScope.signedIn = true;
-  });
   $scope.$on('devise:new-session', function (e, user){
     $scope.user = user;
     $rootScope.signedIn = true;
