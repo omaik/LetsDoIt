@@ -49,6 +49,16 @@ ul li .eng:hover {
   text-align: center;
   padding-left: 11%;
 }
+@media only screen and (max-width : 768px) {
+  .choose_xs {
+    padding-top: 0px;
+    padding-left: 20%;
+
+  }
+  .line {
+  width: 0px;
+  }
+}
 
 @media only screen and (max-width : 768px) {
   .choose_xs {
@@ -63,25 +73,24 @@ ul li .eng:hover {
 }
 
 #user {
-	display: block;
-	border-radius: 50%;
-	width: 50px;
-	height: 50px;
-	cursor: pointer;
+  display: block;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
   float: left;
   margin: 0px;
 }
 
 #friends {
-	font-size:20px;
-	outline: 0;
+  font-size:20px;
+  outline: 0;
 
 }
 #names {
-	font-size: 17px;
-	color: white;
+  font-size: 17px;
+  color: white;
 }
-
 .profile {
   float: right;
   margin-right: 105px;
@@ -153,7 +162,7 @@ ul li .eng:hover {
     0% {
       margin-left: -400px;
       display: block;
-    } 
+    }
     100% {
       margin-left: 0px;
     }
@@ -162,7 +171,7 @@ ul li .eng:hover {
   @keyframes sidebar-close {
     0% {
       margin-left: 0px;
-    } 
+    }
     100% {
       margin-left: -400px;
       display: none;
@@ -272,10 +281,16 @@ header {
 }
 
 md-select-menu {
-  overflow-y: scroll !important; 
+  overflow-y: scroll !important;
   z-index: 10000;
 }
 
 md-option {
   background: white;
+}
+
+#names:hover {
+  text-decoration: none;
+  color: #55acee;
+  cursor: pointer;
 }
