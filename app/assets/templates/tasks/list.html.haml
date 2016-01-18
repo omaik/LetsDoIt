@@ -1,37 +1,25 @@
-%div
-  .add-task
-    %form{'ng-submit': 'addTask()'}
+.tasks-list
+  %p
+    %h2 {{ 'tasks' | translate }}
+  %div{'flex': '50', 'flex-sm': '100', 'flex-xs': '100', 'layout': 'column'}
+  %md-card{'ng-repeat': "task in tasks.list | orderBy: '-created_at'"}
+    %md-card-title
+      %md-card-title-text
+        %span.md-headline{'ng-bind': 'task.name', 'data-drag': 'true', 'data-jqyoui-options': "{revert: 'invalid', helper: 'clone'}", 'jqyoui-draggable': "{index: {{$index}}, animate: true, placeholder: 'keep', onStart:'onDrag(task, $index)'}"}
+    %md-card-content
+      %p{'ng-bind': 'task.description'}
       %p
-        %h2 {{ 'tasks' | translate }}
-      %p
-        .alert.alert-danger{'ng-show': 'errHandle'}
-          %p{'ng-bind': 'taskErrMsg'}
-        %md-input-container.md-block
-          %label {{ 'addNewTask' | translate }}
-          %input{'ng-model': 'task.name', type: 'text'}/
-        %input.btn.btn-success.task-list-btn{name: 'add-task', type: 'submit', value: 'Add task'}/
-      %label.label.label-default.label-link{title: 'Edit priorities'}
-        %a{'ui-sref':'priority'} Priority
-      %md-input-container
-        %md-select{'ng-model': 'task.priority_id', 'aria-label': 'Priority'}
-          %md-option{ 'ng-repeat':'priority in priorities.list', value: '{{priority.id}}'}
-            %span{'ng-bind': 'priority.name', 'style':'background:{{priority.color}}'}
-      %label.label.label-default Status
-      %md-input-container
-        %md-select{'ng-model': 'task.status', 'aria-label': 'Status'}
-          %md-option{value: '1'} {{ 'inProgress' | translate }}
-          %md-option{value: '2'} {{ 'setAside' | translate }}
-  .task-list{'ng-repeat': "task in tasks.list | orderBy: '-created_at'"}
-    %div
-      %p.task-name
-        %a{'ui-sref': 'editTask({id:task.id})'}
-          %span{'ng-bind': 'task.name', 'ng-drag': 'true','data-drag': "true", 'data-jqyoui-options': "{revert: 'invalid', helper: 'clone'}", 'jqyoui-draggable': "{index: {{$index}}, animate: true, placeholder: 'keep', onStart:'onDrag(task, $index)'}"}
-        %input.btn.btn-danger.task-list-btn{name: 'delete-task', 'ng-click': 'deleteTask(task)', type: 'submit', value: 'Delete', 'ng-prevent-drag': "true"}/
-      %p
-        %label.label.label-default Priority:
-        %span{'ng-bind': 'task.priority.name', 'style':'background:{{task.priority.color}}'}
+        %label.label.label-default {{ 'priority' | translate }}:
+        %span.priority-style{'style':'background:{{task.priority.color}}'}
+        %span{'ng-bind': 'task.priority.name'}
         %label.label.label-default Due date:
         %span{'ng-bind': "task.due_date | date:'MM/dd/yyyy'"}
         %label.label.label-default Added:
         %span{'ng-bind': "task.created_at | date:'MM/dd/yyyy HH:mm'"}
-
+    %md-card-actions{'layout': 'row', 'layout-align': 'end center'}
+      %md-button{'ui-sref': 'editTask({id:task.id})'} Edit
+      %md-button.md-accent{name: 'delete-task', 'ng-click': 'deleteTask(task)', 'ng-prevent-drag': 'true'} Delete
+  %md-button.md-primary.md-fab.md-mini.add-task-btn{'ng-click': 'showAddTaskWindow($event)'}
+    %span.glyphicon.glyphicon-plus
+    %md-tooltip{'md-direction': 'top'}
+      Create task

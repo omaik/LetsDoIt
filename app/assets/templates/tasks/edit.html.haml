@@ -16,7 +16,8 @@
       %md-input-container
         %md-select{'ng-model': 'task.priority_id', 'aria-label': 'Priority'}
           %md-option{ 'ng-repeat':'priority in priorities.list', value: '{{priority.id}}'}
-            %span{'ng-bind': 'priority.name', 'style':'background:{{priority.color}}'}
+            %span.priority-style{'style':'background:{{priority.color}}'}
+            %span{'ng-bind': 'priority.name'}
       %label.label.label-default Status
       %md-input-container
         %md-select{'ng-model': 'task.status', 'aria-label': 'Status'}
@@ -24,5 +25,5 @@
           %md-option{value: '2'} {{ 'setAside' | translate }}
       %md-datepicker{'md-placeholder': "{{ 'editTasksEnterDate' | translate }}", 'ng-model': 'task.due_date'}
     %div
-      %input.btn.btn-success{type: 'submit', value: "{{ 'editTasksSave' | translate }}"}/
-      %a.btn.btn-default{'ui-sref': 'home'} {{ 'editTasksCancel' | translate }}
+      %md-button.md-raised.md-primary{'ng-click': 'updateTask(task)'} {{ 'editTasksSave' | translate }}
+      %md-button.md-raised.back-home{'ui-sref': 'home'} {{ 'editTasksCancel' | translate }}

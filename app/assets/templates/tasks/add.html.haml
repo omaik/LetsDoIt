@@ -1,0 +1,25 @@
+%md-dialog
+  %md-toolbar
+    %h2 New task
+  %form{'ng-submit': 'addTask()'}
+    .add-task
+      %p
+        .alert.alert-danger{'ng-show': 'errHandle'}
+          %p{'ng-bind': 'taskErrMsg'}
+        %md-input-container.md-block
+          %label {{ 'addNewTask' | translate }}
+          %input{'ng-model': 'task.name', type: 'text'}
+      %label.label.label-default.label-link
+        %a{'ui-sref':'priority'} {{ 'priority' | translate }}
+        %md-tooltip Edit priorities
+      %md-input-container
+        %md-select{'ng-model': 'task.priority_id', 'aria-label': 'Priority'}
+          %md-option{ 'ng-repeat':'priority in priorities.list', value: '{{priority.id}}'}
+            %span.priority-style{'style':'background:{{priority.color}}'}
+            %span{'ng-bind': 'priority.name'}
+      %label.label.label-default Status
+      %md-input-container
+        %md-select{'ng-model': 'task.status', 'aria-label': 'Status'}
+          %md-option{value: '1'} {{ 'inProgress' | translate }}
+          %md-option{value: '2'} {{ 'setAside' | translate }}
+      %md-button.md-primary.task-list-btn{name: 'add-task', 'ng-click': 'addTask()'} Create

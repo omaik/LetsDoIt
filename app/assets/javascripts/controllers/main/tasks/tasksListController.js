@@ -2,15 +2,27 @@ angular.module('letsDoIt')
 
 .controller('TasksListController', [
   '$scope',
+  '$state',
   'tasksResource',
   'prioritiesResource',
-  function($scope, tasksResource, prioritiesResource) {
+  '$mdDialog',
+  function($scope, $state, tasksResource, prioritiesResource, $mdDialog) {
   var STATUS = '1', PRIORITY_ID = '3';
   $scope.tasks = { list: [] };
   $scope.priorities = { list: [] };
   $scope.task = {
     priority_id: PRIORITY_ID,
     status: STATUS
+  };
+
+  $scope.showAddTaskWindow = function(ev) {
+    $mdDialog.show({
+      controller: 'TasksListController',
+      templateUrl: 'tasks/add.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true
+    });
   };
 
   tasksResource.query(function(data) {
@@ -50,6 +62,8 @@ angular.module('letsDoIt')
       };
     });
     $scope.errHandl = false;
+    $mdDialog.hide();
+    $state.reload('home');
   };
 
   $scope.deleteTask = function(task) {
