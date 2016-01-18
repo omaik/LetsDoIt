@@ -6,7 +6,8 @@
   padding: 10px;
 }
 
-md-toolbar, .tasks-list {
+md-toolbar{
+  background-color: #6c5b7b !important;
   h2 {
     padding-left: 10px;
   }
@@ -16,21 +17,13 @@ md-toolbar, .tasks-list {
   position: fixed !important;
   bottom: 15px;
   right: 15px;
+  background-color: #6c5b7b !important;
+  font-size: 18px;
 }
 
-.tasks-list {
-  h2 {
-    padding: 10px;
-    margin: auto 8px;
-    color: #fff;
-    background-color: rgb(63,81,181);
-    border-radius: 5px 5px 0 0;
-  }
-}
-
-.task-list-btn {
-  bottom: -10px;
-  float: right;
+.save-task-btn {
+  color: #fff !important;
+  background-color: #6c5b7b !important;
 }
 
 .task-edit {
@@ -39,6 +32,10 @@ md-toolbar, .tasks-list {
     div {
       margin: 20px auto;
     }
+}
+
+.task-edit-card {
+  border-radius: 5px 5px 0 0;
 }
 
 .task-input {
@@ -66,3 +63,21 @@ md-toolbar, .tasks-list {
   border-radius: 10px;
 }
 
+.img-attachment {
+  max-height: 150px;
+}
+
+.list-img-attachment {
+  margin-bottom: 10px;
+  max-width: 200px;
+}
+
+.task-options {
+  margin-left: 30px;
+}
+
+.remind-me {
+  div{
+    margin: 0px 5px;
+  }
+}

@@ -1,25 +1,27 @@
-.tasks-list
-  %p
-    %h2 {{ 'tasks' | translate }}
-  %div{'flex': '50', 'flex-sm': '100', 'flex-xs': '100', 'layout': 'column'}
-  %md-card{'ng-repeat': "task in tasks.list | orderBy: '-created_at'"}
-    %md-card-title
-      %md-card-title-text
-        %span.md-headline{'ng-bind': 'task.name', 'data-drag': 'true', 'data-jqyoui-options': "{revert: 'invalid', helper: 'clone'}", 'jqyoui-draggable': "{index: {{$index}}, animate: true, placeholder: 'keep', onStart:'onDrag(task, $index)'}"}
-    %md-card-content
-      %p{'ng-bind': 'task.description'}
-      %p
-        %label.label.label-default {{ 'priority' | translate }}:
-        %span.priority-style{'style':'background:{{task.priority.color}}'}
-        %span{'ng-bind': 'task.priority.name'}
-        %label.label.label-default Due date:
-        %span{'ng-bind': "task.due_date | date:'MM/dd/yyyy'"}
-        %label.label.label-default Added:
-        %span{'ng-bind': "task.created_at | date:'MM/dd/yyyy HH:mm'"}
-    %md-card-actions{'layout': 'row', 'layout-align': 'end center'}
-      %md-button{'ui-sref': 'editTask({id:task.id})'} Edit
-      %md-button.md-accent{name: 'delete-task', 'ng-click': 'deleteTask(task)', 'ng-prevent-drag': 'true'} Delete
-  %md-button.md-primary.md-fab.md-mini.add-task-btn{'ng-click': 'showAddTaskWindow($event)'}
-    %span.glyphicon.glyphicon-plus
-    %md-tooltip{'md-direction': 'top'}
-      Create task
+%md-toolbar
+  %h2 {{ 'tasks' | translate }}
+%md-content.md-padding{'layout': 'row', 'layout-wrap': '', 'layout-align': 'center start', 'layout-xs': 'column'}
+  %div{'flex': '100', 'flex-sm': '80', 'flex-xs': '100', 'layout': 'column'}
+    %md-card{'ng-repeat': "task in tasks.list | orderBy: '-created_at'"}
+      %md-card-title
+        %md-card-title-text
+          %span.md-headline{'ng-bind': 'task.name', 'data-drag': 'true', 'data-jqyoui-options': "{revert: 'invalid', helper: 'clone'}", 'jqyoui-draggable': "{index: {{$index}}, animate: true, placeholder: 'keep', onStart:'onDrag(task, $index)'}"}
+          %md-tooltip{'md-direction': 'left'}
+            Drag to add to a Group or a Category
+      %md-card-content
+        %div{'ng-if': 'task.attachment_file_name'}
+          %img.list-img-attachment{'alt': '{{task.name}}', 'ng-src': '{{task.attach_url}}'}/
+        %p{'ng-bind': 'task.description'}
+        %p
+          %label.label.label-default {{ 'priority' | translate }}:
+          %span.priority-style{'style':'background:{{task.priority.color}}'}
+          %span{'ng-bind': 'task.priority.name'}
+          %label.label.label-default.task-options Due date:
+          %span{'ng-bind': "task.due_date | date:'MM/dd/yyyy'"}
+        %md-card-actions{'layout': 'row', 'layout-align': 'end center'}
+          %md-button{'ui-sref': 'editTask({id:task.id})'} Edit
+          %md-button.md-accent{name: 'delete-task', 'ng-click': 'deleteTask(task)', 'ng-prevent-drag': 'true'} Delete
+    %md-button.md-fab.add-task-btn{'ng-click': 'showAddTaskWindow($event)'}
+      %span.glyphicon.glyphicon-plus
+      %md-tooltip{'md-direction': 'top'}
+        Create task

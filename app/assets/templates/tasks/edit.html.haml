@@ -1,29 +1,46 @@
-.task-edit
-  %form{'ng-submit': 'updateTask(task)'}
-    %div
-    %p
-      .alert.alert-danger{'ng-show': 'errHandle'}
-        %p{'ng-bind': 'taskErrMsg'}
-    %md-input-container.md-block
-      %label {{ 'editTasksName' | translate }}
-      %input{'ng-model': 'task.name', type: 'text'}/
-    %div
-      %md-input-container.md-block
-        %label {{ 'editTasksDescription' | translate }}
-        %textarea{columns: '1', 'ng-model': 'task.description', rows: '5'}
-    %div
-      %label.label.label-default {{ 'priority' | translate }}
-      %md-input-container
-        %md-select{'ng-model': 'task.priority_id', 'aria-label': 'Priority'}
-          %md-option{ 'ng-repeat':'priority in priorities.list', value: '{{priority.id}}'}
-            %span.priority-style{'style':'background:{{priority.color}}'}
-            %span{'ng-bind': 'priority.name'}
-      %label.label.label-default Status
-      %md-input-container
-        %md-select{'ng-model': 'task.status', 'aria-label': 'Status'}
-          %md-option{value: '1'} {{ 'inProgress' | translate }}
-          %md-option{value: '2'} {{ 'setAside' | translate }}
-      %md-datepicker{'md-placeholder': "{{ 'editTasksEnterDate' | translate }}", 'ng-model': 'task.due_date'}
-    %div
-      %md-button.md-raised.md-primary{'ng-click': 'updateTask(task)'} {{ 'editTasksSave' | translate }}
-      %md-button.md-raised.back-home{'ui-sref': 'home'} {{ 'editTasksCancel' | translate }}
+.col-md-6.col-md-offset-3
+  %md-card.task-edit-card{'ng-cloak': 'ng-cloak'}
+    %md-toolbar.task-edit-card
+      %md-card-title
+        %md-card-title-text
+          %span.md-headline {{task.name}}
+    %md-card-content
+      .task-edit{'ng-cloak': 'ng-cloak'}
+        %form{'ng-submit': 'updateTask(task)'}
+          %div
+          %p
+            .alert.alert-danger{'ng-show': 'errHandle'}
+              %p{'ng-bind': 'taskErrMsg'}
+          %md-input-container.md-block
+            %label {{ 'editTasksName' | translate }}
+            %input{'ng-model': 'task.name', type: 'text'}/
+          %div
+            %md-input-container.md-block
+              %label {{ 'editTasksDescription' | translate }}
+              %textarea{columns: '1', 'ng-model': 'task.description', rows: '5'}
+          %div{'ng-if': 'task.attachment_file_name'}
+            %img.img-attachment{'ng-src': '{{task.attach_url}}'}
+          %input#add-attachment-input{type: 'file', 'ngf-select':'select(attachment)', 'ng-model':'attachment'}
+          %div
+            %label.label.label-default {{ 'priority' | translate }}
+            %md-input-container
+              %md-select{'ng-model': 'task.priority_id', 'aria-label': 'Priority'}
+                %md-option{ 'ng-repeat':'priority in priorities.list', value: '{{priority.id}}'}
+                  %span.priority-style{'style':'background:{{priority.color}}'}
+                  %span{'ng-bind': 'priority.name'}
+            %label.label.label-default Status
+            %md-input-container
+              %md-select{'ng-model': 'task.status', 'aria-label': 'Status'}
+                %md-option{value: '1'} {{ 'inProgress' | translate }}
+                %md-option{value: '2'} {{ 'setAside' | translate }}
+            %md-datepicker{'md-placeholder': "{{ 'editTasksEnterDate' | translate }}", 'ng-model': 'task.due_date'}
+          %div
+            %md-button.md-raised.save-task-btn{'ng-click': 'updateTask()'} {{ 'editTasksSave' | translate }}
+            %md-button.md-raised.back-home{'ui-sref': 'home'} {{ 'editTasksCancel' | translate }}
+          %div
+            %span{'ng-bind': "task.created_at | date:'MM/dd/yyyy HH:mm'"}
+              %md-tooltip{'md-direction': 'left'}
+                Created at
+            %md-checkbox.md-primary.remind-me{'ng-model': 'task.remind_me', 'aria-label': 'Remind me', 'ng-true-value': 'true'}
+              %md-tooltip{'md-direction': 'bottom'}
+                Remind me
