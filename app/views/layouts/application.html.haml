@@ -24,7 +24,7 @@
                     %img{'ng-src': '{{user.social_avatar}}', 'ui-sref': 'profile({id:user.id})', id: 'user', 'ng-show': 'user.social_avatar'}
                       = image_tag('user.png', id: 'user', 'ng-show': '!user.social_avatar', 'ui-sref': 'profile({id:user.id})')
                       %a#names{'ui-sref': 'profile({id:user.id})'} {{user.first_name}} {{user.last_name}}
-                      %a{'title': 'Friends'}
+                      %a#friends{'title': 'Friends','ui-sref': 'friendship'} 
                         %i.fa.fa-users
                 / Меню при розширенi телефона
                 #drop.collapse.navbar-collapse.col-lg-6.col-sm-6.col-md-5.col-sm-5.col-lg-offset-5.col-md-offset-4.col-sm-offset-2
@@ -36,7 +36,7 @@
                       %a.choose_xs.eng{'ng-click': 'changeLanguage("ua")'} Ua 
                     %li{'ng-show':'signedIn'}
                       %a.choose_xs.eng{'ng-click':'logout()'} Log Out
-
+                      
     %section{'ng-controller': 'MainController'}
       %ui-view
       %aside.col-sm-4
@@ -44,3 +44,4 @@
         %div{'ui-view':'groups'}
       %section.col-sm-8
         %div{'ui-view':'tasks'}
+

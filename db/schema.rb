@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(version: 20160111134227) do
   add_index "categories_users", ["category_id"], name: "index_categories_users_on_category_id", using: :btree
   add_index "categories_users", ["user_id"], name: "index_categories_users_on_user_id", using: :btree
 
+  create_table "friendships", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "friend_id",  limit: 4
+    t.string   "aasm_state", limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "friendships", ["user_id", "friend_id", "aasm_state"], name: "index_friendships_on_user_id_and_friend_id_and_aasm_state", using: :btree
+
   create_table "groups", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.text     "description", limit: 65535
