@@ -9,9 +9,9 @@ angular.module('letsDoIt')
     $scope.emailPattern =/.+@.+\..+/i;
     $scope.namePattern = /^[a-zA-Z\u0400-\u04FF]+$/;
     $scope.errorMessages = {
-      'pattern':'has incorrect format',
-      'minlength':'is too short',
-      'maxlength':'is too long'
+      'pattern':'incorrect',
+      'minlength':'too_short',
+      'maxlength':'too_long'
     };
     $scope.err = {
       errors: {},

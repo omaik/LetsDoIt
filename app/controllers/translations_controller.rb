@@ -1,4 +1,5 @@
 class TranslationsController < ApplicationController
+  skip_before_filter :authenticate
   respond_to :json
 
   def show

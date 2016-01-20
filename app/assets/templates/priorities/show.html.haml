@@ -8,13 +8,14 @@
     %div.col-sm-6
       %form.priority-form{'ng-submit':'priorityAction()', 'name':'priorityForm'}
         %md-input-container.md-block
-          %input{'type':'text', name:'name', placeholder:'Name', 'ng-model':'priority.name', 'minlength':'1', 'maxlength':'12', id:'inputName'}
+          %label {{ 'prior_name' | translate }}
+          %input{'type':'text', name:'name', 'ng-model':'priority.name', 'minlength':'1', 'maxlength':'12', id:'inputName'}
           %div.errors{'ng-show':'err.isError'}
             %div{'ng-repeat':'(field, error) in err.errors'}
               %span.glyphicon.glyphicon-remove
               {{field}} {{error[0]}}
           %span.value
-            Value:
+            {{'value'| translate}}:
             %span{'ng-bind':'priority.value'}
         %div.form-picker
           %input.value-picker{'type':'range', 'ng-model':'priority.value', 'min':'1', 'max':'999'}
@@ -36,4 +37,3 @@
               %span{'ng-bind':'priority.value'}
             %a.del{'ng-click':'deletePriority(priority)'}
               %span.glyphicon.glyphicon-remove
-
