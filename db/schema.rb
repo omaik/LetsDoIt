@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160117183851) do
+ActiveRecord::Schema.define(version: 20160111134227) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -57,20 +57,15 @@ ActiveRecord::Schema.define(version: 20160117183851) do
   add_index "priorities", ["user_id"], name: "index_priorities_on_user_id", using: :btree
 
   create_table "tasks", force: :cascade do |t|
-    t.integer  "priority_id",             limit: 4
-    t.string   "name",                    limit: 255
-    t.text     "description",             limit: 65535
+    t.integer  "priority_id", limit: 4
+    t.string   "name",        limit: 255
+    t.text     "description", limit: 65535
     t.datetime "due_date"
-    t.integer  "status",                  limit: 4
-    t.integer  "category_id",             limit: 4
-    t.integer  "group_id",                limit: 4
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
-    t.string   "attachment_file_name",    limit: 255
-    t.string   "attachment_content_type", limit: 255
-    t.integer  "attachment_file_size",    limit: 4
-    t.datetime "attachment_updated_at"
-    t.text     "attach_url",              limit: 65535
+    t.integer  "status",      limit: 4
+    t.integer  "category_id", limit: 4
+    t.integer  "group_id",    limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   add_index "tasks", ["priority_id"], name: "index_tasks_on_priority_id", using: :btree

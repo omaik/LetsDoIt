@@ -5,6 +5,7 @@ angular.module('letsDoIt')
   '$state',
   'Auth',
   function ($scope, $state, Auth) {
+    $scope.isRegistrated = false;
     $scope.emailPattern =/.+@.+\..+/i;
     $scope.namePattern = /^[a-zA-Z\u0400-\u04FF]+$/;
     $scope.errorMessages = {
@@ -24,7 +25,11 @@ angular.module('letsDoIt')
           }
       };
       Auth.register(credentials, config).then(function(registeredUser) {
-            $state.go('home');
+          Auth.logout({
+          headers: {
+              'X-HTTP-Method-Override': 'DELETE'
+          }})
+          $scope.isRegistrated = true;
         }, function(error) {
           $scope.err.errors = error.data.errors;
           $scope.err.isError = true;

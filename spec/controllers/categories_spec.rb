@@ -7,7 +7,10 @@ RSpec.describe CategoriesController, type: :controller do
   let(:category2) { user2.categories.create(FactoryGirl.attributes_for(:category2)) }
   let(:user) { FactoryGirl.create(:user) }
   let(:user2) { FactoryGirl.create(:user) }
-  before { sign_in user }
+  before do
+    user.confirm!
+    sign_in user
+  end
 
   describe 'GET #index' do
     it 'call categories form database' do

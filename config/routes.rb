@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root 'static_pages#index'
 
-  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks', confirmations: 'users/confirmations' }
   get '/edit' => 'tasks#index'
 
   resources :tasks

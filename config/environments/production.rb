@@ -79,7 +79,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Uncomment and input our website, when it will be created.
-  # config.action_mailer.default_url_options = { :host => 'yoursite.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: '54.175.169.251' }
 
   #Adding and configing delivery method for production
   config.action_mailer.delivery_method = :smtp

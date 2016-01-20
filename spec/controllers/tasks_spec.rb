@@ -7,7 +7,10 @@ RSpec.describe TasksController, type: :controller do
   let(:task2) { user2.tasks.create(FactoryGirl.attributes_for(:task)) }
   let(:user) { FactoryGirl.create(:user) }
   let(:user2) { FactoryGirl.create(:user) }
-  before { sign_in user }
+  before do
+    user.confirm!
+    sign_in user
+  end
 
   describe 'GET #index' do
     it 'call tasks form database' do
