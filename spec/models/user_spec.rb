@@ -12,6 +12,7 @@ describe User do
   it { should respond_to(:first_name) }
   it { should respond_to(:last_name) }
   it { should have_and_belong_to_many(:tasks)}
+  it { should have_and_belong_to_many(:groups)}
   it { should have_many(:priorities)}
   it { should be_valid }
 
