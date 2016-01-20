@@ -241,3 +241,6 @@ en:
   value: "Value"
   prior_name: "Priority name"
   back: "Back"
+  must_finish_task: "Hey %{user}, today you must finish your task"
+  web_site_link: "Go to LetsDoIt web-site"
+  notification_about: "Notification about"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160111134227) do
+ActiveRecord::Schema.define(version: 20160125080713) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -64,8 +64,9 @@ ActiveRecord::Schema.define(version: 20160111134227) do
     t.integer  "status",      limit: 4
     t.integer  "category_id", limit: 4
     t.integer  "group_id",    limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.boolean  "remind_me",                 default: false
   end
 
   add_index "tasks", ["priority_id"], name: "index_tasks_on_priority_id", using: :btree
@@ -112,6 +113,7 @@ ActiveRecord::Schema.define(version: 20160111134227) do
     t.integer  "year",                   limit: 4
     t.string   "country",                limit: 60
     t.string   "city",                   limit: 60
+    t.integer  "language",               limit: 4,   default: 0
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

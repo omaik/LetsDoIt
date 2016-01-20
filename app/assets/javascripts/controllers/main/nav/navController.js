@@ -5,9 +5,17 @@ angular.module('letsDoIt')
   '$state',
   '$rootScope',
   '$translate',
-  function($scope, Auth, $state, $rootScope, $translate){
+  'userProfile',
+  function($scope, Auth, $state, $rootScope, $translate, userProfile){
   $scope.changeLanguage = function (langKey) {
     $translate.use(langKey);
+    Auth.currentUser().then(function(user) {
+      var profile = new userProfile({
+        language: langKey,
+        id: user.id
+      })
+      profile.$update();
+    });
   };
   $scope.logout = function() {
   var config = {

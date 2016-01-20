@@ -39,8 +39,11 @@ gem 'haml-rails', '~> 0.9'
 gem 'font-awesome-rails', '~> 4.5'
 # State machine
 gem 'aasm'
-#
+# Use your angular templates with rails' asset pipeline
 gem 'angular-rails-templates', '0.2.0'
+# Clean ruby syntax for writing and deploying cron jobs.
+gem 'whenever', '0.9.4'
+
 
 group :development, :test, :gitlabci do
   # Local development server
