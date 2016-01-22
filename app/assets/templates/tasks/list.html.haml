@@ -20,6 +20,7 @@
           %label.label.label-default category
           %span{'ng-bind': 'task.category.name'}
           %label.label.label-default.task-options {{ 'dueDate' | translate }}:
+          %label.label.label-default.task-options Due date:
           %span{'ng-bind': "task.due_date | date:'MM/dd/yyyy'"}
         %md-card-actions{'layout': 'row', 'layout-align': 'end center'}
           %md-button{'ui-sref': 'editTask({id:task.id})'} {{ 'openTask' | translate }}
@@ -27,3 +28,5 @@
     %md-button.md-fab.add-task-btn{'ng-click': 'showAddTaskWindow($event)'}
       %span.glyphicon.glyphicon-plus
       %md-tooltip{'md-direction': 'top'} {{ 'createTaskLabel' | translate }}
+      %md-tooltip{'md-direction': 'top'}
+        Create task
