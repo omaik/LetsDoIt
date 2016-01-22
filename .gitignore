@@ -8,6 +8,7 @@ capybara-*.html
 /public/system
 /public/pictures
 /public/tasks
+/public/assets
 /coverage/
 /spec/tmp
 **.orig
