@@ -9,14 +9,19 @@ angular.module('letsDoIt')
   'Upload',
   'fileUploadResource',
   '$timeout',
-  function($scope, $state, tasksResource, prioritiesResource, $mdDialog, Upload, fileUploadResource, $timeout) {
+  'categoryList',
+  function($scope, $state, tasksResource, prioritiesResource, $mdDialog, Upload, fileUploadResource, $timeout, categoryList) {
   var STATUS = '1',
-      PRIORITY_ID = '3';
+      PRIORITY_ID = '3',
+      CATEGORY_ID = '1';
+
   $scope.tasks = { list: [] };
   $scope.priorities = { list: [] };
+  $scope.categories = { list: [] };
   $scope.task = {
     priority_id: PRIORITY_ID,
-    status: STATUS
+    status: STATUS,
+    category_id: CATEGORY_ID
   };
   getAllTasks();
 
@@ -47,6 +52,16 @@ angular.module('letsDoIt')
             })[0];
         };
       });
+      categoryList.query(function(data) {
+        $scope.categories.list = data;
+        for(i = 0; i < tLength; ++i) {
+          tli = $scope.tasks.list[i];
+          tli.category = $scope.categories.list.filter(
+            function(v) {
+              return v.id === tli.category_id;
+            })[0];
+        };
+      });
     });
   };
 
@@ -62,7 +77,8 @@ angular.module('letsDoIt')
       description: $scope.task.description,
       priority_id: $scope.task.priority_id,
       status: $scope.task.status,
-      attachment: attachment
+      attachment: attachment,
+      category_id: $scope.task.category_id
     });
     if(attachment) {
       fileUploadResource.createAttachment($scope.task, attachment);
@@ -77,7 +93,8 @@ angular.module('letsDoIt')
     $scope.errHandl = false;
     $scope.task = {
         priority_id: PRIORITY_ID,
-        status: STATUS
+        status: STATUS,
+        category_id: CATEGORY_ID
       };
     $mdDialog.hide();
   };

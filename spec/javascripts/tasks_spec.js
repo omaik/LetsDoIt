@@ -11,6 +11,9 @@ describe('Tasks tests', function() {
     priorities = [
       { name: 'priority', value: 1, color:'#ffffff', id: 1 }
     ];
+    categories = [
+      { name: 'category', id: 1 }
+    ];
 
     beforeEach(function() {
       module('letsDoIt');
@@ -39,6 +42,7 @@ describe('Tasks tests', function() {
     it('should get tasks list', function() {
       $httpBackend.whenGET('/tasks.json').respond(tasks);
       $httpBackend.whenGET('/priorities.json').respond(priorities);
+      $httpBackend.whenGET('/categories.json').respond(categories);
       tasksResource.query(function(data) {
         scope.tasks.list = data;
       });
@@ -56,6 +60,7 @@ describe('Tasks tests', function() {
         task = scope.task;
         $httpBackend.whenPOST('/tasks.json').respond(201);
         $httpBackend.whenGET('/priorities.json').respond(priorities);
+        $httpBackend.whenGET('/categories.json').respond(categories);
         $httpBackend.whenGET('/tasks.json').respond(tasks);
         tasksResource.query(function(data) {
           scope.tasks.list = data;
@@ -79,6 +84,7 @@ describe('Tasks tests', function() {
           task = scope.task;
           $httpBackend.whenPOST('/tasks.json').respond(201);
           $httpBackend.whenGET('/priorities.json').respond(priorities);
+          $httpBackend.whenGET('/categories.json').respond(categories);
           $httpBackend.whenGET('/tasks.json').respond(tasks);
           tasksResource.query(function(data) {
             scope.tasks.list = data;
@@ -97,55 +103,11 @@ describe('Tasks tests', function() {
       $httpBackend.whenDELETE('/tasks/' + task.id + '.json').respond(204);
       $httpBackend.whenGET('/tasks.json').respond(scope.tasks.list);
       $httpBackend.whenGET('/priorities.json').respond(priorities);
+      $httpBackend.whenGET('/categories.json').respond(categories);
       scope.deleteTask(task);
       $httpBackend.flush();
       expect(JSON.stringify(scope.tasks.list)).not.toContain(JSON.stringify(task));
     });
   });
 
-  describe('EditTaskController', function() {
-    var scope, EditTaskController, priorities, resource;
-    tasks = [
-      { id: 1, name: 'task 1', priority_id: '1', status: '2', description: 'description 1' },
-      { id: 2, name: 'task 2', priority_id: '1', status: '2', description: 'description 2' }
-    ];
-    priorities = [
-      { name: 'priority', value: 1, color:'#ffffff', id: 1 }
-    ];
-
-    beforeEach(function() {
-      module('letsDoIt');
-      inject(function(
-        _$controller_,
-        _$httpBackend_,
-        _tasksResource_,
-        _prioritiesResource_,
-        $rootScope,
-        $resource) {
-          $httpBackend = _$httpBackend_;
-          tasksResource = _tasksResource_;
-          prioritiesResource = _prioritiesResource_;
-          $controller = _$controller_;
-          scope = $rootScope.$new();
-          resource = $resource;
-          EditTaskController = $controller('EditTaskController', { $scope: scope, tasksResource: tasksResource });
-      });
-    });
-
-     afterEach(function() {
-       $httpBackend.verifyNoOutstandingExpectation();
-       $httpBackend.verifyNoOutstandingRequest();
-     });
-
-    it('should update task', function() {
-      var task = new tasksResource(tasks[1]);
-      task.description = 'new description';
-      $httpBackend.whenPUT(task.id + '.json').respond(204);
-      $httpBackend.whenGET('/tasks.json').respond(task);
-      $httpBackend.whenGET('/priorities.json').respond(priorities);
-      scope.updateTask();
-      $httpBackend.flush();
-      expect(task.description).toMatch('new description');
-    });
-  });
 });

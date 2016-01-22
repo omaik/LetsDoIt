@@ -24,6 +24,7 @@
               %span.line
               %li
                 %a.choose_xs.eng{'ng-click': 'changeLanguage("ua")'} Ua
+
             %div#profile.profile.hidden-xs{'ng-click': 'toggleMenu()', 'ng-show':'signedIn'}
               %img{'ng-src': '{{user.social_avatar}}', id: 'user', 'ng-show': 'user.social_avatar'}
                 = image_tag('user.png', id: 'user', 'ng-show': '!user.social_avatar')

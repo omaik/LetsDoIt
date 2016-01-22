@@ -50,6 +50,18 @@ ul li .eng:hover {
   padding-left: 11%;
 }
 
+@media only screen and (max-width : 768px) {
+  .choose_xs {
+    padding-top: 0px;
+    padding-left: 20%;
+    margin-bottom: 0;
+  }
+
+  .line {
+    width: 0px;
+  }
+}
+
 #user {
 	display: block;
 	border-radius: 50%;
@@ -171,7 +183,6 @@ ul li .eng:hover {
     height: 100%;
     position: fixed;
     width: 100%;
-    /*margin-left: 76%;*/
     display: none;
     margin-top: -1px;
     z-index: 25;
@@ -211,7 +222,7 @@ header {
   z-index: 1000;
 }
 
-.categories, .groups, .tasks {
+.tasks {
   position: fixed;
 }
 
@@ -258,4 +269,13 @@ header {
 .settings-menu {
   padding-left: 0px;
   text-align: center;
+}
+
+md-select-menu {
+  overflow-y: scroll !important; 
+  z-index: 10000;
+}
+
+md-option {
+  background: white;
 }

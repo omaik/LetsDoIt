@@ -110,8 +110,6 @@ angular.module('letsDoIt')
     $scope.closeDialog();
   };
   
-
-
   $scope.showAdvanced = function(ev, group) {
     $scope.edit.group = group;
     getFriends();
@@ -123,7 +121,7 @@ angular.module('letsDoIt')
       scope: $scope.$new(),
       clickOutsideToClose:true
     });
-  };
+  }; 
   
   $scope.closeDialog = function() {
     $mdDialog.hide();

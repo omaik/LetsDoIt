@@ -9,20 +9,21 @@ angular.module('letsDoIt')
       draggableTask: null, 
       droppableGroup: null, 
       droppableCategory: null, 
-      filteredByGroupId: null
+      filteredByGroupId: null,
+      filteredByCategory: null 
     };
    
    $scope.showGroups = '';
 
-   $scope.toggleGroups = function(){
+    $scope.toggleGroups = function(){
       if($scope.showGroups === '') 
         {
           $scope.showGroups = 'slideDown';
         }
       else 
-        {
-          $scope.showGroups = '';
-        }
+      {
+        $scope.showGroups = '';
+      }
     };
     
     $scope.onDragTask = function(evt, ui, data) {
@@ -49,10 +50,6 @@ angular.module('letsDoIt')
       task.$update();
   	};
   	
-  	$scope.filterByGroup = function(group) {
-      $scope.filteredByGroupId = group.id;
-    };
-
     $scope.onDropCategory = function(evt, ui, data) {
       var task;
       $scope.dragDrop.droppableCategory = data;
@@ -60,13 +57,21 @@ angular.module('letsDoIt')
       task.category_id = $scope.dragDrop.droppableCategory.id;
       task.$update();
     };
-  	
+    	
     $scope.filterByGroup = function(group) {
       $scope.dragDrop.filteredByGroupId = group.id;
     };
     
     $scope.filterByDefaultGroup = function() {
       $scope.dragDrop.filteredByGroupId = null;
+    };
+
+    $scope.filterByCategory = function(category) {
+      $scope.dragDrop.filteredByCategory = category.id;
+    };
+
+    $scope.filterByDefaultCategory = function() {
+      $scope.dragDrop.filteredByCategory = null;
     };
 
     $scope.slideNav = function() {

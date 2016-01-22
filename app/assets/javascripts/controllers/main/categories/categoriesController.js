@@ -2,11 +2,15 @@ angular.module('letsDoIt')
 
 .controller('CategoriesController', [
   '$scope', 
-  'categoryList', 
+  '$state',
+  'categoryList',
+  'tasksResource', 
   '$mdDialog', 
-  function($scope, categoryList, $mdDialog) {
+  function($scope, $state, categoryList, tasksResource, $mdDialog) {
   
   var showing = true;
+
+  $scope.isError = false;
 
   categoryList.query(function(data) {
     $scope.categories = data;
@@ -14,16 +18,12 @@ angular.module('letsDoIt')
 
   $scope.edit = { categories: {} };
 
-  $scope.err = {
-    errors: {},
-    isError: false
-  }
-
   $scope.addCategory = function() {
+    var categoryLength = $scope.categories.length;
     $scope.category = new categoryList({
       name: $scope.category.name,
     });
-    for(i = 0; i < $scope.categories.length; i++) {
+    for(i = 0; i < categoryLength; i++) {
       if($scope.categories[i].name == $scope.category.name) {
         $scope.isError = true;
         return false;
@@ -36,6 +36,7 @@ angular.module('letsDoIt')
         name: ''
       };
     });
+    $state.reload('home');
   };
 
   $scope.deleteCategory = function(category) {
@@ -43,6 +44,7 @@ angular.module('letsDoIt')
     category.$delete(function() {
       $scope.categories.splice(index, 1);
     });
+    $state.reload('home');
     $scope.closeDialog();
   };
 
@@ -52,7 +54,7 @@ angular.module('letsDoIt')
   };
 
   $scope.toggleCategories = function() {
-    if(showing === true) {
+    if(showing) {
       $('.category-slide').slideUp(400);
       $('.groups').css({'animation':'slidingUp 0.4s', 'top':'70px'});
       showing = false;
