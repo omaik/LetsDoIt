@@ -3,7 +3,9 @@ angular.module('letsDoIt')
 .controller('prioritiesController', [
   '$scope',
   'prioritiesResource',
-  function($scope, prioritiesResource){
+  '$location',
+  '$anchorScroll',
+  function($scope, prioritiesResource, $location, $anchorScroll){
     var currentIndex = -1;
     $scope.priorities = { list: [] };
     $scope.priority = {
@@ -32,6 +34,8 @@ angular.module('letsDoIt')
       $scope.priority.color = priority.color;
       $scope.priority.id = priority.id;
       $scope.editMode = true;
+      $location.hash('priority-block');
+      $anchorScroll();
     };
     $scope.undoEdit = function() {
       $scope.priority = {

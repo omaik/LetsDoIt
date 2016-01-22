@@ -11,12 +11,14 @@
     input.ng-dirty.ng-invalid.md-input {
       border-bottom:2px solid #B22;
     }
-    input[type='submit'] {
+    input[type='submit'], button.md-raised.md-primary {
+      width: 100%;
+      margin: 0;
       font-size: 1.2em;
       font-weight: bold;
+      color:#fff;
       &:disabled {
         background: #339;
-        color:#aaa;
         opacity: 0.3;
       }
       &:hover {
@@ -30,6 +32,7 @@
   text-indent: 10px;
   line-height: 20px;
   font-size: 1em;
+  color: #ff0000;
 }
 .reg-success {
   margin-top: 50px;

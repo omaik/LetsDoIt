@@ -6,7 +6,7 @@ RSpec.describe Users::SessionsController, type: :controller do
   include Warden::Test::Helpers
   let(:user) { FactoryGirl.create(:user) }
   before do
-    user.confirm!
+    user.confirm
     @request.env['devise.mapping'] = Devise.mappings[:user]
   end
 
@@ -55,7 +55,7 @@ RSpec.describe Users::SessionsController, type: :controller do
   describe 'GET /home' do
     it 'creates new current_user' do
       user = FactoryGirl.create(:user)
-      user.confirm!
+      user.confirm
       sign_in user
       expect(subject.current_user).not_to eq(nil)
     end

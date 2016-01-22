@@ -7,7 +7,7 @@ RSpec.describe GroupsController, type: :controller do
   let(:user) { FactoryGirl.create(:user) }
   let(:user2) { FactoryGirl.create(:user) }
   before do
-    user.confirm!
+    user.confirm
     sign_in user
   end
 
