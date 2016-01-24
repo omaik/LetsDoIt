@@ -46,6 +46,6 @@
           %div{'ng-message-exp':'type'}
             %span.glyphicon.glyphicon-remove{}
             Don't match with password
-    %input.btn.btn-block.btn-primary{'type':'submit', 'ng-disabled':'signUpForm.$invalid', 'value':'Go!'}
+    %md-button.md-raised.md-primary{'type':'submit', 'ng-disabled':'signUpForm.$invalid'} Go!
 %div.container.col-sm-6.col-sm-offset-3.alert.alert-success.reg-success{'ng-show':'isRegistrated'}
   Registration successful. Please check your email for conformation instructions.
