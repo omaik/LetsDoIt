@@ -1,5 +1,4 @@
 angular.module('letsDoIt')
- 
   .controller('FriendshipController', [
     '$scope',
     'Auth',
@@ -7,65 +6,63 @@ angular.module('letsDoIt')
     'friendshipResource',
     function($scope, Auth, $resource, friendshipResource){
       var relations = {};
-      $scope.users = {};
-      $scope.results = {};
-      $scope.settings = {tab: 1};
+      $scope.data = {
+        selectedIndex: 0,
+        friends: {},
+        requested:{},
+        pending:{},
+        results:{},
+        search: ""
+      };
 
       friendshipResource.getFriendship().get().$promise.then(function(response){
-        relations = response.relations;
-        $scope.users =  relations.friends;
+        relations = response;
+        $scope.data.friends =  relations.friends;
+        $scope.data.requested = relations.requested;
+        $scope.data.pending = relations.pending;
       });
       
-      $scope.select = function(setTab) {
-        $scope.settings.tab = setTab;
-        switch(setTab) {
-          case 1:
-            $scope.users = relations.friends;
-            break;
-          case 2:
-            $scope.users = "";
-            $scope.users = relations.requested;
-            break;
-          case 3:
-            $scope.users = "";           
-            $scope.users = relations.pending;
-            break;
-          case 4:
-            $scope.search = "";
-            $scope.results = "";   
-            $scope.showBtn = true;
-            $scope.searchForm.$setPristine();
-            break;              
-        }  
+      $scope.setTab = function(tab){
+        if (tab === 3){
+          $scope.data.search = "";
+          $scope.data.results = {};   
+          $scope.searchForm.$setPristine();
+        }
       };
-        
-      $scope.isSelected = function (checkTab) {
-        return ($scope.settings.tab === checkTab);
-      };      
       
       $scope.find = function(search){
-        friendshipResource.findFriend(search).get().$promise.then(function(response){
-        $scope.results = response.result;
+        friendshipResource.findFriend(search).query().$promise.then(function(response){
+        $scope.data.results = response;
         });
       };
       
       $scope.request = function(person){
-        relations.pending.push(person);        
+        var index = $scope.data.results.indexOf(person);        
+        relations.pending.push(person);
+        $scope.data.results.splice(index, 1);        
         friendshipResource.sendRequest(person.id).save();
       };
       
       $scope.accept = function(person){
-        var index = $scope.users.indexOf($scope.users.person);
+        var index = $scope.data.requested.indexOf(person);
         relations.friends.push(person);
-        $scope.users.splice(index, 1);
+        $scope.data.requested.splice(index, 1);
         friendshipResource.acceptRequest(person.id).save();
       };      
             
-      $scope.delete = function(person){
-        var index = $scope.users.indexOf($scope.users.person);
-        $scope.users.splice(index, 1);
+      $scope.delete = function(person, param){
+        var index = 0;
+        switch(param){
+          case 'friends':
+            index = $scope.data.friends.indexOf(person);
+            $scope.data.friends.splice(index, 1);            
+            break;
+          case 'pending':
+            index = $scope.data.pending.indexOf(person);
+            $scope.data.pending.splice(index, 1);  
+            break;
+        }
         friendshipResource.deleteFriendship(person.id).delete();
       };
-      
   }]);
 

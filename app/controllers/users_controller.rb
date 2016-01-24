@@ -2,9 +2,9 @@ class UsersController < ApplicationController
   respond_to :json
 
   def index
-      indexes = current_user.friendships.pluck(:friend_id) << current_user.id
-      search_result = User.where.not(id: indexes).where(["first_name LIKE ? or last_name LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%"])
-      render json: {result: search_result}
+    indexes = current_user.friendships.pluck(:friend_id) << current_user.id
+    search_result = User.where(["id NOT IN (?) AND (first_name LIKE ? or last_name LIKE ?)", indexes, "%#{params[:search]}%", "%#{params[:search]}%"])      
+    respond_with search_result
   end
 
   def show

@@ -10,7 +10,7 @@ angular.module('letsDoIt')
     return friendship;
     
     function getFriendship(){
-        return $resource("/friendships", null);
+        return $resource("/friendships", {format:'json'});
     }
     
     function sendRequest(friendId){
