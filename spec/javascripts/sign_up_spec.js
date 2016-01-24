@@ -24,13 +24,13 @@ describe('signUpController', function  () {
   });
   describe('errorMessages', function() {
     it('should have pattern property', function() {
-      expect(scope.errorMessages.pattern).toEqual('has incorrect format');
+      expect(scope.errorMessages.pattern).toEqual('incorrect');
     });
     it('should have minlength property', function() {
-      expect(scope.errorMessages.minlength).toEqual('is too short');
+      expect(scope.errorMessages.minlength).toEqual('too_short');
     });
     it('should have maxlength property', function() {
-      expect(scope.errorMessages.maxlength).toEqual('is too long');
+      expect(scope.errorMessages.maxlength).toEqual('too_long');
     });
   });
 });

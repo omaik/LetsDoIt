@@ -1,51 +1,58 @@
 %div.container.col-sm-4.col-sm-offset-4{'class':'authclass', 'ng-hide':'isRegistrated'}
-  %h1 Sign up:
+  %h1 {{ 'signup' | translate }}:
   %div.alert.alert-danger{'ng-show':'err.isError'}
     %div{'ng-repeat':'(field, error) in err.errors'}
       {{field}} {{error[0]}}
   %form{'name':'signUpForm','ng-submit':'addUser()'}
     %md-input-container.md-block
-      %input{'type':'email', 'placeholder':'Email','ng-model':'user.email', 'required':'required', 'name':'emailField', 'ng-pattern':'emailPattern', 'autocomplete':'off'}
+      %label {{"email" | translate }}
+      %input{'type':'email','ng-model':'user.email', 'required':'required', 'name':'emailField', 'ng-pattern':'emailPattern', 'autocomplete':'off'}
       %div{'ng-messages':'signUpForm.emailField.$error', 'role':'alert', 'class':'errors'}
         %div{'ng-repeat':'(type, message) in errorMessages'}
           %div{'ng-message-exp':'type'}
             %span.glyphicon.glyphicon-remove{}
-            Email {{message}}
+            {{ 'email' | translate }} {{ message | translate}}
     %md-input-container.md-block
-      %input{'type':'text', 'placeholder':'Username','ng-model':'user.username', 'minlength':'6', 'maxlength':'30', 'name':'userNameField', required:'required', 'autocomplete':'off'}
+      %label {{ 'username'| translate }}
+      %input{'type':'text','ng-model':'user.username', 'minlength':'6', 'maxlength':'30', 'name':'userNameField', required:'required', 'autocomplete':'off'}
       %div{'ng-messages':'signUpForm.userNameField.$error', 'role':'alert', 'class':'errors'}
         %div{'ng-repeat':'(type, message) in errorMessages'}
           %div{'ng-message-exp':'type'}
             %span.glyphicon.glyphicon-remove{}
-            Username {{message}}
+            {{ 'username' | translate }} {{ message | translate}}
     %md-input-container.md-block
-      %input{'type':'text', 'placeholder':'First name','ng-model':'user.first_name','maxlength':'30', 'name':'firstNameField', required:'required', 'autocomplete':'off','ng-pattern':'namePattern'}
+      %label {{ 'firstname'| translate }}
+      %input{'type':'text','ng-model':'user.first_name','maxlength':'30', 'name':'firstNameField', required:'required', 'autocomplete':'off','ng-pattern':'namePattern'}
       %div{'ng-messages':'signUpForm.firstNameField.$error', 'role':'alert', 'class':'errors'}
         %div{'ng-repeat':'(type, message) in errorMessages'}
           %div{'ng-message-exp':'type'}
             %span.glyphicon.glyphicon-remove{}
-            First name {{message}}
+            {{ 'firstname' | translate }} {{ message | translate}}
     %md-input-container.md-block
-      %input{'type':'text', 'placeholder':'Last name','ng-model':'user.last_name', 'maxlength':'30', 'name':'lastNameField', required:'required', 'autocomplete':'off', 'ng-pattern':'namePattern'}
+      %label {{ 'lastname'| translate }}
+      %input{'type':'text','ng-model':'user.last_name', 'maxlength':'30', 'name':'lastNameField', required:'required', 'autocomplete':'off', 'ng-pattern':'namePattern'}
       %div{'ng-messages':'signUpForm.lastNameField.$error', 'role':'alert', 'class':'errors'}
         %div{'ng-repeat':'(type, message) in errorMessages'}
           %div{'ng-message-exp':'type'}
             %span.glyphicon.glyphicon-remove{}
-            Username {{message}}
+            {{ 'lastname' | translate }} {{ message | translate}}
     %md-input-container.md-block
-      %input{'type':'password', 'placeholder':'Password', 'ng-model':'user.password', 'minlength':'8', 'maxlength':'72', 'name':'passwordField', required:'required', 'autocomplete':'off'}
+      %label {{'password'| translate}}
+      %input{'type':'password', 'ng-model':'user.password', 'minlength':'8', 'maxlength':'72', 'name':'passwordField', required:'required', 'autocomplete':'off'}
       %div{'ng-messages':'signUpForm.passwordField.$error', 'role':'alert', 'class':'errors'}
         %div{'ng-repeat':'(type, message) in errorMessages'}
           %div{'ng-message-exp':'type'}
             %span.glyphicon.glyphicon-remove{}
-            Password {{message}}
+            {{ 'password' | translate }} {{ message | translate}}
     %md-input-container.md-block
-      %input{'type':'password', 'placeholder':'Password confirmation', 'ng-model':'user.password_confirmation', 'ng-pattern':'user.password', name:'passwordConfirmationField', required:'required'}
+      %label {{ 'pass_confirm' | translate }}
+      %input{'type':'password', 'ng-model':'user.password_confirmation', 'ng-pattern':'user.password', name:'passwordConfirmationField', required:'required'}
       %div{'ng-messages':'signUpForm.passwordConfirmationField.$error', 'role':'alert', 'class':'errors'}
         %div{'ng-repeat':'(type, message) in errorMessages'}
           %div{'ng-message-exp':'type'}
             %span.glyphicon.glyphicon-remove{}
-            Don't match with password
-    %md-button.md-raised.md-primary{'type':'submit', 'ng-disabled':'signUpForm.$invalid'} Go!
+            {{'dont_match' | translate}}
+    %md-button.md-raised.md-primary{'type':'submit', 'ng-disabled':'signUpForm.$invalid'}
+      {{"go" | translate}}!
 %div.container.col-sm-6.col-sm-offset-3.alert.alert-success.reg-success{'ng-show':'isRegistrated'}
-  Registration successful. Please check your email for conformation instructions.
+  {{ 'registered' | translate }}

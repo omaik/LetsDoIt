@@ -165,9 +165,9 @@ ua:
     select:
       prompt: 'Оберіть: '
     submit:
-      create: Створити %{model}
-      submit: Зберегти %{model}
-      update: Зберегти %{model}
+      create: Створити
+      submit: Зберегти
+      update: Зберегти
   number:
     currency:
       format:
@@ -267,3 +267,19 @@ ua:
   editTasksEnterDate: "Введіть дату"
   editTasksSave: "Зберегти"
   editTasksCancel: "Відмінити"
+  signup: "Реєстрація"
+  email: "Поштова скринька"
+  username: "Ім'я користувача"
+  firstname: "Ім'я"
+  lastname: "Прізвище"
+  password: "Пароль"
+  pass_confirm: "Підтвердження паролю"
+  registered: "Реєстрація успішна. Будь ласка перевірте вашу поштову скриньку для підтвердження облікового запису"
+  incorrect: "має некоректний формат"
+  dont_match: "Не відповідає паролю"
+  too_short: "є надто коротким"
+  too_long: "є надто довгим"
+  go: "Вперед"
+  value: "Значення"
+  prior_name: "Назва пріоритету"
+  back: "Назад"

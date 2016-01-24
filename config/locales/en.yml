@@ -144,9 +144,9 @@ en:
     select:
       prompt: Please select
     submit:
-      create: Create %{model}
-      submit: Save %{model}
-      update: Update %{model}
+      create: Create
+      submit: Save
+      update: Update
   number:
     currency:
       format:
@@ -225,3 +225,19 @@ en:
   editTasksEnterDate: "Enter Date"
   editTasksSave: "Save"
   editTasksCancel: "Cancel"
+  signup: "Sign up"
+  email: "Email"
+  username: "Username"
+  firstname: "Firstname"
+  lastname: "Lastname"
+  password: "Password"
+  pass_confirm: "Password confirmation"
+  registered: "Registration successful. Please check your email for conformation instructions."
+  incorrect: "has incorrect format"
+  dont_match: "Don't match with password"
+  too_short: "is too short"
+  too_long: "is too long"
+  go: "Go"
+  value: "Value"
+  prior_name: "Priority name"
+  back: "Back"
