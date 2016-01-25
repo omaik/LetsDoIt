@@ -17,14 +17,13 @@
                 %img{'ng-src': '{{user.social_avatar}}',id: 'user', 'ng-show': 'user.social_avatar'}
                   = image_tag('user.png', id: 'user', 'ng-show': '!user.social_avatar')
               %a.logo#logo.col-xs-5.col-sm-2{'ui-sref':'home'}LetsDoIt
-            
+
             %ul.language{'ng-if':'!signedIn'}
               %li
                 %a.choose_xs.eng{'ng-click': 'changeLanguage("en")'} En
               %span.line
-              %li 
-                %a.choose_xs.eng{'ng-click': 'changeLanguage("ua")'} Ua  
-
+              %li
+                %a.choose_xs.eng{'ng-click': 'changeLanguage("ua")'} Ua
             %div#profile.profile.hidden-xs{'ng-click': 'toggleMenu()', 'ng-show':'signedIn'}
               %img{'ng-src': '{{user.social_avatar}}', id: 'user', 'ng-show': 'user.social_avatar'}
                 = image_tag('user.png', id: 'user', 'ng-show': '!user.social_avatar')
@@ -32,18 +31,18 @@
               %li
                 %a.choose_xs.eng{ 'ui-sref': 'profile({id:user.id})'}
                   {{ 'profile_menu' | translate }}
-              %li 
-                %a.choose_xs.eng{'title': 'Friends','ui-sref': 'friendship'} 
+              %li
+                %a.choose_xs.eng{'title': 'Friends','ui-sref': 'friendship'}
                   {{ 'friendsTab' | translate }}
               %li.settings{'ng-click': 'toggleSettings()'}
                 %a.choose_xs.eng
                   {{ 'settings_menu' | translate }}
                   %b.caret
-                %ul.settings-menu  
+                %ul.settings-menu
                   %li
-                    %a.eng{ 'ui-sref': 'priority'} {{ 'priorities_menu' | translate }}        
+                    %a.eng{ 'ui-sref': 'priority'} {{ 'priorities_menu' | translate }}
               %li{'ng-show':'signedIn'}
-                %a.choose_xs.eng{'ng-click':'logout()'} {{ 'logout_menu' | translate }}                        
+                %a.choose_xs.eng{'ng-click':'logout()'} {{ 'logout_menu' | translate }}
 
             / Меню при розширенi телефона
             #drop.collapse.navbar-collapse.col-lg-6.col-sm-6.col-md-5.col-sm-5.col-lg-offset-5.col-md-offset-4.col-sm-offset-2.hidden-md{'ng-show':'signedIn'}
@@ -52,18 +51,18 @@
                   %a.choose_xs.eng{ 'ui-sref': 'profile({id:user.id})'}
                     {{ 'profile_menu' | translate }}
                 %li
-                  %a.choose_xs.eng{'title': 'Friends','ui-sref': 'friendship'} 
+                  %a.choose_xs.eng{'title': 'Friends','ui-sref': 'friendship'}
                     {{ 'friendsTab' | translate }}
-                %li.dropdown 
-                  %a.choose_xs.eng.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"} 
+                %li.dropdown
+                  %a.choose_xs.eng.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
                     {{ 'settings_menu' | translate }}
                     %b.caret
                   %ul.dropdown-menu
                     %li
-                      %a.choose_xs.eng{ 'ui-sref': 'priority'} {{ 'priorities_menu' | translate }}         
+                      %a.choose_xs.eng{ 'ui-sref': 'priority'} {{ 'priorities_menu' | translate }}
                 %li{'ng-show':'signedIn'}
-                  %a.choose_xs.eng{'ng-click':'logout()'} {{ 'logout_menu' | translate }} 
-                      
+                  %a.choose_xs.eng{'ng-click':'logout()'} {{ 'logout_menu' | translate }}
+
     %section#main-section{'ng-controller': 'MainController'}
       %ui-view
       %aside.col-sm-4.hidden-xs.hidden-sm
