@@ -1,11 +1,18 @@
 angular.module('letsDoIt')
 
-.controller('CategoriesController', ['$scope', 'categoryList', function($scope, categoryList) {
+.controller('CategoriesController', [
+  '$scope', 
+  'categoryList', 
+  '$mdDialog', 
+  function($scope, categoryList, $mdDialog) {
+  
+  var showing = true;
+
   categoryList.query(function(data) {
     $scope.categories = data;
-  },
-  function(data, status) {
   });
+
+  $scope.edit = { categories: {} };
 
   $scope.err = {
     errors: {},
@@ -16,16 +23,18 @@ angular.module('letsDoIt')
     $scope.category = new categoryList({
       name: $scope.category.name,
     });
+    for(i = 0; i < $scope.categories.length; i++) {
+      if($scope.categories[i].name == $scope.category.name) {
+        $scope.isError = true;
+        return false;
+      };
+    }
     $scope.category.$save(function() {
       $scope.categories.push($scope.category);
+      $scope.isError = false;
       $scope.category = {
-      name: ''
-    };
-      $scope.err.isError = false;
-    },
-    function(response) {
-      $scope.err.errors = response.data.errors;
-      $scope.err.isError = true;
+        name: ''
+      };
     });
   };
 
@@ -33,36 +42,41 @@ angular.module('letsDoIt')
     var index = $scope.categories.indexOf(category);
     category.$delete(function() {
       $scope.categories.splice(index, 1);
-    },
-    function(data, status) {
     });
+    $scope.closeDialog();
   };
 
-  $scope.showCategories = '';
-  $scope.showing = false;
+  $scope.updateCategory = function(editCategory) {
+    editCategory.$update();
+    $scope.closeDialog();
+  };
 
   $scope.toggleCategories = function() {
-    $scope.showing = true;
-    if($scope.showCategories == '') {
-      $scope.showCategories = 'slideDown';
+    if(showing === true) {
+      $('.category-slide').slideUp(400);
+      $('.groups').css({'animation':'slidingUp 0.4s', 'top':'70px'});
+      showing = false;
     }
     else {
-      $scope.showCategories = '';
+      $('.category-slide').slideDown(400);
+      $('.groups').css({'animation':'slidingDown 0.4s', 'top':'366px'});
+      showing = true;
     }
   };
 
+  $scope.showAdvanced = function(ev, category) {
+    $scope.edit.category = category;
+    return $mdDialog.show({
+      templateUrl: 'categories/edit.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      scope: $scope.$new(),
+      clickOutsideToClose:true
+    });
+  };
+  
+  $scope.closeDialog = function() {
+    $mdDialog.hide();
+  };
 
-}])
-
-.animation('.slide', [function() {
-  return {
-    addClass: function(element, slideDown, doneFn) {
-      $(element).slideDown(400, doneFn);
-      doneFn();
-    },
-    removeClass: function(element, slideDown, doneFn) {
-      $(element).slideUp(400, doneFn);
-      doneFn();
-    }
-  }
 }]);

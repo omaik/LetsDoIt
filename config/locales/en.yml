@@ -266,3 +266,7 @@ en:
   accept_request: "Hi %{user}, %{user2} wants to be your friend"
   accepted_request: "Hi %{user}, %{user2} accepted your request for friendship"
   visit_us: "Go and check new updates on"
+  profile_menu: "Profile"
+  settings_menu: "Settings"
+  priorities_menu: "Priorities"
+  logout_menu: "Log Out"

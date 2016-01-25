@@ -7,6 +7,9 @@ angular.module('letsDoIt')
   '$translate',
   'userProfile',
   function($scope, Auth, $state, $rootScope, $translate, userProfile){
+
+  var showing = false, showingSettings = false;
+
   $scope.changeLanguage = function (langKey) {
     $translate.use(langKey);
     Auth.currentUser().then(function(user) {
@@ -48,4 +51,27 @@ angular.module('letsDoIt')
   $scope.$on('profile-updated', function(event, resp) {
     $scope.user = resp;
   });
+
+  $scope.toggleMenu = function() {
+    if(showing == false) {
+      $('#drop_menu').slideDown(400);
+      showing = true;
+    }
+    else {
+      $('#drop_menu').slideUp(400);
+      showing = false;
+    }
+  };
+
+  $scope.toggleSettings = function() {
+    if(showingSettings == false) {
+      $('.settings-menu').slideDown(200);
+      showingSettings = true;
+    }
+    else {
+      $('.settings-menu').slideUp(200);
+      showingSettings = false;
+    }
+  };
+
 }]);

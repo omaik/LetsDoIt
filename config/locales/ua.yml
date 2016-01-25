@@ -308,3 +308,7 @@ ua:
   accept_request: "Привіт %{user}, %{user2} хоче бути вашим другом"
   accepted_request: "Привіт %{user}, %{user2} прийняв ваш запит на дружбу"
   visit_us: "Перегляньте оновлення на"
+  profile_menu: "Профіль"
+  settings_menu: "Налаштування"
+  priorities_menu: "Пріорітети"
+  logout_menu: "Вийти"

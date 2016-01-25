@@ -14,6 +14,10 @@ class CategoriesController < ApplicationController
     respond_with current_user.categories.create(category_params)
   end
 
+  def update
+    respond_with current_user.categories.find(params[:id]).update_attributes(category_params)
+  end
+
   def destroy
     respond_with current_user.categories.find_by(id: params[:id]).destroy
   end

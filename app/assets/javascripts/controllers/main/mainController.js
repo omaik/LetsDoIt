@@ -4,16 +4,17 @@ angular.module('letsDoIt')
   '$scope',
   'tasksResource',
   function($scope, tasksResource){
+    var rightSide = false;
     $scope.dragDrop = { 
       draggableTask: null, 
       droppableGroup: null, 
       droppableCategory: null, 
       filteredByGroupId: null
     };
-    
-    $scope.showGroups = '';
+   
+   $scope.showGroups = '';
 
-    $scope.toggleGroups = function(){
+   $scope.toggleGroups = function(){
       if($scope.showGroups === '') 
         {
           $scope.showGroups = 'slideDown';
@@ -67,4 +68,23 @@ angular.module('letsDoIt')
     $scope.filterByDefaultGroup = function() {
       $scope.dragDrop.filteredByGroupId = null;
     };
+
+    $scope.slideNav = function() {
+      if (rightSide === false) {
+        $('aside.col-sm-4').removeClass('hidden-xs').removeClass('hidden-sm');
+        $('aside.col-sm-4').css({'animation-name':'sidebar', 'animation-duration':'0.5s'});
+        $('.after').fadeIn(300);
+        rightSide = true;
+      };
+    };
+
+    $('.after').click(function() {
+      if(rightSide === true) {
+        $('.after').fadeOut(400);
+        $('aside.col-sm-4').css({'animation-name':'sidebar-close', 'animation-duration':'0.5s'});
+        $('aside.col-sm-4').addClass('hidden-xs').addClass('hidden-sm');
+        rightSide = false;
+      }
+    });
+
 }]);

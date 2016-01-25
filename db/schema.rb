@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20160125080713) do
   create_table "groups", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.text     "description", limit: 65535
+    t.integer  "user_id",     limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end

@@ -55,7 +55,7 @@ md-toolbar{
 }
 
 .back-home {
-    vertical-align: top !important;
+  vertical-align: top !important;
 }
 
 .priority-style {
@@ -117,3 +117,22 @@ md-toolbar{
     height: 30px;
     opacity: 1;
   }
+
+.tasks {
+  z-index: 5;
+  width: 64%;
+}
+
+.all-tasks {
+  margin-top: 53px;
+}
+
+@media only screen and (max-width : 991px) {
+  .tasks {
+    width: 95%;
+  }
+
+  .all-tasks {
+    width: 100%;
+  }
+}
