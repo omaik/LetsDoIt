@@ -264,7 +264,7 @@ en:
   must_finish_task: "Hey %{user}, today you must finish your task"
   web_site_link: "Go to LetsDoIt web-site"
   notification_about: "Notification about"
-  email_dont_exist: "User with sush doesn't exist"
+  email_dont_exist: "User with such email doesn't exist"
   instructions_sent: "Сonfirmation instructions were sent to your email"
   send_instructions: "Send instructions"
   conf_greeting: "Welcome %{email}"
@@ -356,3 +356,14 @@ en:
   editGroup: "Edit Group"
   members: "Members"
   allGroups: "All groups"
+  reset_instructions_sent: "Reset password instructions were sent to your email"
+  reset_greeting: "Hello %{email}"
+  request_pass: "Someone has requested a new password to LetsDoIt."
+  new_pass: "New password is %{password}"
+  KISS: "If you didn't request this, we are sorry. Somebody are playing with entering to your account. Please enter to our website using new password (you can change it in the profile)."
+  reset_password_LetsDoIt: "Reset password from LetsDoIt"
+  devise:
+    failure:
+      user:
+        not_found_in_database: "There's no such user"
+        invalid: "Password-invalid"

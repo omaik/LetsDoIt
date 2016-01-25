@@ -39,8 +39,7 @@ angular.module('letsDoIt')
       var ypos, image;
       ypos = window.pageYOffset;
       image = document.getElementById('loginbox');
-      image.style.top = ypos * 1 + 'px';
+      image.style.top = ypos * 0.5 + 'px';
     }
     window.addEventListener('scroll',parallax);
   }]);
-
