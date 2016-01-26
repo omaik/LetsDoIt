@@ -14,7 +14,7 @@ class FriendshipsController < ApplicationController
       respond_with friend
     end
   end
-  
+
   # Accept friendship request action
   def accept
     friend = User.find_by(id: params[:id])

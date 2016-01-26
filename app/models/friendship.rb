@@ -37,7 +37,8 @@ class Friendship < ActiveRecord::Base
   end
   
   def destroy_mutual_friendship!
-    mutual_friendship.delete if mutual_friendship
+    mutual_friendship.delete
   end 
   
 end
+
