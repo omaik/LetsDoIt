@@ -6,7 +6,9 @@ angular.module('letsDoIt')
   '$stateParams',
   'tasksResource',
   'prioritiesResource',
-  function($scope, $state, $stateParams, tasksResource, prioritiesResource) {
+  'Upload',
+  'fileUploadResource',
+  function($scope, $state, $stateParams, tasksResource, prioritiesResource, Upload, fileUploadResource) {
   $scope.task = tasksResource.get({ id: $stateParams.id }, function() {
     $scope.task.due_date = $scope.task.due_date? new Date($scope.task.due_date): new Date();
   });
@@ -22,8 +24,12 @@ angular.module('letsDoIt')
       $scope.taskErrMsg = NOT_BLANK;
       return;
     };
-    $scope.task.$update(function() {
-      $state.go('home');
-    });
+    if($scope.attachment) {
+      fileUploadResource.updateAttachment($scope.task, $scope.attachment);
+    } else {
+     $scope.task.$update();
+    };
+    $scope.errHandl = false;
+    $state.go('home');
   };
-}])
+ }])
