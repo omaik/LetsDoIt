@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Users::SessionsController, type: :controller do
 
   include Devise::TestHelpers
-  include Warden::Test::Helpers
   let(:user) { FactoryGirl.create(:user) }
   before do
     user.confirm
