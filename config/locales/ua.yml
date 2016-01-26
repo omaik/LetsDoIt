@@ -283,3 +283,6 @@ ua:
   value: "Значення"
   prior_name: "Назва пріоритету"
   back: "Назад"
+  must_finish_task: "Привіт %{user}, сьогодні тобі слід завершити завдання"
+  web_site_link: "Перейти до LetsDoIt"
+  notification_about: "Нагадування про"
