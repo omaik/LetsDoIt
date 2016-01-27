@@ -60,6 +60,14 @@ group :development, :test, :gitlabci do
   gem 'jasmine', '2.4.0'
 end
 
+group :development do
+  gem 'capistrano', '~> 3.1.0'
+  gem 'capistrano-rails',   '~> 1.1', require: false
+  gem 'capistrano-bundler', '~> 1.1', require: false
+  gem 'capistrano-rvm',   '~> 0.1', require: false
+  gem 'capistrano-ssh-doctor', '~> 1.0'
+end
+
 group :test, :gitlabci do
   # Unit test framework
   gem 'rspec-rails', '~> 3.4'

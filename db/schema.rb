@@ -66,12 +66,12 @@ ActiveRecord::Schema.define(version: 20160125080713) do
     t.integer  "group_id",                limit: 4
     t.datetime "created_at",                                            null: false
     t.datetime "updated_at",                                            null: false
+    t.boolean  "remind_me",                             default: false
     t.string   "attachment_file_name",    limit: 255
     t.string   "attachment_content_type", limit: 255
     t.integer  "attachment_file_size",    limit: 4
     t.datetime "attachment_updated_at"
     t.text     "attach_url",              limit: 65535
-    t.boolean  "remind_me",                             default: false
   end
 
   add_index "tasks", ["priority_id"], name: "index_tasks_on_priority_id", using: :btree
