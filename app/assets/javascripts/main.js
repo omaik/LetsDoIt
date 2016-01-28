@@ -86,6 +86,11 @@ angular.module('letsDoIt', [
         url: '/friends',
         templateUrl: 'friends/friends.html',
         controller: 'FriendshipController'
+      }).
+      state('confirmation', {
+        url: '/confirmation',
+        templateUrl: 'confirmation/new.html',
+        controller: 'ConfirmationController'
       });
 
   }])
@@ -95,7 +100,7 @@ angular.module('letsDoIt', [
         'responseError': function(rejection) {
           if (rejection.status == 401 && $location.path() !== '/') {
             $rootScope.$broadcast('event:unauthorized');
-            if($location.path() !== '/users/sign_up')
+            if($location.path() !== '/users/sign_up' && $location.path() !== '/confirmation')
               $location.path('/');
           return rejection;
           }
