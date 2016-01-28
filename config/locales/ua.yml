@@ -303,3 +303,8 @@ ua:
   conf_account_through: "Ви можете підтвердити свій облікий запис, перейшовши по посиланню:"
   conf_account: "Підтвердити обліковий запис"
   dont_receive_conf: "Не отримали лист з підтвердженням?"
+  wants_to_be_your_friend: "%{user} хоче бути вашим другом"
+  accepted_your_request: "%{user} прийняв запит на дружбу"
+  accept_request: "Привіт %{user}, %{user2} хоче бути вашим другом"
+  accepted_request: "Привіт %{user}, %{user2} прийняв ваш запит на дружбу"
+  visit_us: "Перегляньте оновлення на"

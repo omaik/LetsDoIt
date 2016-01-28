@@ -261,3 +261,8 @@ en:
   conf_account_through: "You can confirm your account email through the link below"
   conf_account: "Confirm my account"
   dont_receive_conf: "Didn't receive confirmation instructions?"
+  wants_to_be_your_friend: "%{user} wants to be your friend"
+  accepted_your_request: "%{user} has accepted your request for friendship"
+  accept_request: "Hi %{user}, %{user2} wants to be your friend"
+  accepted_request: "Hi %{user}, %{user2} accepted your request for friendship"
+  visit_us: "Go and check new updates on"

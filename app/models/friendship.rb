@@ -1,5 +1,4 @@
 class Friendship < ActiveRecord::Base
-  
   include AASM
   
   belongs_to :user
@@ -16,16 +15,17 @@ class Friendship < ActiveRecord::Base
     state :requested
   
     event :accept do
-      transitions to: :accepted, after: :update_mutual_friendship!
+      transitions to: :accepted, after:  [:update_mutual_friendship!, :send_acceptance_email]
     end
   
   end
   
   def self.request(user1, user2)
     transaction do
-      create!(user: user1, friend: user2, aasm_state: 'pending')
+      @friendship = create!(user: user1, friend: user2, aasm_state: 'pending')
       create!(user: user2, friend: user1, aasm_state: 'requested')
     end
+      @friendship.send_request_email
   end
   
   def mutual_friendship
@@ -40,5 +40,12 @@ class Friendship < ActiveRecord::Base
     mutual_friendship.delete
   end 
   
+  def send_request_email
+    FriendshipMailer.friend_requested(id).deliver_now
+  end
+  
+  def send_acceptance_email
+    FriendshipMailer.friend_request_accepted(id).deliver_now
+  end
 end
 
