@@ -7,8 +7,7 @@ angular.module('letsDoIt')
   'userProfile',
   'Auth',
   'Upload',
-  '$timeout',
- function($scope, $location, $state, $stateParams, userProfile, Auth, Upload, $timeout) {
+ function($scope, $location, $state, $stateParams, userProfile, Auth, Upload) {
   $scope.image = {
     myImage: '',
     croppedImage: {}
@@ -47,20 +46,25 @@ angular.module('letsDoIt')
   angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
   $scope.profile = userProfile.get({ id: $stateParams.id });
   $scope.updateProfile = function(file) {
-    var profileId = $scope.profile.id,
+    var profileId = $scope.profile.id;
+    var NOT_VALID_NAME = "You entered invalid data";
+    if($scope.editProfile.$invalid) {
+      $scope.errHandle = true;
+      $scope.profileErrMsg = NOT_VALID_NAME;
+      return;
+    };
     resource_url = '/users/'+ $scope.profile.id +'.json';
     if ($scope.avatar) {
       file.upload = Upload.upload({
         url: resource_url,
         method: 'PUT',
-        fields: { 'user[avatar]': $scope.image.croppedImage, 'user[first_name]': $scope.profile.first_name, 'user[last_name]': $scope.profile.last_name, 'user[sex]': $scope.profile.sex, 'user[day]': $scope.profile.day, 'user[month]': $scope.profile.month, 'user[year]': $scope.profile.year, 'user[country]': $scope.profile.country, 'user[city]': $scope.profile.city},
+        fields: { 'user[avatar]': $scope.image.croppedImage, 'user[first_name]': $scope.profile.first_name, 'user[last_name]': $scope.profile.last_name, 'user[sex]': $scope.profile.sex, 'user[day]': $scope.profile.day, 'user[month]': $scope.profile.month, 'user[year]': $scope.profile.year, 'user[country]': $scope.profile.country, 'user[city]': $scope.profile.city, 'user[language]': $scope.profile.language },
         file: file,
         fileFormDataName: 'user[avatar]'
-      });
-      $timeout(function() {
-        $state.go('profile', {id: profileId}), 1;
-      });
-
+      }).then(function(user) {
+        if (user.social_avatar !== $scope.profile.social_avatar)
+          $state.go('profile', {id: profileId});
+      })
     }
     else{
       $scope.profile.$update(function() {
