@@ -1,7 +1,7 @@
 angular.module('letsDoIt')
 
 .factory('fayeResourse', function() {
-  var client = new Faye.Client('http://localhost:9292/faye');
+  var client = new Faye.Client('http://54.175.169.251:9292/faye');
 
   return {
     publish: function(channel, message) {
