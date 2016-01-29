@@ -25,6 +25,9 @@
         %p
           %a{'ui-sref': '#', 'title': 'I forgot my password'}
             Forgot your password?
+        %p
+          %a{'ui-sref': 'confirmation'}
+            {{ 'dont_receive_conf' | translate }}
       %div
         %button.btn.btn-block.btn-primary{'ng-click':'login()', 'ng-disabled':'signInForm.$invalid'} Login
       %div
