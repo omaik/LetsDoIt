@@ -2,7 +2,7 @@
   %h1 {{ 'signup' | translate }}:
   %div.alert.alert-danger{'ng-show':'err.isError'}
     %div{'ng-repeat':'(field, error) in err.errors'}
-      {{field}} {{error[0]}}
+      {{field | translate}} {{error[0] | translate}}
   %form{'name':'signUpForm','ng-submit':'addUser()'}
     %md-input-container.md-block
       %label {{"email" | translate }}
