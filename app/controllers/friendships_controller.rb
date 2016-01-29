@@ -1,9 +1,18 @@
 class FriendshipsController < ApplicationController
+  include ActionController::Live
   respond_to :json
   before_action :authenticate_user!
     
   def index
     respond_with ({friends: current_user.friends, pending: current_user.pending_friends, requested: current_user.requested_friends})
+  end
+  
+  def event
+    response.headers['Content-Type'] = 'text/event-stream'
+    sse = SSE.new(response.stream, retry: 1000)
+    sse.write({friends: current_user.friends, pending: current_user.pending_friends, requested: current_user.requested_friends})
+  ensure
+    sse.close
   end
   
   # Friendship request action

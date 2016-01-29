@@ -30,6 +30,9 @@ Rails.application.routes.draw do
     member do
       post 'accept'
     end
+    collection do
+      get 'event'
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

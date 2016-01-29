@@ -5,7 +5,7 @@ angular.module('letsDoIt')
     '$resource',
     'friendshipResource',
     function($scope, Auth, $resource, friendshipResource){
-      var relations = {};
+      var relations = {}, source = new EventSource('/friendships/event');
       $scope.data = {
         selectedIndex: 0,
         friends: {},
@@ -21,6 +21,18 @@ angular.module('letsDoIt')
         $scope.data.requested = relations.requested;
         $scope.data.pending = relations.pending;
       });
+      
+      source.onmessage = function(event) {
+        var response = JSON.parse(event.data);
+        console.log(response);
+        $scope.$apply(function(){
+          $scope.data.friends =  response.friends;
+          $scope.data.requested = response.requested;
+          $scope.data.pending = response.pending;         
+        });
+      };  
+      
+      // source.close();
       
       $scope.setTab = function(tab){
         if (tab === 3){
