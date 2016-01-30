@@ -110,4 +110,51 @@ describe('Tasks tests', function() {
     });
   });
 
+  describe('EditTaskController', function() {
+    var scope, EditTaskController, priorities, resource;
+    tasks = [
+      { id: 1, name: 'task 1', priority_id: '1', status: '2', description: 'description 1' },
+      { id: 2, name: 'task 2', priority_id: '1', status: '2', description: 'description 2' }
+    ];
+    priorities = [
+      { name: 'priority', value: 1, color:'#ffffff', id: 1 }
+    ];
+
+    beforeEach(function() {
+      module('letsDoIt');
+      inject(function(
+        _$controller_,
+        _$httpBackend_,
+        _tasksResource_,
+        _prioritiesResource_,
+        $rootScope,
+        $resource) {
+          $httpBackend = _$httpBackend_;
+          tasksResource = _tasksResource_;
+          prioritiesResource = _prioritiesResource_;
+          $controller = _$controller_;
+          scope = $rootScope.$new();
+          resource = $resource;
+          EditTaskController = $controller('EditTaskController', { $scope: scope, tasksResource: tasksResource });
+      });
+    });
+
+     afterEach(function() {
+       $httpBackend.verifyNoOutstandingExpectation();
+       $httpBackend.verifyNoOutstandingRequest();
+     });
+
+    it('should update task', function() {
+      var task = new tasksResource(tasks[1]);
+      task.description = 'new description';
+      $httpBackend.whenPUT('/tasks/' + task.id + '.json').respond(204);
+      $httpBackend.whenGET('/tasks/1.json').respond(task);
+      $httpBackend.whenGET('/tasks.json').respond(task);
+      $httpBackend.whenGET('/priorities.json').respond(priorities);
+      $httpBackend.whenGET('/categories.json').respond(categories);
+      scope.updateTask();
+      $httpBackend.flush();
+      expect(task.description).toMatch('new description');
+    });
+  });
 });

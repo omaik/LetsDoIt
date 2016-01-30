@@ -20,7 +20,11 @@
               %textarea{columns: '1', 'ng-model': 'task.description', rows: '5'}
           %div{'ng-if': 'task.attachment_file_name'}
             %img.img-attachment{'ng-src': '{{task.attach_url}}'}
-          %input#add-attachment-input{type: 'file', 'ngf-select':'select(attachment)', 'ng-model':'attachment'}
+          %label.label.file-upload-label
+            %span.input-label-button
+            %mark.glyphicon.glyphicon-upload
+              %md-tooltip {{ 'addAttachment' | translate }}
+            %input{type: 'file', 'ngf-select':'select(attachment)', 'ng-model':'attachment'}
           %div
             %label.label.label-default {{ 'priority' | translate }}
             %md-input-container
@@ -44,9 +48,9 @@
             %span
               %md-tooltip{'md-direction': 'top'} {{ 'remindMe' | translate }}
               %md-checkbox.md-primary.remind-me{'ng-model': 'task.remind_me', 'aria-label': 'Remind me', 'ng-true-value': 'true'}
-          %div
+          %md-card-actions{'layout': 'row', 'layout-align': 'end center'}
             %md-button.md-raised.save-task-btn{'ng-click': 'updateTask()'} {{ 'editTasksSave' | translate }}
             %md-button.md-raised.back-home{'ui-sref': 'home'} {{ 'editTasksCancel' | translate }}
           %div
             %span{'ng-bind': "task.created_at | date:'MM/dd/yyyy HH:mm'"}
-              %md-tooltip{'md-direction': 'left'} {{ 'createdAt' | translate }}
+              %md-tooltip{'md-direction': 'top'} {{ 'createdAt' | translate }}

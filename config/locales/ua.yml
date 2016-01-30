@@ -275,6 +275,7 @@ ua:
   editTasksEnterDate: "Введіть дату"
   editTasksSave: "Зберегти"
   editTasksCancel: "Відмінити"
+  addAttachment: "Додати файл"
   signup: "Реєстрація"
   email: "Поштова скринька"
   username: "Ім'я користувача"

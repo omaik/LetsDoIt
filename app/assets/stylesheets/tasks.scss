@@ -5,9 +5,11 @@
 .add-task {
   padding: 10px;
 }
+
 md-content {
   overflow: visible !important ;
 }
+
 md-toolbar{
   background-color: #6c5b7b !important;
   h2 {
@@ -26,13 +28,14 @@ md-toolbar{
 .save-task-btn {
   color: #fff !important;
   background-color: #6c5b7b !important;
+  margin-right: 15px !important;
 }
 
 .task-edit {
   margin: 15px;
   padding: 15px;
     div {
-      margin: 20px auto;
+      margin: 15px auto;
     }
 }
 
@@ -84,9 +87,42 @@ md-toolbar{
   }
 }
 
-  .animate.ng-enter, 
+.file-upload-label {
+  display: block;
+  position: relative;
+  max-width: 20%;
+  overflow: hidden;
+}
+
+.file-upload-label
+.input-label-button,
+.file-upload-label > mark {
+  display: block;
+  cursor: pointer;
+}
+
+.file-upload-label
+.input-label-button {
+  float: left;
+  height: 100%;
+}
+
+.file-upload-label > mark {
+  float: left;
+  font-size: 28px;
+  color: #6c5b7b;
+  background: transparent;
+}
+
+.file-upload-label input[type=file] {
+  position: absolute;
+  top: 0;
+  visibility: hidden;
+}
+
+  .animate.ng-enter,
   .animate.ng-leave
-  { 
+  {
     -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
     -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
     -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
@@ -94,8 +130,8 @@ md-toolbar{
     transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
     position: relative;
     display: block;
-  } 
-     
+  }
+
   .animate.ng-leave.ng-leave-active,
   .animate.ng-enter {
     -webkit-transform: scaleY(0);
@@ -106,8 +142,8 @@ md-toolbar{
     height: 0px;
     opacity: 0;
   }
-     
-  .animate.ng-enter.ng-enter-active, 
+
+  .animate.ng-enter.ng-enter-active,
   .animate.ng-leave {
     -webkit-transform: scaleY(1);
     -moz-transform: scaleY(1);

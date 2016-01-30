@@ -31,6 +31,10 @@
           %md-select{'ng-model': 'task.category_id'}
             %md-option{ 'ng-repeat':'category in categories.list', value: '{{category.id}}'}
               {{category.name}}
-        %input#add-attachment-input{type: 'file', 'ngf-select':'select(attachment)', 'ng-model':'attachment'}
+        %label.label.file-upload-label
+          %span.input-label-button
+          %mark.glyphicon.glyphicon-upload
+            %md-tooltip{'md-direction': 'bottom'} {{ 'addAttachment' | translate }}
+          %input{type: 'file', 'ngf-select':'select(attachment)', 'ng-model':'attachment'}
         %md-dialog-actions
           %md-button.md-raised.save-task-btn{name: 'add-task', 'ng-click': 'addTask(attachment)'} {{ 'createTaskButton' | translate }}
