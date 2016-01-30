@@ -1,7 +1,9 @@
-%md-toolbar
+%md-toolbar.tasks
+  %button.slide-button.visible-xs.visible-sm.col-sm-12{type: 'button', 'ng-click': 'slideNav()'}
+    %span.glyphicon.glyphicon-menu-hamburger
   %h2 {{ 'tasks' | translate }}
 %md-content.md-padding{'layout': 'row', 'layout-wrap': '', 'layout-align': 'center start', 'layout-xs': 'column'}
-  %div{'flex': '100', 'flex-sm': '80', 'flex-xs': '100', 'layout': 'column'}
+  %div.all-tasks{'flex': '100', 'flex-sm': '80', 'flex-xs': '100', 'layout': 'column'}
     %md-card{'ng-repeat': "task in tasks.list | groupFilter:dragDrop.filteredByGroupId | orderBy: '-created_at'"}
       %md-card-title
         %md-card-title-text
