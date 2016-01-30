@@ -5,9 +5,20 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks', confirmations: 'users/confirmations' }
   get '/edit' => 'tasks#index'
 
-  resources :tasks
+  resources :tasks do
+    member do
+      post 'share'
+    end
+  end
+
   resources :priorities
-  resources :groups
+  resources :groups do
+    member do
+      post 'add_friend_to_group'
+      get 'members'
+      delete 'delete_friend_from_group'
+    end
+  end
   resources :categories
   resources :users
   resources :translations, only: :show

@@ -26,12 +26,14 @@
     padding: 5px;
   }
 }
-
+.group-list-container{
+  height: 250px!important;
+  overflow-y: scroll!important;
+}
 .group-list {
   border-bottom: solid 1px #c9c9c9;
-  margin-top: 15px;
-  padding-bottom: 10px;
 }
+
 
 .slide{
   display: none;
@@ -39,4 +41,25 @@
 
 [ng-drop].drag-enter {
   border-bottom: 2px solid red;
+}
+
+.edit-group-content {
+  margin: 5%;
+  text-align: center;
+}
+
+.edit-group-button {
+  display: inline !important;
+  
+  margin: 10% 0 0 0% !important;
+}
+
+.edit-group-button:last-child {
+  margin-left: 50%;
+}
+
+.repeated-item {
+  text-align: left;
+  height: 280px;
+  overflow: visible;
 }

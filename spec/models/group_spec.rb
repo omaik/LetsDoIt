@@ -8,7 +8,7 @@ describe Group do
 
   it { should respond_to(:name) }
   it { should respond_to(:description) }
-  it { should belong_to(:user)}
+  it { should have_and_belong_to_many(:users)}
   it { should be_valid }
 
   describe 'when name is not present' do
