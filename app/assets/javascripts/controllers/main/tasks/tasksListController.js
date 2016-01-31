@@ -66,10 +66,8 @@ angular.module('letsDoIt')
   };
 
   $scope.addTask = function(attachment) {
-    var NOT_BLANK = "Task name can't be blank!";
     if(!$scope.task.name || $scope.task.name === '') {
       $scope.errHandle = true;
-      $scope.taskErrMsg = NOT_BLANK;
       return;
     };
     $scope.task = new tasksResource({

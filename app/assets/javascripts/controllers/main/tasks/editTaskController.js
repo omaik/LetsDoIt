@@ -24,10 +24,8 @@ angular.module('letsDoIt')
   });
 
   $scope.updateTask = function() {
-    var NOT_BLANK = "Task name can't be blank!";
     if(!$scope.task.name || $scope.task.name === '') {
       $scope.errHandle = true;
-      $scope.taskErrMsg = NOT_BLANK;
       return;
     };
     if($scope.attachment) {

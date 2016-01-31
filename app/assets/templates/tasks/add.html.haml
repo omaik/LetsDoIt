@@ -1,27 +1,27 @@
 %md-dialog
   %md-dialog-content
     %md-toolbar
-      %h2 New task
+      %h2 {{ 'newTask' | translate }}
     %form{'ng-submit': 'addTask(attachment)'}
       .add-task
         %p
-          .alert.alert-danger{'ng-if': 'errHandle'}
-            %p{'ng-bind': 'taskErrMsg'}
+          .alert.alert-danger{'ng-show': 'errHandle'}
+            %p {{ 'blankTaskName' | translate }}
           %md-input-container.md-block
-            %label {{ 'addNewTask' | translate }}
+            %label {{ 'editTasksName' | translate }}
             %input{'ng-model': 'task.name', type: 'text'}
           %md-input-container.md-block
             %label {{ 'editTasksDescription' | translate }}
             %textarea{columns: '1', 'ng-model': 'task.description', rows: '5'}
         %label.label.label-default.label-link
           %a{'ui-sref':'priority'} {{ 'priority' | translate }}
-          %md-tooltip Edit priorities
+          %md-tooltip {{ 'editPrioritiesLink' | translate }}
         %md-input-container
           %md-select{'ng-model': 'task.priority_id', 'aria-label': 'Priority'}
             %md-option{ 'ng-repeat':'priority in priorities.list', value: '{{priority.id}}'}
               %span.priority-style{'style':'background:{{priority.color}}'}
               %span{'ng-bind': 'priority.name'}
-        %label.label.label-default Status
+        %label.label.label-default {{ 'status' | translate }}
         %md-input-container
           %md-select{'ng-model': 'task.status', 'aria-label': 'Status'}
             %md-option{value: '1'} {{ 'inProgress' | translate }}
@@ -30,7 +30,11 @@
         %md-input-container
           %md-select{'ng-model': 'task.category_id'}
             %md-option{ 'ng-repeat':'category in categories.list', value: '{{category.id}}'}
-              {{category.name}}    
-        %input#add-attachment-input{type: 'file', 'ngf-select':'select(attachment)', 'ng-model':'attachment'}
+              {{category.name}}
+        %label.label.file-upload-label
+          %span.input-label-button
+          %mark.glyphicon.glyphicon-upload
+            %md-tooltip{'md-direction': 'bottom'} {{ 'addAttachment' | translate }}
+          %input{type: 'file', 'ngf-select':'select(attachment)', 'ng-model':'attachment'}
         %md-dialog-actions
-          %md-button.md-raised.save-task-btn{name: 'add-task', 'ngf-max-size': '20MB', 'ngf-pattern': "'image/*'",  'ng-click': 'addTask(attachment)'}  Create
+          %md-button.md-raised.save-task-btn{name: 'add-task', 'ng-click': 'addTask(attachment)'} {{ 'createTaskButton' | translate }}
