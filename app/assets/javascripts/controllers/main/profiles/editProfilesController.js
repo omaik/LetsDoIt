@@ -7,7 +7,8 @@ angular.module('letsDoIt')
   'userProfile',
   'Auth',
   'Upload',
- function($scope, $location, $state, $stateParams, userProfile, Auth, Upload) {
+  '$translate',
+ function($scope, $location, $state, $stateParams, userProfile, Auth, Upload, $translate) {
   $scope.image = {
     myImage: '',
     croppedImage: {}
@@ -26,8 +27,8 @@ angular.module('letsDoIt')
   };
   $scope.formatPattern = /^[a-zA-Z\u0400-\u04FF]+$/;
   $scope.errorMessages = {
-    'pattern':'has incorrect format',
-    'maxlength':'is too long'
+    'pattern':'incorrect',
+    'maxlength':'too_long'
   };
   $scope.err = {
       errors: {},
@@ -63,6 +64,7 @@ angular.module('letsDoIt')
         fileFormDataName: 'user[avatar]'
       }).then(function(user) {
         if (user.social_avatar !== $scope.profile.social_avatar)
+          $translate.use(user.language);
           $state.go('profile', {id: profileId});
       })
     }
@@ -71,8 +73,10 @@ angular.module('letsDoIt')
       $state.go('profile', {id: profileId});
     },
     function(error, status) {
+      $translate.use(user.language);
       console.log('Status is: ' + status);
     });
     };
   };
 }]);
+
