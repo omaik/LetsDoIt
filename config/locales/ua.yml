@@ -319,3 +319,7 @@ ua:
   Sign_in_with_Facebook: "Увійти через Facebook"
   New_User: "Новий користувач?"
   Sign_Up: "Зареєструватися"
+  same_category: "Така назва категорії уже існує"
+  all_categories: "Всі категорії"
+  category_placeholder: "Назва категорії"
+  categories: "Категорії"

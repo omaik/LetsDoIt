@@ -33,6 +33,11 @@
               %md-select{'ng-model': 'task.status', 'aria-label': 'Status'}
                 %md-option{value: '1'} {{ 'inProgress' | translate }}
                 %md-option{value: '2'} {{ 'setAside' | translate }}
+            %label.label.label-default Category
+            %md-input-container
+              %md-select{'ng-model': 'task.category_id'}
+                %md-option{ 'ng-repeat':'category in categories.list', value: '{{category.id}}'}
+                  {{category.name}}    
             %md-datepicker{'md-placeholder': "{{ 'editTasksEnterDate' | translate }}", 'ng-model': 'task.due_date'}
           %div
             %md-button.md-raised.save-task-btn{'ng-click': 'updateTask()'} {{ 'editTasksSave' | translate }}

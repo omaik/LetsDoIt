@@ -4,7 +4,7 @@
   %h2 {{ 'tasks' | translate }}
 %md-content.md-padding{'layout': 'row', 'layout-wrap': '', 'layout-align': 'center start', 'layout-xs': 'column'}
   %div.all-tasks{'flex': '100', 'flex-sm': '80', 'flex-xs': '100', 'layout': 'column'}
-    %md-card{'ng-repeat': "task in tasks.list | groupFilter:dragDrop.filteredByGroupId | orderBy: '-created_at'"}
+    %md-card{'ng-repeat': "task in tasks.list| categoryFilter:dragDrop.filteredByCategory | groupFilter:dragDrop.filteredByGroupId | orderBy: '-created_at'"}
       %md-card-title
         %md-card-title-text
           %span.md-headline{'ng-bind': 'task.name', 'data-drag': 'true', 'data-jqyoui-options': "{revert: 'invalid', helper: 'clone'}", 'jqyoui-draggable': "{index: {{$index}}, animate: true, placeholder: 'keep', onStart:'onDragTask(task, $index)'}"}
@@ -18,6 +18,8 @@
           %label.label.label-default {{ 'priority' | translate }}:
           %span.priority-style{'style':'background:{{task.priority.color}}'}
           %span{'ng-bind': 'task.priority.name'}
+          %label.label.label-default category
+          %span{'ng-bind': 'task.category.name'}
           %label.label.label-default.task-options Due date:
           %span{'ng-bind': "task.due_date | date:'MM/dd/yyyy'"}
         %md-card-actions{'layout': 'row', 'layout-align': 'end center'}

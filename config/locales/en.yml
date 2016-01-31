@@ -277,3 +277,7 @@ en:
   Sign_in_with_Facebook: "Sign in with Facebook"
   New_User: "New User?"
   Sign_Up: "Sign Up"
+  same_category: "Name has already been taken"
+  all_categories: "All categories"
+  category_placeholder: "Name of category"
+  categories: "Categories"
