@@ -7,8 +7,6 @@ angular.module('letsDoIt')
   'tasksResource', 
   '$mdDialog', 
   function($scope, $state, categoryList, tasksResource, $mdDialog) {
-  
-  var showing = true;
 
   $scope.isError = false;
 
@@ -36,7 +34,6 @@ angular.module('letsDoIt')
         name: ''
       };
     });
-    $state.reload('home');
   };
 
   $scope.deleteCategory = function(category) {
@@ -44,7 +41,6 @@ angular.module('letsDoIt')
     category.$delete(function() {
       $scope.categories.splice(index, 1);
     });
-    $state.reload('home');
     $scope.closeDialog();
   };
 
@@ -53,32 +49,27 @@ angular.module('letsDoIt')
     $scope.closeDialog();
   };
 
-  $scope.toggleCategories = function() {
-    if(showing) {
-      $('.category-slide').slideUp(400);
-      $('.groups').css({'animation':'slidingUp 0.4s', 'top':'70px'});
-      showing = false;
-    }
-    else {
-      $('.category-slide').slideDown(400);
-      $('.groups').css({'animation':'slidingDown 0.4s', 'top':'366px'});
-      showing = true;
-    }
-  };
-
   $scope.showAdvanced = function(ev, category) {
     $scope.edit.category = category;
+    if (navigator.userAgent.search("Chrome") >= 0){
+      $('aside').css('height', '91%');
+    }
     return $mdDialog.show({
       templateUrl: 'categories/edit.html',
       parent: angular.element(document.body),
       targetEvent: ev,
       scope: $scope.$new(),
       clickOutsideToClose:true
+
     });
+
   };
   
   $scope.closeDialog = function() {
     $mdDialog.hide();
+    if (navigator.userAgent.search("Chrome") >= 0){
+      $('aside').css('height', '82%');
+    }
   };
 
 }]);

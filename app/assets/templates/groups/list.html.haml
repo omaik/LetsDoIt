@@ -1,6 +1,6 @@
 %div.col-sm-12
   .groups
-    %div{'ng-click': 'toggleGroups()'}
+    %div.block-title
       %h3 Groups
     %div.slide{'ng-class': 'showGroups'}
       %form.add-group-form{'ng-submit': 'addGroup()'}
@@ -10,7 +10,7 @@
           .input-group
             %input.form-control{'ng-model': 'group.name', type: 'text'}/
             %span.input-group-btn
-              %input.btn.btn-secondary{name: 'add-group', type: 'submit', value: 'Add'}/
+              %input.btn.btn-secondary.add-button{name: 'add-group', type: 'submit', value: 'Add'}/
 
       .group-list-container
         %md-list-item{'class': 'group-list', 'ng-drop': 'true', 'data-drop': "true", 'data-jqyoui-options': "{revert: 'invalid', helper: 'clone'}", 'jqyoui-droppable': "{onDrop:'onDropDefaultGroup()'}", 'ng-click': 'filterByDefaultGroup()'}

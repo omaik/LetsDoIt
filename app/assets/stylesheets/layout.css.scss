@@ -1,6 +1,7 @@
 .head {
-  border-bottom: 2px solid grey;
+  border-bottom: 2px solid #355c7d;
   margin-bottom: 0;
+  background: #355c7d;
 }
 #logo {
   font-size: 20px;
@@ -84,7 +85,7 @@ ul li .eng:hover {
 }
 
 #user {
-  display: block;
+  display: inline-block;
   border-radius: 50%;
   width: 50px;
   height: 50px;
@@ -129,58 +130,56 @@ ul li .eng:hover {
     right: 0;
     margin-bottom: 200px;
   }
+
 }
 @media only screen and (max-width : 991px) {
     .tasks h2 {
       margin-left: 60px;
     }
+
   .slide-button {
     position: absolute;
     width: 45px;
     height: 50px;
-    background: #6c5b7b;
     outline: none;
-    border: 1px solid white;
-    margin: 7px 0 0 7px;
-    border-radius: 7px;
-    padding-left: 7px;
-    box-shadow: 1px 1px 3px 0px #141316;
-  }
-  .slide-button:hover {
-    background: #432C58;
-    transition: 0.5s;
-    color: black;
-  }
-  .slide-button span {
-    font-size: 30px;
+    border: none;
+    margin: 15px 0 0 7px;
+    font-size: 35px;
     color: white;
     float: left;
   }
+
+  .slide-button:hover {
+    color: lightgray !important;
+  } 
+
   @keyframes sidebar {
     0% {
-      margin-left: -400px;
+      left: -80%;
       display: block;
     }
     100% {
-      margin-left: 0px;
+      left: 0%;
     }
   }
   @keyframes sidebar-close {
     0% {
-      margin-left: 0px;
-    }
+      left: 0%;
+    } 
     100% {
-      margin-left: -400px;
+      left: -80%;
       display: none;
     }
   }
-  aside.col-sm-4 {
+
+  aside {
     z-index: 40;
     background: #E5E1E1;
     width: 80%;
     position: fixed;
     float: left;
     height: 100%;
+    overflow-y: scroll;
   }
   .after {
     background: rgba(0, 0, 0, 0.8);
@@ -192,18 +191,36 @@ ul li .eng:hover {
     z-index: 25;
   }
   .categories, .groups {
-    width: 70%;
+    width: 90%;
+    margin-left: 20px;
   }
 }
 @media only screen and (min-width : 768px) {
   #drop {
     display: none !important;
   }
+
+  .slide-button {
+    position: absolute;
+    width: 45px;
+    height: 50px;
+    outline: none;
+    border: none;
+    margin: 15px 0 0 7px;
+    font-size: 35px;
+    color: white;
+    float: left;
+  }
+
+  .slide-button:hover {
+    color: lightgray !important;
+  }
+
   #drop_menu {
     display: none;
     position: absolute;
     top: 52px;
-    background: #333;
+    background: #355c7d;
     right: 30px;
     width: 200px;
     z-index: 1;
@@ -212,6 +229,59 @@ ul li .eng:hover {
     display: block;
     width: 200px;
   }
+
+  aside {
+    position: fixed;
+    z-index: 999;
+    width: 33%;
+    margin-top: 65px;
+    background: #e0e0e0;
+    overflow-y: scroll;
+    height: 82%;
+  }
+
+  @keyframes sidebarBigger {
+    0% {
+      left: -33%;
+    } 
+    100% {
+      left: 0%;
+
+    }
+  }
+
+  @keyframes tasksSlideBigger {
+    0% {
+      margin-left: 0%;
+    }
+    100% {
+      margin-left: 33%;
+    }
+  }
+
+  @keyframes sidebarBiggerClose {
+    0% {
+      left: 0;
+    } 
+    100% {
+      left: -33%;
+
+    }
+  }
+
+  @keyframes tasksSlideBiggerClose {
+    0% {
+      margin-left: 33%;
+    }
+    100% {
+      margin-left: 0%;
+    }
+  }
+
+  .tasks-slided {
+    margin-left: 33%;
+  }  
+
 }
 header {
   position: fixed;
@@ -263,15 +333,35 @@ header {
 
 md-select-menu {
   overflow-y: scroll !important;
-  z-index: 10000;
 }
 
 md-option {
   background: white;
 }
 
-#names:hover {
+section {
+  padding: 0!important;
+}
+
+.add-button {
+  background: #6c5b7b;
+  color: white;
+}
+
+md-toolbar h2 {
+  text-align: center;
+}
+
+md-headline {
+  display: inline!important;
+}
+
+#names {
+  margin-top: 12px; 
+  width: 300px;
+  text-align: right;
+  display: inline-block;
   text-decoration: none;
-  color: #55acee;
-  cursor: pointer;
+  position: absolute;
+  right: 180px;
 }

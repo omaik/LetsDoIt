@@ -1,32 +1,31 @@
 %md-toolbar.tasks
-  %button.slide-button.visible-xs.visible-sm.col-sm-12{type: 'button', 'ng-click': 'slideNav()'}
-    %span.glyphicon.glyphicon-menu-hamburger
+  %span.slide-button.glyphicon.glyphicon-menu-hamburger.visible-xs.col-sm-12{'ng-click': 'slideNav()'}
+  %span.slide-button.glyphicon.glyphicon-menu-hamburger.visible-sm.visible-md.visible-lg.col-sm-12{'ng-click': 'slideNavBigger()'}
   %h2 {{ 'tasks' | translate }}
 %md-content.md-padding{'layout': 'row', 'layout-wrap': '', 'layout-align': 'center start', 'layout-xs': 'column'}
-  %div.all-tasks{'flex': '100', 'flex-sm': '80', 'flex-xs': '100', 'layout': 'column'}
+  %div.all-tasks{'flex': '100', 'flex-sm': '66', 'flex-md': '66', 'flex-lg': '66', 'flex-xs': '100', 'layout': 'column'}
     %md-card{'ng-repeat': "task in tasks.list| categoryFilter:dragDrop.filteredByCategory | groupFilter:dragDrop.filteredByGroupId | orderBy: '-created_at'"}
       %md-card-title
         %md-card-title-text
-          %span.md-headline{'ng-bind': 'task.name', 'data-drag': 'true', 'data-jqyoui-options': "{revert: 'invalid', helper: 'clone'}", 'jqyoui-draggable': "{index: {{$index}}, animate: true, placeholder: 'keep', onStart:'onDrag(task, $index)'}"}
-          %md-tooltip{'md-direction': 'left'} {{ 'dragToGroupLabel' | translate }}
+          %span
+            .priority-style{'style':'background:{{task.priority.color}}'}
+              %md-tooltip{'md-direction': 'top'}
+                {{task.category.name}}
+            .md-headline{'ng-bind': 'task.name', 'data-drag': 'true', 'data-jqyoui-options': "{revert: 'invalid', helper: 'clone'}", 'jqyoui-draggable': "{index: {{$index}}, animate: true, placeholder: 'keep', onStart:'onDragTask(task, $index)'}", 'style': 'display: inline;'}
+          %md-tooltip{'md-direction': 'left'}
+            Drag to add to a Group or a Category
       %md-card-content
         %div{'ng-if': 'task.attachment_file_name'}
           %img.list-img-attachment{'alt': '{{task.name}}', 'ng-src': '{{task.attach_url}}'}/
         %p{'ng-bind': 'task.description'}
         %p
-          %label.label.label-default {{ 'priority' | translate }}:
-          %span.priority-style{'style':'background:{{task.priority.color}}'}
-          %span{'ng-bind': 'task.priority.name'}
-          %label.label.label-default category
-          %span{'ng-bind': 'task.category.name'}
-          %label.label.label-default.task-options {{ 'dueDate' | translate }}:
+          %label.label.label-default.task-options Category:
+          %span{'ng-bind': "task.category.name"}
           %label.label.label-default.task-options Due date:
           %span{'ng-bind': "task.due_date | date:'MM/dd/yyyy'"}
         %md-card-actions{'layout': 'row', 'layout-align': 'end center'}
-          %md-button{'ui-sref': 'editTask({id:task.id})'} {{ 'openTask' | translate }}
+          %md-button{'ui-sref': 'editTask({id:task.id})', 'ng-click': 'closeMenu()'} {{ 'openTask' | translate }}
           %md-button.md-accent{name: 'delete-task', 'ng-click': 'deleteTask(task)', 'ng-prevent-drag': 'true'} {{ 'deleteTask' | translate }}
     %md-button.md-fab.add-task-btn{'ng-click': 'showAddTaskWindow($event)'}
       %span.glyphicon.glyphicon-plus
       %md-tooltip{'md-direction': 'top'} {{ 'createTaskLabel' | translate }}
-      %md-tooltip{'md-direction': 'top'}
-        Create task

@@ -112,6 +112,9 @@ angular.module('letsDoIt')
   
   $scope.showAdvanced = function(ev, group) {
     $scope.edit.group = group;
+    if (navigator.userAgent.search("Chrome") >= 0){
+      $('aside').css('height', '91%');
+    }
     getFriends();
     getMembers(group);
     return $mdDialog.show({
@@ -127,6 +130,9 @@ angular.module('letsDoIt')
     $mdDialog.hide();
     $scope.edit.showMembers = false;
     $scope.edit.showFriends = false;
+    if (navigator.userAgent.search("Chrome") >= 0){
+      $('aside').css('height', '82%');
+    }
   };
   
   $scope.toggleFriends = function(){
@@ -151,17 +157,4 @@ angular.module('letsDoIt')
     }
   };
 
-}])
-
-.animation('.slide', [function() {
-  return {
-    addClass: function(element, slideDown, doneFn) {
-      $(element).slideDown(400, doneFn);
-        doneFn();
-    },
-    removeClass: function(element, slideDown, doneFn) {
-      $(element).slideUp(400, doneFn);
-        doneFn();
-    }
-  }
 }]);
