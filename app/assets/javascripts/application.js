@@ -27,6 +27,7 @@
 //= require angular-dragdrop.min.js
 //= require ngDraggable.js
 //= require ng-file-upload.js
+//= require ng-img-crop.js
 //= require angular-translate.min.js
 //= require angular-translate-loader-static-files.min.js
 //= require angular-cookies.min.js

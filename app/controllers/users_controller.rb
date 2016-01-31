@@ -16,13 +16,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    check = ''
-    user = User.find(params[:id])
-    if check != current_user.avatar.url
-      current_user.update_attributes(social_avatar: current_user.avatar.url)
-    end
-    user.update_attributes(user_params)
-    respond_with current_user
+    custom_params = user_params
+    custom_params[:social_avatar] = current_user.avatar.url
+    respond_with current_user.update_attributes(custom_params)
   end
 
   private

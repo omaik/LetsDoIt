@@ -16,5 +16,6 @@ angular.module('letsDoIt')
   });
     Auth.currentUser().then(function (user){
     $scope.user = user;
-  })
+  });
+
 }]);

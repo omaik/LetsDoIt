@@ -9,6 +9,7 @@ angular.module('letsDoIt', [
   'Devise',
   'templates',
   'ngFileUpload',
+  'ngImgCrop',
   'pascalprecht.translate',
   'ngCookies'
   ])

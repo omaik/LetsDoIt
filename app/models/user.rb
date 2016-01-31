@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 
   enum role: [:user, :admin]
   enum language: [:en, :ua]
-  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "assets/user-7677ff2b4b2db110e515aef66d8cf68a.png", path: ":rails_root/public/pictures/:attachment/:id/:style_:filename", url: "/pictures/:attachment/:id/:style_:filename"
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "assets/user.png", path: ":rails_root/public/pictures/:attachment/:id/:style_:filename", url: "/pictures/:attachment/:id/:style_:filename"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
   devise :database_authenticatable, :registerable, :confirmable,

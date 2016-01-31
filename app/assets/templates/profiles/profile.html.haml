@@ -1,41 +1,46 @@
-%div.col-sm-6.col-sm-offset-3{'class':'profileClass'}
-  %h2 My profile
-  %form{'name':'profile'}
-    %img#photo{'ng-src': '{{profile.social_avatar}}', 'ng-show': 'profile.social_avatar'}
-    = image_tag('user.png', id: 'photo', 'ng-show': '!profile.social_avatar')
-    %br
-    %p
-    %b First name:
-    %span{'ng-bind': 'profile.first_name'}
-    %br
-    %p
-    %b Last name:
-    %span{'ng-bind': 'profile.last_name'}
-    %br
-    %p
-    %b Sex:
-    %span{'ng-bind': 'profile.sex'}
-    %br
-    %p
-    %b Day:
-    %span{'ng-bind': 'profile.day'}
-    %b Month:
-    %span{'ng-bind': 'profile.month'}
-    %b Year:
-    %span{'ng-bind': 'profile.year'}
-    %br
-    %p
-    %b Country:
-    %span{'ng-bind': 'profile.country'}
-    %br
-    %p
-    %b City:
-    %span{'ng-bind': 'profile.city'}
-    %br
-    %p
-    %b Email:
-    %span{'ng-bind': 'profile.email'}
-    %br
-    %br
-    %br
-    %a.btn.btn-success{'ui-sref': 'editProfile({id:user.id})'} Edit profile
+%div.col-sm-8.col-sm-offset-2{'class':'profile-class'}
+  %md-card
+    %md-toolbar
+      %h2.md-headline {{ 'myProfile' | translate }}
+      %a
+        %span.glyphicon.glyphicon-edit{'ui-sref': 'editProfile({id:user.id})'}
+          %md-tooltip {{ 'editProfile' | translate }}
+    %md-card-content
+      %form{'name':'profile'}
+        %div.profile-photo.col-lg-5.col-md-5.col-sm-12.col-xs-12
+          %img.img-responsive#photo{'ng-src': '{{profile.social_avatar}}', 'ng-show': 'profile.social_avatar'}
+          %img#photo{'ng-show':'!profile.social_avatar', 'ng-src':'/assets/user.png', 'alt': '{{profile.first_name}}'}
+        %div.profile-info.col-lg-6.col-md-6.col-sm-12.col-xs-12{'class':'info'}
+          %br
+          %p
+          %b {{ 'firstName' | translate }}:
+          %span{'ng-bind': 'profile.first_name'}
+          %br
+          %p
+          %b {{ 'lastName' | translate }}:
+          %span{'ng-bind': 'profile.last_name'}
+          %br
+          %p
+          %b {{ 'sex' | translate }}:
+          %span{'ng-bind': 'profile.sex'}
+          %br
+          %p
+          %b {{ 'day' | translate }}:
+          %span{'ng-bind': 'profile.day'}
+          %b {{ 'month' | translate }}:
+          %span{'ng-bind': 'profile.month'}
+          %b {{ 'year' | translate }}:
+          %span{'ng-bind': 'profile.year'}
+          %br
+          %p
+          %b {{ 'country' | translate }}:
+          %span{'ng-bind': 'profile.country'}
+          %br
+          %p
+          %b {{ 'city' | translate }}:
+          %span{'ng-bind': 'profile.city'}
+          %br
+          %p
+          %b {{ 'email' | translate }}:
+          %span{'ng-bind': 'profile.email'}
+

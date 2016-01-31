@@ -5,11 +5,7 @@ angular.module('letsDoIt')
     update: {
       method: 'PUT',
       headers: {enctype:'multipart/form-data'}
-    },
-    upload: {
-          method: 'POST',
-          headers: {'Content-Type': undefined}
-        }
+    }
   });
 }]);
 
