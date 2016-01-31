@@ -2,8 +2,13 @@ FactoryGirl.define do
   factory :user do
     first_name "First"
     last_name "Last"
+    sex "Male"
+    day 1
+    month 1
+    year 1994
     country "Ukraine"
     city "Lviv"
+    avatar_file_name "medium_Shrek.jpg"
     sequence (:username) { |n| "Username#{n}" }
     sequence (:email) { |n| "user#{n}@example.com" }
     password "qwerty123"

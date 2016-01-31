@@ -3,12 +3,12 @@ class UsersController < ApplicationController
 
   def index
     indexes = current_user.friendships.pluck(:friend_id) << current_user.id
-    search_result = User.where(["id NOT IN (?) AND (first_name LIKE ? or last_name LIKE ?)", indexes, "%#{params[:search]}%", "%#{params[:search]}%"])      
+    search_result = User.where(["id NOT IN (?) AND (first_name LIKE ? or last_name LIKE ?)", indexes, "%#{params[:search]}%", "%#{params[:search]}%"])
     respond_with search_result
   end
 
   def show
-    respond_with @user = User.find(params[:id])
+    respond_with current_user
   end
 
   def edit
@@ -16,10 +16,13 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-    @user.update_attributes(user_params)
-    current_user.update_attributes(social_avatar: current_user.avatar.url)
-    render json: current_user
+    check = ''
+    user = User.find(params[:id])
+    if check != current_user.avatar.url
+      current_user.update_attributes(social_avatar: current_user.avatar.url)
+    end
+    user.update_attributes(user_params)
+    respond_with current_user
   end
 
   private
