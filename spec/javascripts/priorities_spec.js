@@ -68,7 +68,6 @@ describe('Priorities', function() {
         _prioritiesResource_,
         $rootScope,
         $resource) {
-          debugger;
           $httpBackend = _$httpBackend_;
           prioritiesResource = _prioritiesResource_;
           $controller = _$controller_;
