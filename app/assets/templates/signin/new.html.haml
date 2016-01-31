@@ -1,7 +1,7 @@
 %div.container
   %div.col-md-5.col-md-offset-2
   %div.col-md-3{'class':'authclass'}
-    %h1 Login:
+    %h1 {{ 'Login' | translate }}:
     %div.alert.alert-danger{'ng-show':'err.isError'}
       %div{'ng-repeat':'(field, error) in err.errors'}
         {{error}}
@@ -9,36 +9,38 @@
       .error{'ng-show':'error.message'}
       %div
         %md-input-container.md-block
-          %input{'type':'text', 'placeholder':'Email or Username','ng-model':'user.login', 'required':'required', 'name':'loginField', 'autocomplete':'off', 'minlength':'6', 'maxlength':'30'}
+          %label {{'Email_or_Username' | translate }}
+          %input{'type':'text','ng-model':'user.login', 'required':'required', 'name':'loginField', 'autocomplete':'off', 'minlength':'6', 'maxlength':'30'}
           %div{'ng-messages':'signInForm.loginField.$error', 'role':'alert', 'class':'errors'}
             %div{'ng-repeat':'(type, message) in errorMessages'}
               %div{'ng-message-exp':'type'}
-                Email or Username {{message}}
+                {{'Email_or_Username' | translate }} {{ message | translate}}
       %div
         %md-input-container.md-block
-          %input{'type':'password', 'placeholder':'Password','ng-model':'user.password', 'required':'required', 'name':'passwordField', 'autocomplete':'off', 'minlength':'8', 'maxlength':'30'}
+          %label {{'Password' | translate }}
+          %input{'type':'password','ng-model':'user.password', 'required':'required', 'name':'passwordField', 'autocomplete':'off', 'minlength':'8', 'maxlength':'30'}
           %div{'ng-messages':'signInForm.passwordField.$error', 'role':'alert', 'class':'errors'}
             %div{'ng-repeat':'(type, message) in errorMessages'}
               %div{'ng-message-exp':'type'}
-                Password {{message}}
+                {{'Password' | translate }} {{ message | translate}}
       %div
         %p
           %a{'ui-sref': '#', 'title': 'I forgot my password'}
-            Forgot your password?
+            {{'I_Forgot_my_Password' | translate }}
         %p
           %a{'ui-sref': 'confirmation'}
             {{ 'dont_receive_conf' | translate }}
       %div
-        %button.btn.btn-block.btn-primary{'ng-click':'login()', 'ng-disabled':'signInForm.$invalid'} Login
+        %button.btn.btn-block.btn-primary{'ng-click':'login()', 'ng-disabled':'signInForm.$invalid'} {{ 'Login' | translate }}
       %div
         %br
       %div
         %a.btn.btn-block.btn-social.btn-facebook{href:'/users/auth/facebook'}
           %span.fa.fa-facebook
-          Sign in with Facebook
+          {{ 'Sign_in_with_Facebook' | translate }}
       %div
         %br
         %p
-          New User?
+          {{ 'New_User' | translate }}
           %a{'ui-sref': 'signUp', 'title': 'SignUp Page'}
-            Sign Up
+            {{ 'Sign_Up' | translate }}
