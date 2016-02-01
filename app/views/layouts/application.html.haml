@@ -16,7 +16,8 @@
               %button.navbar-toggle.profile{ 'data-target': '#drop', 'data-toggle': 'collapse', type: 'button', 'ng-show':'signedIn'}
                 %img{'ng-src': '{{user.social_avatar}}',id: 'user', 'ng-show': 'user.social_avatar'}
                   = image_tag('user.png', id: 'user', 'ng-show': '!user.social_avatar')
-              %a.logo#logo.col-xs-5.col-sm-2{'ui-sref':'home'}LetsDoIt
+              %a.logo#logo.col-xs-5.col-sm-2{'ui-sref':'home', 'ng-show':'signedIn'}LetsDoIt
+              %a.logo#logo.col-xs-5.col-sm-2{'ui-sref':'login', 'ng-hide':'signedIn'}LetsDoIt
 
             %ul.language{'ng-if':'!signedIn'}
               %li

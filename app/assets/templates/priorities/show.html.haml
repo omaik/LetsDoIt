@@ -24,10 +24,13 @@
               &nbsp;
             %md-button.md-raised.md-fab.md-primary{'type':'submit ','ng-hide':'editMode', 'ng-disabled':' priorityForm.$invalid'}
               %span.glyphicon.glyphicon-plus
+              %md-tooltip{'md-direction': 'top'} {{ 'create_priority' | translate }}
             %md-button.md-raised.md-fab.md-edit{'type':'submit', 'ng-show':'editMode', 'ng-disabled':' priorityForm.$invalid'}
               %span.glyphicon.glyphicon-ok
+              %md-tooltip{'md-direction': 'top'} {{ 'update_priority' | translate }}
             %a.md-button.md-fab.md-raised.md-warn{'ng-click':'undoEdit()', 'ng-show':'editMode'}
               %span.glyphicon.glyphicon-remove
+              %md-tooltip{'md-direction': 'top'} {{ 'undo_update_priority' | translate }}
       %md-card.priority-list.col-xs-12{'ng-repeat':"priority in priorities.list | orderBy:'-value'"}
         %md-card-content
           %button.md-button.prior-name{'ng-click':'setPriority(priority)'}

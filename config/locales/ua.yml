@@ -352,3 +352,6 @@ ua:
   language: "Мова"
   en: "Англійська"
   ua: "Українська"
+  create_priority: "Створити пріоритет"
+  update_priority: "Оновити"
+  undo_update_priority: "Відмінити"

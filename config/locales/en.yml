@@ -310,3 +310,6 @@ en:
   language: "Language"
   en: "English"
   ua: "Ukrainian"
+  create_priority: "Create priority"
+  update_priority: "Update"
+  undo_update_priority: "Undo"
