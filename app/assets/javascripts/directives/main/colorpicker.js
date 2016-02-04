@@ -1,6 +1,6 @@
 angular.module('letsDoIt')
 
-.directive('colorpicker', function() {
+.directive('colorpicker', [function() {
   return {
     restrict:'A',
     link: function(scope, element) {
@@ -41,4 +41,4 @@ angular.module('letsDoIt')
       })
     }
   }
-});
+}]);

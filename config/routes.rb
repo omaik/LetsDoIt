@@ -20,7 +20,11 @@ Rails.application.routes.draw do
     end
   end
   resources :categories
-  resources :users
+  resources :users do
+    collection do
+      post 'validate_user'
+    end
+  end
   resources :translations, only: :show
   resources :friendships do
     member do

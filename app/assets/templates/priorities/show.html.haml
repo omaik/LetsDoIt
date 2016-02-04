@@ -13,7 +13,7 @@
           %div.errors{'ng-show':'err.isError'}
             %div{'ng-repeat':'(field, error) in err.errors'}
               %span.glyphicon.glyphicon-remove
-              {{field}} {{error[0]}}
+              {{field | translate}} {{error[0]}}
           %span.value
             {{'value'| translate}}:
             %span{'ng-bind':'priority.value'}

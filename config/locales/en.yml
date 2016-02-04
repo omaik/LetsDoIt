@@ -321,3 +321,5 @@ en:
   payments: "Monthly payments start only from $99"
   profileErrMsg: "You entered invalid data"
   setPhoto: "Add profile photo"
+  not_unique: "is already taken"
+  is_taken_by_priority: "is taken by another priority"
