@@ -13,4 +13,5 @@
  *= require_tree .
  *= require angular-material.css
  *= require bootstrap-social.css
+ *= require angular-toastr.min.css
 */

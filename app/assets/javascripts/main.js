@@ -11,7 +11,8 @@ angular.module('letsDoIt', [
   'ngFileUpload',
   'ngImgCrop',
   'pascalprecht.translate',
-  'ngCookies'
+  'ngCookies',
+  'toastr'
   ])
 
 .config(['$stateProvider', '$translateProvider',
