@@ -59,4 +59,3 @@ production:
   database: LetsDoIt_production
   username: root
   password: <%= ENV['LETSDOIT_DATABASE_PASSWORD'] %>
-#  password: LetsDoIt_production
