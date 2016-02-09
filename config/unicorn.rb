@@ -3,5 +3,5 @@ worker_processes 5
 listen '/tmp/unicorn.sock'
 timeout 30
 pid "/tmp/unicorn_letsdoit.pid"
-stdout_path '/www/LetsDoIt/log/unicorn.log'
-stderr_path '/www/LetsDoIt/log/unicorn.log'
+stdout_path '/www/LetsDoIt/current/log/unicorn.log'
+stderr_path '/www/LetsDoIt/current/log/unicorn.log'

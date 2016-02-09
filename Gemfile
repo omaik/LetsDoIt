@@ -66,6 +66,7 @@ group :development do
   gem 'capistrano-bundler', '~> 1.1', require: false
   gem 'capistrano-rvm',   '~> 0.1', require: false
   gem 'capistrano-ssh-doctor', '~> 1.0'
+  gem 'capistrano3-unicorn'
 end
 
 group :test, :gitlabci do
