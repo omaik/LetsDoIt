@@ -1,0 +1,40 @@
+%div.col-md-8.col-md-offset-2.stat-container
+  %md-content
+    %md-tabs.md-accent.md-dynamic-height{'md-selected':'index','ng-model':'index'}
+      %md-tab.md-padding#tab1
+        %md-tab-label
+          {{'uncompleted_tasks' | translate}}
+        %md-tab-body{style:'overflow:hidden !important'}
+          %md-tabs.md-accent.stat{'md-selected':'indexDueDate','ng-model':'indexDueDate'}
+            %md-tab.md-padding{'ng-repeat':'(name, value) in dueDatesList ', 'ng-click':'setDueDateLength(value)'}
+              %md-tab-label
+                {{name | translate}}
+          %canvas.chart.chart-line{id:'line', 'chart-data':'dueDateData', 'chart-labels':'dueDateLabels', 'chart-legend':'false', 'chart-series':'series','chart-options':'options', 'chart-click':'onClick'}
+      %md-tab.md-padding#tab2
+        %md-tab-label
+          {{'completed_tasks' | translate}}
+        %md-tab-body{style:'overflow:hidden !important'}
+          %md-tabs.md-accent.stat{'md-selected':'indexFinished','ng-model':'indexFinished'}
+            %md-tab.md-padding{'ng-repeat':'(name, value) in finishedList', 'ng-click':'setFinishedLength(value)'}
+              %md-tab-label
+                {{name | translate}}
+          %canvas.chart.chart-line{id:'line', 'chart-data':'finishedData', 'chart-labels':'finishedLabels', 'chart-legend':'false', 'chart-series':'series','chart-options':'options', 'chart-click':'onClick'}
+      %md-tab.md-padding#tab3
+        %md-tab-label
+          {{'categories' | translate}}
+        %md-tab-body
+          %md-tabs.md-accent.stat{'md-selected':'indexCategory','ng-model':'indexCategory'}
+            %md-tab.md-padding{'ng-repeat':'name in pieList', 'ng-click':'setCategories(name)'}
+              %md-tab-label
+                {{name | translate}}
+          %canvas.chart.chart-pie{id:'pie', 'chart-data':'categoriesData', 'chart-labels':'categoriesLabels', 'chart-legend':'false'}
+      %md-tab.md-padding#tab4
+        %md-tab-label
+          {{'priorities_menu' | translate}}
+        %md-tab-body
+          %md-tabs.md-accent.stat{'md-selected':'indexPriority','ng-model':'indexPriority'}
+            %md-tab.md-padding{'ng-repeat':'name in pieList', 'ng-click':'setPriorities(name)'}
+              %md-tab-label
+                {{name | translate}}
+          %canvas.chart.chart-pie{id:'pie2', 'chart-data':'prioritiesData', 'chart-labels':'prioritiesLabels', 'chart-colours':'prioritiesColors'}
+

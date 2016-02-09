@@ -1,0 +1,13 @@
+.stat-container {
+  md-tabs-canvas, md-next-button, md-prev-button {
+    background: #6C5B7B;
+  }
+  md-next-button.md-disabled, md-prev-button.md-disabled {
+    opacity: 1;
+  }
+  .stat {
+    md-tabs-canvas, md-next-button, md-prev-button {
+      background: #433445;
+    }
+  }
+}

@@ -34,5 +34,7 @@
 //= require angular-translate-storage-local.min.js
 //= require angular-translate-storage-cookie.min.js
 //= require angular-toastr.tpls.min.js
+//= require Chart.min.js
+//= require angular-chart.min.js
 //= require main.js
 //= require app.js
