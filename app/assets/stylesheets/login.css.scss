@@ -1,0 +1,76 @@
+@font-face {
+    font-family: 'MarckScript';
+    src: url(MarckScript-Regular.ttf);
+}
+.bckgrndpic {
+  font-family: 'MarckScript';
+  height: 610px;
+  width: 100%;
+  z-index: 1;
+  position: relative;
+  background-position: left center;
+  background-size: cover;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  h2 {
+    color: white;
+    text-align: center;
+    font-size: 80px;
+  }
+}
+.bckgrndbox {
+  background-color: white;
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic;
+  z-index: 1;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-position:
+  left center;
+  background-size: cover;
+  text-align: center;
+  font-size: 30px;
+  padding-top:3%;
+  padding-bottom:3%;
+  h2 {
+    font-family: 'MarckScript';
+    text-align: center;
+    font-size: 60px;
+  };
+  h3 {
+    padding-top:10%;
+  }
+}
+#loginbox {
+  background-image: url(/assets/rsz_pexels-photo.png);
+  color: white;
+  font-family: 'Times New Roman', Times, serif;
+  z-index: 0;
+  position: relative;
+  label {
+    color: white;
+  };
+  a {
+    color: white;
+    text-decoration: underline;
+  };
+  a.btn {
+    text-decoration: none;
+  };
+}
+#aboutbox {
+  padding-top:3%;
+  padding-bottom:3%;
+}
+#communicatetxt {
+  background-image: url(/assets/7zptmdajai0agnt2iblqkg8e0.png);
+}
+#communicatetxt {
+  padding-right: 50%;
+  padding-top: 3%;
+}
+#accesstxt {
+  background-image: url(/assets/4rh9qhpmvlz57ty5qrcntjm36.png);
+  padding-top: 3%;
+}
