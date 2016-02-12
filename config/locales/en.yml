@@ -319,3 +319,5 @@ en:
   access_from: "Access from everywhere"
   access_text: "You can use Lets Do It almost in every device, which have connection to Internet"
   payments: "Monthly payments start only from $99"
+  profileErrMsg: "You entered invalid data"
+  setPhoto: "Add profile photo"
