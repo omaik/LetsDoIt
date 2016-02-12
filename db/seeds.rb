@@ -1,7 +1,41 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+User.create([{ username: 'User',
+                      email: 'user@gmail.com',
+                      first_name:'First',
+                      last_name:'User',
+                      password:'qwerty123',
+                      password_confirmation:'qwerty123' },
+                      { username: 'User2',
+                      email: 'user2@gmail.com',
+                      first_name:'Second',
+                      last_name:'User',
+                      password:'qwerty123',
+                      password_confirmation:'qwerty123' },
+                      { username: 'User3',
+                      email: 'user3@gmail.com',
+                      first_name:'First',
+                      last_name:'User',
+                      password: 'qwerty123',
+                      password_confirmation:'qwerty123' }])
+
+Task.create([{ name: 'Task1',
+                      description: 'Task №1',
+                      status: '1' },
+                      { name: 'Task2',
+                      description: 'Task №2',
+                      status: '2' },
+                      { name: 'Task3',
+                      description: 'Task №3',
+                      status: '3' }])
+
+Priority.create([{ user_id: nil,
+                      name: 'High',
+                      value: 999,
+                      color: '#ff0000' },
+                      { user_id: nil,
+                      name: 'Medium',
+                      value: 500,
+                      color: '#0000ff' },
+                      { user_id: nil,
+                      name: 'Low',
+                      value: 100,
+                      color: '#00ff00' }])

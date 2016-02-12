@@ -1,0 +1,42 @@
+.container{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+md-tabs.md-accent > md-tabs-wrapper  {
+  background-color: #3f51b5;
+  md-tabs-canvas{
+    span{
+      font-size: 18px;
+      text-transform: none;
+    }
+    md-pagination-wrapper{
+      md-tab-item:not([disabled]) {
+        color: #9A8E92;}
+    }
+  }
+}
+
+.raised-danger{
+  color: #ffffff !important;
+  background-color: #d9534f !important;
+}
+
+.raised-success{
+  color: #ffffff !important;
+  background-color: #449d44 !important;
+}
+
+.md-headline{
+  margin: 10px;
+}
+
+md-input-container.md-block.md-input-has-placeholder.flex-gt-xs-33{
+  padding-top: 12px;
+  margin: 0;
+}
+
+form{
+  padding-bottom: 0;
+}
+

@@ -1,9 +1,37 @@
 Rails.application.routes.draw do
+
+  root 'static_pages#index'
+
+  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks', confirmations: 'users/confirmations' }
+  get '/edit' => 'tasks#index'
+
+  resources :tasks do
+    member do
+      post 'share'
+    end
+  end
+
+  resources :priorities
+  resources :groups do
+    member do
+      post 'add_friend_to_group'
+      get 'members'
+      delete 'delete_friend_from_group'
+    end
+  end
+  resources :categories
+  resources :users
+  resources :translations, only: :show
+  resources :friendships do
+    member do
+      post 'accept'
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -54,3 +82,4 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 end
+

@@ -1,0 +1,6 @@
+%div.mailer{}
+  %p
+    = I18n.t('must_finish_task', user: @fullname)
+    %b
+      = @task
+  = link_to I18n.t('web_site_link'), @address[Rails.env.to_sym]

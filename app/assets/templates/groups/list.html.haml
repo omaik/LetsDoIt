@@ -1,0 +1,26 @@
+%div.col-sm-12
+  .groups
+    %div{'ng-click': 'toggleGroups()'}
+      %h3 Groups
+    %div.slide{'ng-class': 'showGroups'}
+      %form.add-group-form{'ng-submit': 'addGroup()'}
+        %div
+          .alert.alert-danger{'ng-show': 'errorSettings.groupErrHandle'}
+            %p{'ng-bind': 'errorSettings.groupErrMsg'}
+          .input-group
+            %input.form-control{'ng-model': 'group.name', type: 'text'}/
+            %span.input-group-btn
+              %input.btn.btn-secondary{name: 'add-group', type: 'submit', value: 'Add'}/
+
+      .group-list-container
+        %md-list-item{'class': 'group-list', 'ng-drop': 'true', 'data-drop': "true", 'data-jqyoui-options': "{revert: 'invalid', helper: 'clone'}", 'jqyoui-droppable': "{onDrop:'onDropDefaultGroup()'}", 'ng-click': 'filterByDefaultGroup()'}
+          %md-tooltip{'md-direction': "right"}
+            Drag here to delete from group
+          %div.group-name
+            All
+        %md-list-item{'class': 'group-list','ng-repeat': 'group in groups.list | orderBy: \'-created_at\'', 'ng-drop': 'true', 'data-drop': "true", 'data-jqyoui-options': "{revert: 'invalid', helper: 'clone'}", 'jqyoui-droppable': "{index: {{$index}}, onDrop:'onDropGroup(group, $index)'}", 'ng-click': 'filterByGroup(group)', 'ng-dblclick': 'showAdvanced($event, group)'}
+          %div.group-name
+            {{group.name}}
+          %span{'flex': ""}
+          .md-button.md-primary.edit-button{"ng-click": "showAdvanced($event, group)"}
+            %span.glyphicon.glyphicon-pencil

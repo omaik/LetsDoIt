@@ -1,0 +1,20 @@
+%md-dialog{"aria-label": "Edit Category", "ng-cloak": ""}
+  %form
+    %md-toolbar
+      .md-toolbar-tools
+        %h2 Edit Category
+        %span{'flex': ""}
+        %md-button{"ng-click": "closeDialog()"}
+          %span{'class': 'glyphicon glyphicon-remove'}
+    
+    %div.edit-group-content      
+      %md-dialog-content
+        %md-input-container.md-block{"md-no-float": ""}
+          %input{"ng-model":  "edit.category.name", 'placeholder': "Category Name", type: 'text'}/
+
+    %md-dialog-actions{'layout': "row"}
+      %md-button.md-warn{"ng-click": "deleteCategory(edit.category)"}
+        Delete
+      %md-button.md-primary{"ng-click": "updateCategory(edit.category)"}
+        Save
+

@@ -1,0 +1,33 @@
+%md-dialog{"aria-label": "Edit Group", "ng-cloak": ""}
+  %form
+    %md-toolbar
+      .md-toolbar-tools
+        %h2 Edit Group
+        %span{'flex': ""}
+        %md-button{"ng-click": "closeDialog()"}
+          %span{'class': 'glyphicon glyphicon-remove'}
+    
+    %div.edit-group-content      
+      %md-dialog-content
+        %md-input-container.md-block{"md-no-float": ""}
+          %input{"ng-model":  "edit.group.name", 'placeholder': "Group Name", type: 'text'}/
+          %md-button.md-primary.edit-group-button{'ng-click': 'toggleMembers()'}
+            %i.fa.fa-users.fa-4x
+          %md-button.md-primary.edit-group-button{'ng-click': 'toggleFriends()'}
+            %i.fa.fa-user-plus.fa-4x
+        .repeated-item{'ng-if': 'edit.showFriends'}
+          %md-list-item{'ng-repeat': 'friend in edit.friends'}
+            {{friend.name}}
+            %md-checkbox.md-secondary.md-primary{ 'ng-model': "friend.add_to_group"}
+        .repeated-item{'ng-if': 'edit.showMembers'}
+          %md-list-item{'ng-repeat': 'member in edit.groupMembers'}
+            {{member.name}}
+            %md-checkbox.md-secondary.md-warn{ 'ng-model': "member.remove_from_group"}  
+        
+
+
+    %md-dialog-actions{'layout': "row"}
+      %md-button.md-warn{"ng-click": "deleteGroup(edit.group)"}
+        Delete
+      %md-button.md-primary{"ng-click": "updateGroup(edit.group)"}
+        Save

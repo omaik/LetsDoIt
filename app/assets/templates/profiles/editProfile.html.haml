@@ -1,0 +1,84 @@
+%div.col-sm-10.col-sm-offset-1{'class':'edit-profile-class'}
+  %md-card
+    %md-toolbar
+      %h2.md-headline {{ 'editProfile' | translate }}
+    %md-card-content
+      %form{'name':'editProfile', 'ng-submit':'updateProfile(avatar)', 'multipart':'true' }
+        %div.col-sm-4.col-md-offset-1{'class':'edit-profile-class'}
+          %div{'ng-messages':'editProfile.name.$error', 'role':'alert', 'class':'errors'}
+          %p
+            .alert.alert-danger{'ng-show': 'errHandle'}
+              %p{'ng-bind': 'profileErrMsg'}
+          %md-input-container.md-block
+            %label {{'firstName' | translate }}
+            %input{'ng-model': 'profile.first_name', type: 'text', 'maxlength':'30', 'ng-pattern':'formatPattern', 'name':'fName'}
+            %div{'ng-messages':'editProfile.fName.$error', 'role':'alert', 'class':'errors'}
+              %div{'ng-repeat':'(type, message) in errorMessages'}
+                %div{'ng-message-exp':'type'}
+                  {{ 'firstName' | translate }} {{message}}
+
+          %md-input-container.md-block
+            %label {{'lastName' | translate }}
+            %input{'ng-model': 'profile.last_name', type: 'text', 'maxlength':'30', 'ng-pattern':'formatPattern', 'name':'lName'}
+            %div{'ng-messages':'editProfile.lName.$error', 'role':'alert', 'class':'errors'}
+              %div{'ng-repeat':'(type, message) in errorMessages'}
+                %div{'ng-message-exp':'type'}
+                  {{ 'lastName' | translate }} {{message}}
+
+          %md-input-container
+            %label {{'sex' | translate }}
+            %md-select{'ng-model': 'profile.sex'}
+              %md-option{value: 'Male'} {{ 'male' | translate }}
+              %md-option{value: 'Female'} {{ 'female' | translate }}
+              %md-option{value: 'No'} -
+
+          %md-input-container
+            %label {{'language' | translate }}
+            %md-select{'ng-model': 'profile.language'}
+              %md-option{value: 'en'} {{ 'en' | translate }}
+              %md-option{value: 'ua'} {{ 'ua' | translate }}
+          %br
+
+          %md-input-container
+            %label#birth {{'day' | translate }}
+            %select{'ng-model': 'profile.day'}
+              %option{ 'ng-repeat': 'd in day', value: '{{d}}' } {{d}}
+
+          %md-input-container
+            %label#birth {{'month' | translate }}
+            %select{'ng-model': 'profile.month'}
+              %option{ 'ng-repeat': 'm in month', value: '{{m}}' } {{m}}
+
+          %md-input-container
+            %label#birth {{'year' | translate }}
+            %select{'ng-model': 'profile.year'}
+              %option{ 'ng-repeat': 'y in year', value: '{{y}}' } {{y}}
+
+          %md-input-container.md-block
+            %label {{'country' | translate }}
+            %input{'ng-model': 'profile.country', type: 'text', 'maxlength':'30', 'name':'country', 'ng-pattern':'formatPattern'}
+            %div{'ng-messages':'editProfile.country.$error', 'role':'alert', 'class':'errors'}
+              %div{'ng-repeat':'(type, message) in errorMessages'}
+                %div{'ng-message-exp':'type'}
+                  {{ 'country' | translate }} {{message}}
+
+          %md-input-container.md-block
+            %label {{'city' | translate }}
+            %input{'ng-model': 'profile.city', type: 'text', 'maxlength':'30', 'name':'city','ng-pattern':'formatPattern'}
+            %div{'ng-messages':'editProfile.city.$error', 'role':'alert', 'class':'errors'}
+              %div{'ng-repeat':'(type, message) in errorMessages'}
+                %div{'ng-message-exp':'type'}
+                  {{ 'city' | translate }} {{message}}
+        %div.col-sm-2.col-sm-offset-1{'class':'edit-profile-class'}
+          %label {{ 'photo' | translate }}:
+          %br
+          %input{type: 'file', 'ngf-select':'', 'ng-model':'avatar', 'id':'fileInput'}
+          .cropArea{'ng-show':'avatar'}
+            %img-crop.img-responsive{'image':'image.myImage', 'result-image':'image.croppedImage'}
+          %div{'ng-show':'avatar'}{{ 'croppedImage' | translate }}:
+          %img#cropped{'ng-src':'{{image.croppedImage}}', 'ng-show':'avatar'}
+          %btn.thumb{ 'ng-click':'avatar = nill', 'ng-show':'avatar'} {{ 'remove' | translate }}
+          %br
+          %br
+        %div.col-sm-6.col-sm-offset-6{'class':'edit-profile-class'}
+          %input.btn.md-raised.save-task-btn{type: 'submit', value: "{{ 'save' | translate }}"}

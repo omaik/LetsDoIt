@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require_tree .
- *= require_self
- *= require bootstrap.min
- */
+ *= require angular-material.css
+ *= require bootstrap-social.css
+ *= require angular-toastr.min.css
+*/

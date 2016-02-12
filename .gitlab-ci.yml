@@ -1,0 +1,11 @@
+before_script:
+  - bundle install
+  - RAILS_ENV=gitlabci bundle exec rake db:create db:schema:load
+
+rspec:
+  script:
+    - RAILS_ENV=gitlabci bundle exec rspec
+
+jasmine:
+  script:
+    - RAILS_ENV=gitlabci bundle exec rake jasmine:ci

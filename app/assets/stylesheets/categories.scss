@@ -1,0 +1,89 @@
+// Place all the styles related to the categories controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.add-category {
+  margin: 0px auto 0 30px;
+  padding: 7px 10px 0 10px;
+  z-index: 1;
+} 
+
+.category-name, .list p {
+  margin: 0;
+}
+
+.category-name a {
+  color: #33332D;
+  font-size: 24px;
+  text-decoration: none;
+  padding: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.category-name a:hover {
+  color: #449D44;
+  text-decoration: none;
+}
+
+.category-delete {
+  color: #C9302C;
+  border-color: #AC2925;
+  cursor: pointer;
+  float: right;
+  margin: 10px;
+}
+
+.category-input {
+  height: 32px;
+}
+
+.category-form {
+  padding: 0;
+}
+
+.add-new {
+  height: 38px;
+  margin-left: 40px;
+  font-size: 24px;
+  background: #6C5B7B !important;
+  color: white;
+  opacity: 0.87;
+  padding: 3px;
+}
+
+.category-plus {
+  float: right;
+  padding-top: 2px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.category-plus:hover {
+  color: #0CBB18;
+}
+
+.all-categories {
+  height: 208px;
+  overflow-y: auto;
+  overflow-x: hidden; 
+  margin: 5px 0 0 0 !important;
+}
+
+input.btn.btn-success.btn-category{
+  font-size: 22px;
+  font-weight: bold;
+  height: 34px;
+  padding-top: 0px;
+}
+
+.categories {
+  top: 70px;
+  /*width: 32%;*/
+}
+
+div.alert.alert-danger.same-name {
+  margin-bottom: 6px;
+  padding: 3px 10px;
+}

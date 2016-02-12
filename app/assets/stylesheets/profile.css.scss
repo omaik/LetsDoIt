@@ -1,0 +1,102 @@
+.edit-profile-class {
+  input[type='submit'] {
+    width:150px;
+    float:right;
+    margin-bottom:-5px;
+  }
+  h2 {
+    text-align:center;
+  }
+  font-size:16px;
+  input {
+    margin-top:-12px;
+  }
+  label {
+    font-weight: bold;
+    color: rgba(0,0,0,0.54);
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  #birth {
+  font-size:11px;
+  margin-bottom: 30px;
+  }
+  .thumb {
+    width: auto;
+    position: relative;
+  }
+  .cropArea {
+    background: #E4E4E4;
+    overflow: hidden;
+    width:400px;
+    height:250px;
+    img-crop{
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: relative;
+      overflow: hidden;
+    }
+    img-crop canvas {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      outline: none;
+    }
+  }
+    #cropped {
+      width:120px;
+      height:120px;
+    }
+}
+
+.profile-class {
+  .info {
+    margin-bottom: 50px;
+  }
+  h2 {
+    text-align: center;
+    padding: 10px;
+    margin: auto;
+    border-radius: 5px 5px 0 0;
+  }
+  image_tag {
+    height:200px;
+    width:auto;
+  }
+  form {
+    margin-top: 5px;
+    p {
+      font-weight:bold;
+    }
+    font-size:20px;
+    .img-responsive{
+    height: 100%;
+    width: auto;
+    }
+    .profile-photo, .profile-info {
+      text-align: center;
+    }
+    #photo {
+      margin-top: 35px;
+      width: 100%;
+      height: auto;
+      max-width:250px;
+      display: inline-block;
+    }
+  }
+  span.glyphicon.glyphicon-edit{
+    cursor: pointer;
+    float: right;
+    color: white;
+    padding: 5px;
+  }
+}
+
+md-tooltip {
+  font-size:20px !important;
+  }
+md-card {
+  margin-top: 0px !important;
+  }

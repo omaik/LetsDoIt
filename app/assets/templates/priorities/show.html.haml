@@ -1,0 +1,42 @@
+%div.col-md-10.col-md-offset-1{class:'priority-block', id:'priority-block'}
+  %a.md-button.md-raised.md-fab{'ui-sref': 'home'}
+    %span.glyphicon.glyphicon-arrow-left
+  %img{src:'assets/color_wheel.png', 'id':'colorwheel', 'style':'display:none;', width:'500', height:'500'}
+  %div.col-md-12
+    %div.col-sm-6
+      %canvas{'colorpicker':'', 'class':'colorpicker'}
+    %div.col-sm-6
+      %form.priority-form{'ng-submit':'priorityAction()', 'name':'priorityForm'}
+        %md-input-container.md-block
+          %label {{ 'prior_name' | translate }}
+          %input{'type':'text', name:'name', 'ng-model':'priority.name', 'minlength':'1', 'maxlength':'12', id:'inputName'}
+          %div.errors{'ng-show':'err.isError'}
+            %div{'ng-repeat':'(field, error) in err.errors'}
+              %span.glyphicon.glyphicon-remove
+              {{field}} {{error[0]}}
+          %span.value
+            {{'value'| translate}}:
+            %span{'ng-bind':'priority.value'}
+        %div.form-picker
+          %input.value-picker{'type':'range', 'ng-model':'priority.value', 'min':'1', 'max':'999'}
+          %div.picker
+            %md-button.md-fab.btn-colorpicker{'style':'background:{{priority.color}}'}
+              &nbsp;
+            %md-button.md-raised.md-fab.md-primary{'type':'submit ','ng-hide':'editMode', 'ng-disabled':' priorityForm.$invalid'}
+              %span.glyphicon.glyphicon-plus
+              %md-tooltip{'md-direction': 'top'} {{ 'create_priority' | translate }}
+            %md-button.md-raised.md-fab.md-edit{'type':'submit', 'ng-show':'editMode', 'ng-disabled':' priorityForm.$invalid'}
+              %span.glyphicon.glyphicon-ok
+              %md-tooltip{'md-direction': 'top'} {{ 'update_priority' | translate }}
+            %a.md-button.md-fab.md-raised.md-warn{'ng-click':'undoEdit()', 'ng-show':'editMode'}
+              %span.glyphicon.glyphicon-remove
+              %md-tooltip{'md-direction': 'top'} {{ 'undo_update_priority' | translate }}
+      %md-card.priority-list.col-xs-12{'ng-repeat':"priority in priorities.list | orderBy:'-value'"}
+        %md-card-content
+          %button.md-button.prior-name{'ng-click':'setPriority(priority)'}
+            {{priority.name}}
+          %div
+            %button.md-button.md-fab.btn-colorpicker{'style':'background: {{priority.color}}', 'ng-click':'setPriority(priority)'}
+              %span{'ng-bind':'priority.value'}
+            %a.del{'ng-click':'deletePriority(priority)'}
+              %span.glyphicon.glyphicon-remove
