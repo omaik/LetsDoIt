@@ -29,11 +29,14 @@ angular.module('letsDoIt')
       return;
     };
     if($scope.attachment) {
-      fileUploadResource.updateAttachment($scope.task, $scope.attachment);
+      fileUploadResource.updateAttachment($scope.task, $scope.attachment)
+      .then(function() {
+        $state.go('home');
+      });
     } else {
      $scope.task.$update();
+     $state.go('home');
     };
     $scope.errHandl = false;
-    $state.go('home');
   };
  }])
