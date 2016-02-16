@@ -1,5 +1,4 @@
 class RemindMailer < ApplicationMailer
-
   def remind_about_task(user, task)
     I18n.locale = user.language
     @address = {

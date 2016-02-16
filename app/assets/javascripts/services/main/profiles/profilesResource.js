@@ -5,6 +5,10 @@ angular.module('letsDoIt')
     update: {
       method: 'PUT',
       headers: {enctype:'multipart/form-data'}
+    },
+    validate: {
+      method: 'POST',
+      url: '/users/validate_user'
     }
   });
 }]);

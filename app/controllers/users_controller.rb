@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   respond_to :json
+  skip_before_action :authenticate, only: :validate_user
 
   def index
     indexes = current_user.friendships.pluck(:friend_id) << current_user.id
@@ -9,6 +10,10 @@ class UsersController < ApplicationController
 
   def show
     respond_with current_user
+  end
+
+  def validate_user
+    User.where(params[:type] => params[:data]).first ? (head 422) : (head 200)
   end
 
   def edit

@@ -12,7 +12,8 @@ angular.module('letsDoIt')
     $scope.errorMessages = {
       'pattern':'incorrect',
       'minlength':'too_short',
-      'maxlength':'too_long'
+      'maxlength':'too_long',
+      'unique': 'not_unique'
     };
     $scope.err = {
       errors: {},
