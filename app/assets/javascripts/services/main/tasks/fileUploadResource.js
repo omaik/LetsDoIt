@@ -2,7 +2,8 @@ angular.module('letsDoIt')
 
 .factory('fileUploadResource', [
   'Upload',
-  function(Upload) {
+  '$q',
+  function(Upload, $q) {
 
     var service = {
       createAttachment: createAttachment,
@@ -18,14 +19,23 @@ angular.module('letsDoIt')
                   'task[status]': task.status, 'task[attachment]': attachment },
         file: attachment
       };
-      Upload.upload(options);
-    };
-
+      return Upload.upload(options);
+};
     function createAttachment(task, attachment) {
-      uploadData('/tasks.json', 'POST', task, attachment);
+      var defer = $q.defer();
+      uploadData('/tasks.json', 'POST', task, attachment)
+      .success(function(data){
+        defer.resolve(data);
+      });
+      return defer.promise;
     };
 
     function updateAttachment(task, attachment) {
-      uploadData('/tasks/' + task.id + '.json', 'PUT', task, attachment);
+      var defer = $q.defer();
+      uploadData('/tasks/' + task.id + '.json', 'PUT', task, attachment)
+      .success(function(data){
+        defer.resolve(data);
+      });
+      return defer.promise;
     };
 }]);
