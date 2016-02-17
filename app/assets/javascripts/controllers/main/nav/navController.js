@@ -63,6 +63,17 @@ angular.module('letsDoIt')
     }
   };
 
+  $('#main-section').click(function() {
+    $('#drop_menu').slideUp(400);
+    showing = false;
+  });
+
+  $scope.closeMenu = function() {
+    $('#drop_menu').slideUp(400);
+    showing = false;
+    $('aside').addClass('hidden-sm').addClass('hidden-md').addClass('hidden-lg');
+  };
+
   $scope.toggleSettings = function() {
     if(showingSettings == false) {
       $('.settings-menu').slideDown(200);
