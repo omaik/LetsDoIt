@@ -1,3 +1,4 @@
+/// <reference path="/vendor/assets/javascripts/faye.min.js" />
 describe('Friendship', function() { 
   
   describe('FriendshipController', function () {
@@ -25,19 +26,26 @@ describe('Friendship', function() {
         "last_name": "Ramon",
         "email": "cisco@starlab.com"}        
         ]
+    },
+    cUser = {
+      id: 4,
+      first_name: 'Armando',
+      last_name: 'Fox'
     };
     beforeEach(function(){
       module('letsDoIt');
       inject(function(
         $controller,
         _$httpBackend_,
-        $rootScope,
+        _$rootScope_,
         friendshipResource){
+        rootScope = _$rootScope_;
+        scope = rootScope.$new();
+        rootScope.currentUsr = cUser;           
         $httpBackend = _$httpBackend_;
         $httpBackend.expectGET('/friendships?format=json').respond(responseData);
-        scope = $rootScope.$new();
         friendshipCtrl = $controller('FriendshipController',{
-          $scope: scope, friendshipResource: friendshipResource
+          $scope: scope, friendshipResource: friendshipResource, $rootScope: rootScope
         });
       $httpBackend.flush();
       });
@@ -82,7 +90,7 @@ describe('Friendship', function() {
     describe('Deleting friendship', function(){
       it('it should remove person from friends', function(){
         expect(scope.data.friends[0].id).toBe(5);
-        scope.delete(scope.data.friends[0], 'friends');
+        scope.deleteFunc(scope.data.friends[0], 'friends');
         expect(scope.data.friends.length).toBe(1);
         expect(scope.data.friends[0].id).toBe(7);
       });           
@@ -90,7 +98,7 @@ describe('Friendship', function() {
     
     describe('Canceling request for friendship', function(){
       it('it should remove person from pending list', function(){
-        scope.delete(scope.data.pending[0], 'pending');
+        scope.deleteFunc(scope.data.pending[0], 'pending');
         expect(scope.data.pending.length).toBe(0);
       });           
     });

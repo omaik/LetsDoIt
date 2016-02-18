@@ -4,8 +4,6 @@ class Friendship < ActiveRecord::Base
   belongs_to :user
   belongs_to :friend, class_name: 'User', foreign_key: :friend_id
   
-  scope :accepted, -> { where(aasm_state: 'accepted') }
-  scope :pending,  -> { where(aasm_state: 'pending') }
   
   after_destroy :destroy_mutual_friendship!
   
@@ -22,14 +20,14 @@ class Friendship < ActiveRecord::Base
   
   def self.request(user1, user2)
     transaction do
-      @friendship = create!(user: user1, friend: user2, aasm_state: 'pending')
+      friendship = create!(user: user1, friend: user2, aasm_state: 'pending')
       create!(user: user2, friend: user1, aasm_state: 'requested')
+      friendship.send_request_email
     end
-      @friendship.send_request_email
   end
   
   def mutual_friendship
-    self.class.where({user_id: friend_id, friend_id: user_id}).first
+    self.class.find_by({user_id: friend_id, friend_id: user_id})
   end
   
   def update_mutual_friendship!

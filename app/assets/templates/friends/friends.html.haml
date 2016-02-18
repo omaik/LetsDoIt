@@ -1,83 +1,114 @@
-%md-content
-  %md-tabs.md-accent.md-dynamic-height{'md-selected':'data.selectedIndex','ng-model':'data.selectedIndex'}
-    %md-tab.md-padding#tab1
-      %md-tab-label
-        %span.fa.fa-users 
-          {{'friendsTab'| translate}}
-      %md-tab-body
-        .container
-          %md-card{'ng-repeat':'user in data.friends'}
-            %md-card-title
-              %md-card-title-media
-                .md-media-sm.card-media
-                  %img{'ng-show':'user.social_avatar', 'ng-src':'{{user.social_avatar}}', 'alt':'{{user.first_name}}'}
-                  %img{'ng-show':'!user.social_avatar', 'ng-src':'/assets/user.png', 'alt':'{{user.first_name}}'}                
-              %md-card-title-text
-                %span.md-headline
-                  {{user.first_name}}
-                  {{user.last_name}}
-            %md-card-actions{'layout':'row', 'layout-align':'end center'}
-              %md-button.md-raised.raised-danger{'ng-click':"delete(user,'friends')"} {{'deleteButton'| translate}}
-    %md-tab.md-padding#tab2
-      %md-tab-label
-        %span.fa.fa-user-plus
-          {{'requestTab'| translate}}
-      %md-tab-body
-        .container
-          %md-card{'ng-repeat':'user in data.requested'}
-            %md-card-title
-              %md-card-title-media
-                .md-media-sm.card-media
-                  %img{'ng-show':'user.social_avatar', 'ng-src':'{{user.social_avatar}}', 'alt':'{{user.first_name}}'}
-                  %img{'ng-show':'!user.social_avatar', 'ng-src':'/assets/user.png', 'alt':'{{user.first_name}}'}
-              %md-card-title-text
-                %span.md-headline
-                  {{user.first_name}}
-                  {{user.last_name}}
-            %md-card-actions{'layout':'row', 'layout-align':'end center'}
-              %md-button.md-raised.raised-success{'ng-click':'accept(user)'} {{'acceptButton'| translate}}
-    %md-tab.md-padding#tab3
-      %md-tab-label
-        %span.fa.fa-question-circle
-          {{'pendingTab'| translate}}      
-      %md-tab-body
-        .container
-          %md-card{'ng-repeat':'user in data.pending'}
-            %md-card-title
-              %md-card-title-media
-                .md-media-md.card-media
-                  %img{'ng-show':'user.social_avatar', 'ng-src':'{{user.social_avatar}}', 'alt':'{{user.first_name}}'}
-                  %img{'ng-show':'!user.social_avatar', 'ng-src':'/assets/user.png', 'alt':'{{user.first_name}}'}
-              %md-card-title-text
-                %span.md-headline
-                  {{user.first_name}}
-                  {{user.last_name}}
-            %md-card-actions{'layout':'row', 'layout-align':'end center'}
-              %md-button.md-raised.raised-danger{'ng-click':"delete(user,'pending')"} {{'cancelButton'| translate}}
-    %md-tab.md-padding#tab4{'ng-click':'setTab(data.selectedIndex)'}
-      %md-tab-label
-        %span.fa.fa-binoculars
-          {{'searchTab'| translate}}     
-      %md-tab-body
-        .container
-          %form{'name':'searchForm','ng-submit':'find(data.search)'}
+.container
+  %md-content
+    %md-tabs.md-accent.md-dynamic-height{'md-selected':'data.selectedIndex','ng-model':'data.selectedIndex'}
+      %md-tab.md-padding#tab1
+        %md-tab-label
+          %span.fa.fa-users 
+            {{'friendsTab'| translate}}
+        %md-tab-body
+          %div{'layout-wrap':'', 'layout':'row', 'ng-if':'data.friends.length === 0'}
+            .col-sm-offset-2.col-sm-8
+              .alert.alert-info.text-center
+                %h2 {{'noFriends'| translate}}
+                %a{'ng-click':'setTab(3); data.selectedIndex = 3', 'href':''}
+                  {{'searchTab'| translate}}
+          %md-content{'layout-gt-xs':'row', 'layout-xs':'column', 'layout-wrap':''}
+            %div{'flex':'50','flex-xs':'100','ng-repeat':'user in data.friends'}
+              %md-card
+                %md-card-title
+                  %md-card-title-media
+                    .md-media-sm.card-media
+                      %img{'ng-show':'user.social_avatar', 'ng-src':'{{user.social_avatar}}', 'alt':'{{user.first_name}}'}
+                      %img{'ng-show':'!user.social_avatar', 'ng-src':'/assets/user.png', 'alt':'{{user.first_name}}'}                
+                  %md-card-title-text
+                    %span.md-headline
+                      {{user.first_name}}
+                      {{user.last_name}}
+                %md-card-actions{'layout':'row', 'layout-align':'end center'}
+                  %md-button.md-raised.raised-danger{'ng-click':"confirmDialog($event, user,'friends')"} {{'deleteButton'| translate}}
+      %md-tab.md-padding#tab2
+        %md-tab-label
+          %span.fa.fa-user-plus
+            {{'requestTab'| translate}}
+        %md-tab-body
+          %div{'layout-wrap':'', 'layout':'row', 'ng-if':'data.requested.length === 0'}
+            .col-sm-offset-2.col-sm-8
+              .alert.alert-info.text-center
+                %h2 {{'noFriends'| translate}}
+                %a{'ng-click':'setTab(3); data.selectedIndex = 3', 'href':''}
+                  {{'searchTab'| translate}}                
+          %md-content{'layout-gt-xs':'row', 'layout-xs':'column', 'layout-wrap':''}
+            %div{'flex':'50','flex-xs':'100','ng-repeat':'user in data.requested'}        
+              %md-card
+                %md-card-title
+                  %md-card-title-media
+                    .md-media-sm.card-media
+                      %img{'ng-show':'user.social_avatar', 'ng-src':'{{user.social_avatar}}', 'alt':'{{user.first_name}}'}
+                      %img{'ng-show':'!user.social_avatar', 'ng-src':'/assets/user.png', 'alt':'{{user.first_name}}'}
+                  %md-card-title-text
+                    %span.md-headline
+                      {{user.first_name}}
+                      {{user.last_name}}
+                %md-card-actions{'layout':'row', 'layout-align':'end center'}
+                  %md-button.md-raised.raised-success{'ng-click':'accept(user)'} {{'acceptButton'| translate}}
+                  %md-button.md-raised.raised-danger{'ng-click':"confirmDialog($event, user,'requested')"} {{'refuseButton'| translate}}                  
+      %md-tab.md-padding#tab3
+        %md-tab-label
+          %span.fa.fa-question-circle
+            {{'pendingTab'| translate}}      
+        %md-tab-body
+          %div{'layout-wrap':'', 'layout':'row', 'ng-if':'data.pending.length === 0'}
+            .col-sm-offset-2.col-sm-8
+              .alert.alert-info.text-center
+                %h2 {{'noFriends'| translate}}
+                %a{'ng-click':'setTab(3); data.selectedIndex = 3', 'href':''}
+                  {{'searchTab'| translate}}                
+          %md-content{'layout-gt-xs':'row', 'layout-xs':'column', 'layout-wrap':''}
+            %div{'flex':'50','flex-xs':'100','ng-repeat':'user in data.pending'}        
+              %md-card
+                %md-card-title
+                  %md-card-title-media
+                    .md-media-md.card-media
+                      %img{'ng-show':'user.social_avatar', 'ng-src':'{{user.social_avatar}}', 'alt':'{{user.first_name}}'}
+                      %img{'ng-show':'!user.social_avatar', 'ng-src':'/assets/user.png', 'alt':'{{user.first_name}}'}
+                  %md-card-title-text
+                    %span.md-headline
+                      {{user.first_name}}
+                      {{user.last_name}}
+                %md-card-actions{'layout':'row', 'layout-align':'end center'}
+                  %md-button.md-raised.raised-danger{'ng-click':"confirmDialog($event, user,'pending')"} {{'cancelButton'| translate}}               
+      %md-tab.md-padding#tab4{'ng-click':'setTab(data.selectedIndex)'}
+        %md-tab-label
+          %span.fa.fa-binoculars
+            {{'searchTab'| translate}}     
+        %md-tab-body
+          %form{'name':'searchForm','ng-submit':'searchForm.searchField.$valid && find(data.search)'}
             %div.search-field{'layout-gt-xs':'row'}
               %md-input-container.md-block{'flex-gt-xs':'33', 'md-no-float':''}
-                %input{'placeholder':"{{'searchPlaceholder'| translate}}", 'type':"search", 'ng-model':'data.search', 'autofocus':'true'} 
+                %input{'placeholder':"{{'searchPlaceholder'| translate}}", 'type':"search", 'ng-model':'data.search', 'name':'searchField', 'ng-pattern':'data.pattern'} 
+                %div{'ng-messages':'searchForm.searchField.$error', 'role':'alert', 'class':'errors'}
+                  %div.text-center{'ng-message':'pattern'}
+                    {{'incorrectSrchQry' | translate}}     
               %div{'flex-gt-xs':'10'}
-                %md-button.md-raised.raised-success{'ng-click':'find(data.search)','aria-label':"{{'searchButton'| translate}}"}
+                %md-button.md-raised.raised-success{'ng-click':'find(data.search)','aria-label':"{{'searchButton'| translate}}", 'ng-disabled':'searchForm.searchField.$invalid'}
                   %md-icon{'md-svg-icon':'/assets/ic_search_white_48px.svg'}
                   {{'searchButton'| translate}}
-          %md-card{'ng-repeat':'user in data.results'}
-            %md-card-title
-              %md-card-title-media
-                .md-media-md.card-media
-                  %img{'ng-show':'user.social_avatar', 'ng-src':'{{user.social_avatar}}', 'alt':'{{user.first_name}}'}
-                  %img{'ng-show':'!user.social_avatar', 'ng-src':'/assets/user.png', 'alt':'{{user.first_name}}'}
-              %md-card-title-text
-                %span.md-headline
-                  {{user.first_name}}
-                  {{user.last_name}}
-            %md-card-actions{'layout':'row', 'layout-align':'end center'}
-              %md-button.md-raised.md-primary{'ng-click':'request(user)'} {{'requestButton'| translate}}
+          %div{'layout-wrap':'', 'layout':'row', 'ng-if':'data.message'}
+            .col-sm-offset-2.col-sm-8
+              .alert.alert-warning.text-center
+                %h3 {{'noResult'| translate}}  
+          %md-content{'layout-gt-xs':'row', 'layout-xs':'column', 'layout-wrap':''}
+            %div{'flex':'50','flex-xs':'100','ng-repeat':'user in data.results'}                    
+              %md-card
+                %md-card-title
+                  %md-card-title-media
+                    .md-media-md.card-media
+                      %img{'ng-show':'user.social_avatar', 'ng-src':'{{user.social_avatar}}', 'alt':'{{user.first_name}}'}
+                      %img{'ng-show':'!user.social_avatar', 'ng-src':'/assets/user.png', 'alt':'{{user.first_name}}'}
+                  %md-card-title-text
+                    %span.md-headline
+                      {{user.first_name}}
+                      {{user.last_name}}
+                %md-card-actions{'layout':'row', 'layout-align':'end center'}
+                  %md-button.md-raised.md-primary{'ng-click':'request(user)'} {{'requestButton'| translate}}
 
