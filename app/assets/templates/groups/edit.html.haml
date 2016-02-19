@@ -2,7 +2,7 @@
   %form
     %md-toolbar
       .md-toolbar-tools
-        %h2 Edit Group
+        %h2 {{ 'editGroup' | translate }}
         %span{'flex': ""}
         %md-button{"ng-click": "closeDialog()"}
           %span{'class': 'glyphicon glyphicon-remove'}
@@ -13,8 +13,12 @@
           %input{"ng-model":  "edit.group.name", 'placeholder': "Group Name", type: 'text'}/
           %md-button.md-primary.edit-group-button{'ng-click': 'toggleMembers()'}
             %i.fa.fa-users.fa-4x
+              %md-tooltip{'md-direction': "bottom"}
+                {{ 'members' | translate }}
           %md-button.md-primary.edit-group-button{'ng-click': 'toggleFriends()'}
             %i.fa.fa-user-plus.fa-4x
+              %md-tooltip{'md-direction': "bottom"}
+                {{ 'friendsTab' | translate }}
         .repeated-item{'ng-if': 'edit.showFriends'}
           %md-list-item{'ng-repeat': 'friend in edit.friends'}
             {{friend.name}}
@@ -28,6 +32,6 @@
 
     %md-dialog-actions{'layout': "row"}
       %md-button.md-warn{"ng-click": "deleteGroup(edit.group)"}
-        Delete
+        {{ 'deleteButton' | translate }}
       %md-button.md-primary{"ng-click": "updateGroup(edit.group)"}
-        Save
+        {{ 'saveButton' | translate }}

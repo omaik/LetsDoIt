@@ -24,11 +24,12 @@
 		text-decoration: none;
 		padding: 5px;
 	}
+	width: 90%;
+	overflow:hidden !important;
+	text-overflow: ellipsis;
+
 }
-.group-list-container{
-	height: 250px!important;
-	overflow-y: scroll!important;
-}
+
 
 .group-list {
 	border-bottom: solid 1px #c9c9c9;

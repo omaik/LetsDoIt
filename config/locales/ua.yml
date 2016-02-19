@@ -270,6 +270,7 @@ ua:
   dueDate: "Кінцева дата"
   openTask: "Відкрити"
   deleteTask: "Видалити"
+  saveButton: "Зберегти"
   editTasksName: "Назва"
   editTasksDescription: "Опис"
   editTasksEnterDate: "Введіть дату"
@@ -392,4 +393,8 @@ ua:
   uncompleted_tasks: "Не завершені завдання"
   completed_tasks: "Завершені завдання"
   statistic: "Статистика"
-
+  groups: "Групи"
+  deleteFromGroup: "Перетягни сюди, щоб видалити з груп"
+  editGroup: "Редагувати"
+  members: "Члени"
+  allGroups: "Усі групи"

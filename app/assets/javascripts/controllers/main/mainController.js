@@ -4,7 +4,7 @@ angular.module('letsDoIt')
   '$scope',
   'tasksResource',
   function($scope, tasksResource){
-    var rightSide = false, biggerSide = false;
+    var rightSide = false;
 
     $scope.dragDrop = { 
       draggableTask: null, 
@@ -63,44 +63,31 @@ angular.module('letsDoIt')
     };
 
     $scope.slideNav = function() {
+      if($('aside').hasClass('hidden-lg')) {
+        rightSide = false;
+      }
+      else {
+        rightSide = true;
+      };
       if (rightSide === false) {
-        $('aside').removeClass('hidden-xs');
+        $('aside').removeClass('hidden-xs').removeClass('hidden-sm').removeClass('hidden-md').removeClass('hidden-lg');
+        $('.slide-button').addClass('hidden');
+        $('.slide-button-off').removeClass('hidden');
         $('aside').css({'animation-name':'sidebar', 'animation-duration':'0.5s'});
-        $('.after').fadeIn(300);
         rightSide = true;
       };
     };
 
-    $('.after').click(function() {
-      if(rightSide === true) {
-        $('.after').fadeOut(400);
-        $('aside').css({'animation-name':'sidebar-close', 'animation-duration':'0.5s'});
-        $('aside').addClass('hidden-xs');
-        rightSide = false;
-      }
-    });
-
-    $scope.slideNavBigger = function() {
-      if($('aside').hasClass('hidden-lg')) {
-        biggerSide = false;
-      }
-      else {
-        biggerSide = true;
-      };
-      if (biggerSide === false) {
-        $('aside').removeClass('hidden-sm').removeClass('hidden-md').removeClass('hidden-lg');
-        $('aside').css({'animation-name':'sidebarBigger', 'animation-duration':'0.5s'});
-        $('.all-tasks').css({'animation-name':'tasksSlideBigger', 'animation-duration':'0.5s'}).addClass('tasks-slided');
-      }
-      else {
-        $('aside').css({'animation-name':'sidebarBiggerClose', 'animation-duration':'0.5s'});
-        $('aside').addClass('hidden-sm').addClass('hidden-md').addClass('hidden-lg');
-        $('.all-tasks').css({'animation-name':'tasksSlideBiggerClose', 'animation-duration':'0.5s'}).removeClass('tasks-slided');
-      }
+    hideAside = function() {
+      $('aside').addClass('hidden-xs').addClass('hidden-sm').addClass('hidden-md').addClass('hidden-lg');
     };
 
     $scope.closeMenu = function() {
-      $('aside').addClass('hidden-sm').addClass('hidden-md').addClass('hidden-lg');
+      $('aside').css({'animation-name':'sidebar-close', 'animation-duration':'0.5s'});
+      setTimeout(hideAside, 500);
+      $('.slide-button').removeClass('hidden');
+      $('.slide-button-off').addClass('hidden');
+      rightSide = false;
     };
 
 }]);
