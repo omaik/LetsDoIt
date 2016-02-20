@@ -6,6 +6,11 @@ en:
         restrict_dependent_destroy:
           has_one: "Cannot delete record because a dependent %{record} exists"
           has_many: "Cannot delete record because dependent %{record} exist"
+  devise:
+    failure:
+      user:
+        not_found_in_database: "There's no such user"
+        invalid: "Password-invalid"
   date:
     abbr_day_names:
     - Sun
@@ -362,8 +367,3 @@ en:
   new_pass: "New password is %{password}"
   KISS: "If you didn't request this, we are sorry. Somebody are playing with entering to your account. Please enter to our website using new password (you can change it in the profile)."
   reset_password_LetsDoIt: "Reset password from LetsDoIt"
-  devise:
-    failure:
-      user:
-        not_found_in_database: "There's no such user"
-        invalid: "Password-invalid"
