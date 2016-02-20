@@ -35,11 +35,4 @@ angular.module('letsDoIt')
         $state.go('home');
       });
     }
-    parallax = function() {
-      var ypos, image;
-      ypos = window.pageYOffset;
-      image = document.getElementById('loginbox');
-      image.style.top = ypos * 0.5 + 'px';
-    }
-    window.addEventListener('scroll',parallax);
   }]);

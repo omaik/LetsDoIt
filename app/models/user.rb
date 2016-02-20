@@ -109,4 +109,9 @@ class User < ActiveRecord::Base
     statistic
   end
 
+  def send_pass
+    @generated_password = Devise.friendly_token.first(8)
+    ForgetMailer.reset_password_instructions(@generated_password, self).deliver_now
+    reset_password(@generated_password, @generated_password)
+  end
 end
