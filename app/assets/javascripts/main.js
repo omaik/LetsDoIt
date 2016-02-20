@@ -90,11 +90,6 @@ angular.module('letsDoIt', [
         templateUrl: 'forgot/email.html',
         controller: 'PasswordController'
       }).
-      state('enterPassword', {
-        url: '/users/password/edit',
-        templateUrl: 'forgot/password.html',
-        controller: 'PasswordController'
-      }).
       state('friendship', {
         url: '/friends',
         templateUrl: 'friends/friends.html',

@@ -4,7 +4,6 @@ class Users::SessionsController < Devise::SessionsController
 
   def create
     super
-    I18n.locale = current_user.language
   end
 
   protected

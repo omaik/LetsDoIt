@@ -3,12 +3,13 @@ angular.module('letsDoIt')
   '$scope',
   'forgotResource',
   function($scope, forgotResource){
+    var email;
     $scope.sended = {
       sended: false,
       error: false
     }
     $scope.confirm = function() {
-    var email = new forgotResource({
+    email = new forgotResource({
       email: $scope.user.email
     })
       email.$save(
