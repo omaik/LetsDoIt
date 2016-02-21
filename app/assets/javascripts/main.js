@@ -85,6 +85,11 @@ angular.module('letsDoIt', [
         templateUrl: 'priorities/show.html',
         controller: 'prioritiesController'
       }).
+      state('enterEmail', {
+        url: '/email',
+        templateUrl: 'forgot/email.html',
+        controller: 'PasswordController'
+      }).
       state('friendship', {
         url: '/friends',
         templateUrl: 'friends/friends.html',
@@ -108,7 +113,7 @@ angular.module('letsDoIt', [
         'responseError': function(rejection) {
           if (rejection.status == 401 && $location.path() !== '/') {
             $rootScope.$broadcast('event:unauthorized');
-            if($location.path() !== '/users/sign_up' && $location.path() !== '/confirmation')
+            if($location.path() !== '/users/sign_up' && $location.path() !== '/confirmation' && $location.path() !== '/email')
               $location.path('/');
           return rejection;
           }

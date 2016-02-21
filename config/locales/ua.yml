@@ -42,6 +42,11 @@ ua:
             many: "%{model} не збережено через %{count} помилок"
             one: "%{model} не збережено через %{count} помилку"
             other: "%{model} не збережено через %{count} помилки"
+  devise:
+    failure:
+      user:
+        not_found_in_database: "Нема такого юзера"
+        invalid: "У вас пароль інвалід"
   date:
     abbr_day_names:
     - нд.
@@ -398,3 +403,9 @@ ua:
   editGroup: "Редагувати"
   members: "Члени"
   allGroups: "Усі групи"
+  reset_instructions_sent: "Інструкції по відновленню паролю були надіслані на вашу пошту"
+  reset_greeting: "Ласкаво просимо %{email}"
+  request_pass: "Хтось зажадав новий пароль від нашого LetsDoIt."
+  new_pass: "Новий пароль %{password}"
+  KISS: "Існує 2(два) варіанти: 1) АБО ви завтикали пароль - ми вам дали новий, не втикайте, бо пошта не халявна; 2) АБО хтось хоче ламанути ваш акаунт - ну тут ми вже вам не поможем."
+  reset_password_LetsDoIt: "Новий пароль від LetsDoIt"

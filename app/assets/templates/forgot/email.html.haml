@@ -1,0 +1,11 @@
+%div.col-xs-6.col-xs-offset-3.authclass{'ng-hide':'sended.sended'}
+  %form{name:'forgotForm', 'ng-submit':'confirm()'}
+    %md-input-container.md-block
+      %label {{ 'email' | translate }}
+      %input{'type':'email','ng-model':'user.email', 'required':'required', 'name':'emailField', 'ng-pattern':'emailPattern', 'autocomplete':'off'}
+      %div.errors{'ng-show':'sended.error'}
+        {{'email_dont_exist' | translate }}
+    %md-button.md-raised.md-primary{'type':'submit', 'ng-disabled':'forgotForm.$invalid'}
+      {{ 'send_instructions' | translate }}!
+%div.container.col-sm-6.col-sm-offset-3.alert.alert-success.reg-success{'ng-show':'sended.sended'}
+  {{ 'reset_instructions_sent' | translate }}

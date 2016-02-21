@@ -56,6 +56,12 @@ class User < ActiveRecord::Base
       priority: priorities_stat }
   end
 
+  def send_pass
+    @generated_password = Devise.friendly_token.first(8)
+    ForgetMailer.reset_password_instructions(@generated_password, self).deliver_now
+    reset_password(@generated_password, @generated_password)
+  end
+
   private
 
   def collect_date_stat

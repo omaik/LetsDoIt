@@ -4,7 +4,6 @@ class Users::SessionsController < Devise::SessionsController
 
   def create
     super
-    I18n.locale = current_user.language
   end
 
   protected
@@ -13,4 +12,3 @@ class Users::SessionsController < Devise::SessionsController
     cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
   end
 end
-
