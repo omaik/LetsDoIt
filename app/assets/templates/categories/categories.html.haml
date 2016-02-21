@@ -1,4 +1,4 @@
-%div.col-sm-12
+%div.col-sm-12{'style': 'padding: 0;'}
   .groups
     %div
       %h3 {{ 'categories' | translate }}
@@ -20,5 +20,4 @@
           %div.group-name
             {{category.name}}
           %span{'flex': ""}
-          .md-button.md-primary.edit-button{"ng-click": "showAdvanced($event, category)"}
-            %span.glyphicon.glyphicon-pencil
+          %span.glyphicon.glyphicon-pencil{"ng-click": "showAdvanced($event, category)"}

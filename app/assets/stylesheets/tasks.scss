@@ -159,19 +159,17 @@ md-toolbar{
 }
 
 .all-tasks {
-  margin-top: 53px;
-}
-
-@media only screen and (max-width : 991px) {
-  .tasks {
-    width: 100%;
-  }
-
-  .all-tasks {
-    width: 100%;
-  }
+  margin-top: 70px!important;
+  width: 550px;
 }
 
 md-headline {
   display: inline!important;
+}
+
+@media only screen and (max-width : 555px) {
+  .all-tasks {
+    margin-top: 70px!important;
+    width: 100%;
+  }
 }
