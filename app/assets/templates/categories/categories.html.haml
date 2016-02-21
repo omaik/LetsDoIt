@@ -1,33 +1,6 @@
-/ %div
-/   .categories
-/     %div.add-new{'ng-click': 'toggleCategories()'}
-/       {{ 'categories' | translate }}
-/     .add-category{'class': 'category-slide'} 
-/       %form.category-form{'ng-submit': 'addCategory()'}
-/         %div.alert.alert-danger.same-name{'ng-show':'isError'}
-/           {{ 'same_category' | translate }}
-/         .input-group
-/           %input.category-input.form-control{'ng-model': 'category.name', placeholder: '{{ "category_placeholder" | translate }}', type: 'text'}/
-/           %span.input-group-btn
-/             %input.btn.btn-success.btn-category{name: 'add-category', type: 'submit', value: '+'}/
-/       %div.all-categories.row
-/         %p.category-name{ 'ng-click': 'filterByDefaultCategory()' }
-/           %a{'ng-href': '#'}
-/             {{ 'all_categories' | translate }}
-/         %div.category-list{'ng-repeat': "category in categories | orderBy: '-created_at'", 'ng-drop': 'true', 'data-drop': "true", 'data-jqyoui-options': "{revert: 'invalid', helper: 'clone'}", 'jqyoui-droppable': "{index: {{$index}}, onDrop:'onDropCategory(category, $index)'}", 'ng-click': 'filterByCategory(category)'}
-/           %div.list
-/             %div.category-name
-/               %a.col-lg-8.col-md-6.col-sm-8.col-xs-6{'ng-href': '#'}
-/                 %span{'ng-bind': 'category.name'}
-/               %span{'flex': ""}
-/               .md-button.md-primary.edit-button.col-lg-3.col-md-3.col-sm-3.col-xs-3{"ng-click": "showAdvanced($event, category)"}
-/                 %span.glyphicon.glyphicon-pencil
-/       %hr 
-
-
-%div.col-sm-12
+%div.col-sm-12{'style': 'padding: 0;'}
   .groups
-    %div{'ng-click': 'toggleCategories()'}
+    %div
       %h3 {{ 'categories' | translate }}
     %div{'class': 'category-slide'} 
       %form.add-group-form{'ng-submit': 'addCategory()'}
@@ -37,15 +10,14 @@
           .input-group
             %input.form-control{'ng-model': 'category.name', placeholder: '{{ "category_placeholder" | translate }}', type: 'text'}/
             %span.input-group-btn
-              %input.btn.btn-secondary{name: 'add-category', type: 'submit', value: 'Add'}/
+              %input.btn.btn-secondary.add-button{name: 'add-category', type: 'submit', value: 'Add'}/
 
       .group-list-container
         %md-list-item{'class': 'group-list', 'ng-click': 'filterByDefaultCategory()' }
           %div.group-name
             {{ 'all_categories' | translate }}
-        %md-list-item.group-list{'ng-repeat': "category in categories | orderBy: '-created_at'", 'ng-drop': 'true', 'data-drop': "true", 'data-jqyoui-options': "{revert: 'invalid', helper: 'clone'}", 'jqyoui-droppable': "{index: {{$index}}, onDrop:'onDropCategory(category, $index)'}", 'ng-click': 'filterByCategory(category)'}
+        %md-list-item.group-list{'ng-repeat': "category in categories | orderBy: '-created_at'", 'ng-drop': 'true', 'data-drop': "true", 'data-jqyoui-options': "{revert: 'invalid', helper: 'clone'}", 'jqyoui-droppable': "{index: {{$index}}, onDrop:'onDropCategory(category, $index)'}", 'ng-click': 'filterByCategory(category)', 'ng-dblclick': 'showAdvanced($event, category)'}
           %div.group-name
             {{category.name}}
           %span{'flex': ""}
-          .md-button.md-primary.edit-button{"ng-click": "showAdvanced($event, category)"}
-            %span.glyphicon.glyphicon-pencil
+          %span.glyphicon.glyphicon-pencil{"ng-click": "showAdvanced($event, category)"}

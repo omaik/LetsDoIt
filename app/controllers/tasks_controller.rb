@@ -23,12 +23,16 @@ class TasksController < ApplicationController
     @task.update_attributes(attach_url: @task.attachment.url) if @task.attachment.url != ''
     respond_with @task
   end
-  
+
   def share
     group_users = Group.find_by(id: params[:group_id]).users - [current_user]
     task = Task.find_by(id: params[:id])
     group_users.each { |user| user.tasks << task }
     head :ok
+  end
+
+  def stat
+    respond_with (current_user.stat)
   end
 
   def destroy

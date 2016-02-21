@@ -13,12 +13,12 @@
           %div.errors{'ng-show':'err.isError'}
             %div{'ng-repeat':'(field, error) in err.errors'}
               %span.glyphicon.glyphicon-remove
-              {{field}} {{error[0]}}
+              {{field | translate}} {{error[0]}}
           %span.value
             {{'value'| translate}}:
             %span{'ng-bind':'priority.value'}
         %div.form-picker
-          %input.value-picker{'type':'range', 'ng-model':'priority.value', 'min':'1', 'max':'999'}
+          %md-slider.md-warn{'ng-model':'priority.value', 'step':'1', 'min':'1', max:'999', 'aria-label':'rating'}
           %div.picker
             %md-button.md-fab.btn-colorpicker{'style':'background:{{priority.color}}'}
               &nbsp;

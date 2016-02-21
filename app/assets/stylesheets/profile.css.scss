@@ -7,6 +7,16 @@
   h2 {
     text-align:center;
   }
+  .file-upload-label {
+    float: left;
+    padding-top: 0px;
+    margin-right: 10px;
+  }
+  .file-upload-label {
+    mark{
+      font-size: 15px;
+    }
+  }
   font-size:16px;
   input {
     margin-top:-12px;
@@ -94,9 +104,6 @@
   }
 }
 
-md-tooltip {
-  font-size:20px !important;
-  }
 md-card {
   margin-top: 0px !important;
   }

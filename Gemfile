@@ -46,7 +46,7 @@ gem 'whenever', '0.9.4'
 # Publish-subscribe messaging system
 gem 'faye'
 # Load environment variables from .env into ENV in development.
-gem 'dotenv-rails', :groups => [:development, :test]
+gem 'dotenv-rails'
 
 
 

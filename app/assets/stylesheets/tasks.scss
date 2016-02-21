@@ -156,19 +156,20 @@ md-toolbar{
 
 .tasks {
   z-index: 5;
-  width: 64%;
 }
 
 .all-tasks {
-  margin-top: 53px;
+  margin-top: 70px!important;
+  width: 550px;
 }
 
-@media only screen and (max-width : 991px) {
-  .tasks {
-    width: 95%;
-  }
+md-headline {
+  display: inline!important;
+}
 
+@media only screen and (max-width : 555px) {
   .all-tasks {
+    margin-top: 70px!important;
     width: 100%;
   }
 }

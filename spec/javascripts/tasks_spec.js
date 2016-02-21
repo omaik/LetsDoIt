@@ -14,6 +14,9 @@ describe('Tasks tests', function() {
     categories = [
       { name: 'category', id: 1 }
     ];
+    groups = [
+      { name: 'group', id: 1 }
+    ];
 
     beforeEach(function() {
       module('letsDoIt');
@@ -43,6 +46,7 @@ describe('Tasks tests', function() {
       $httpBackend.whenGET('/tasks.json').respond(tasks);
       $httpBackend.whenGET('/priorities.json').respond(priorities);
       $httpBackend.whenGET('/categories.json').respond(categories);
+      $httpBackend.whenGET('/groups.json').respond(groups);
       tasksResource.query(function(data) {
         scope.tasks.list = data;
       });
@@ -61,6 +65,7 @@ describe('Tasks tests', function() {
         $httpBackend.whenPOST('/tasks.json').respond(201);
         $httpBackend.whenGET('/priorities.json').respond(priorities);
         $httpBackend.whenGET('/categories.json').respond(categories);
+        $httpBackend.whenGET('/groups.json').respond(groups);
         $httpBackend.whenGET('/tasks.json').respond(tasks);
         tasksResource.query(function(data) {
           scope.tasks.list = data;
@@ -85,6 +90,7 @@ describe('Tasks tests', function() {
           $httpBackend.whenPOST('/tasks.json').respond(201);
           $httpBackend.whenGET('/priorities.json').respond(priorities);
           $httpBackend.whenGET('/categories.json').respond(categories);
+          $httpBackend.whenGET('/groups.json').respond(groups);
           $httpBackend.whenGET('/tasks.json').respond(tasks);
           tasksResource.query(function(data) {
             scope.tasks.list = data;
@@ -104,6 +110,7 @@ describe('Tasks tests', function() {
       $httpBackend.whenGET('/tasks.json').respond(scope.tasks.list);
       $httpBackend.whenGET('/priorities.json').respond(priorities);
       $httpBackend.whenGET('/categories.json').respond(categories);
+      $httpBackend.whenGET('/groups.json').respond(groups);
       scope.deleteTask(task);
       $httpBackend.flush();
       expect(JSON.stringify(scope.tasks.list)).not.toContain(JSON.stringify(task));
@@ -152,6 +159,7 @@ describe('Tasks tests', function() {
       $httpBackend.whenGET('/tasks.json').respond(task);
       $httpBackend.whenGET('/priorities.json').respond(priorities);
       $httpBackend.whenGET('/categories.json').respond(categories);
+      $httpBackend.whenGET('/groups.json').respond(groups);
       scope.updateTask();
       $httpBackend.flush();
       expect(task.description).toMatch('new description');

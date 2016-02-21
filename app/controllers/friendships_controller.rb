@@ -1,6 +1,5 @@
 class FriendshipsController < ApplicationController
   respond_to :json
-  before_action :authenticate_user!
     
   def index
     respond_with ({friends: current_user.friends, pending: current_user.pending_friends, requested: current_user.requested_friends})
@@ -18,13 +17,13 @@ class FriendshipsController < ApplicationController
   # Accept friendship request action
   def accept
     friend = User.find_by(id: params[:id])
-    user_friendship = current_user.friendships.where(friend_id: friend.id).first
+    user_friendship = current_user.friendships.find_by(friend_id: friend.id)
     user_friendship.accept!
     respond_with  user_friendship
   end
   
   def destroy
-    active_friendsdhip = current_user.friendships.where(friend_id: params[:id]).first
+    active_friendsdhip = current_user.friendships.find_by(friend_id: params[:id])
     respond_with active_friendsdhip.destroy 
   end
 end

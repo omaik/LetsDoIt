@@ -5,25 +5,13 @@ angular.module('letsDoIt')
   'tasksResource',
   function($scope, tasksResource){
     var rightSide = false;
+
     $scope.dragDrop = { 
       draggableTask: null, 
       droppableGroup: null, 
       droppableCategory: null, 
       filteredByGroupId: null,
       filteredByCategory: null 
-    };
-   
-   $scope.showGroups = '';
-
-    $scope.toggleGroups = function(){
-      if($scope.showGroups === '') 
-        {
-          $scope.showGroups = 'slideDown';
-        }
-      else 
-      {
-        $scope.showGroups = '';
-      }
     };
     
     $scope.onDragTask = function(evt, ui, data) {
@@ -75,21 +63,31 @@ angular.module('letsDoIt')
     };
 
     $scope.slideNav = function() {
+      if($('aside').hasClass('hidden-lg')) {
+        rightSide = false;
+      }
+      else {
+        rightSide = true;
+      };
       if (rightSide === false) {
-        $('aside.col-sm-4').removeClass('hidden-xs').removeClass('hidden-sm');
-        $('aside.col-sm-4').css({'animation-name':'sidebar', 'animation-duration':'0.5s'});
-        $('.after').fadeIn(300);
+        $('aside').removeClass('hidden-xs').removeClass('hidden-sm').removeClass('hidden-md').removeClass('hidden-lg');
+        $('.slide-button').addClass('hidden');
+        $('.slide-button-off').removeClass('hidden');
+        $('aside').css({'animation-name':'sidebar', 'animation-duration':'0.5s'});
         rightSide = true;
       };
     };
 
-    $('.after').click(function() {
-      if(rightSide === true) {
-        $('.after').fadeOut(400);
-        $('aside.col-sm-4').css({'animation-name':'sidebar-close', 'animation-duration':'0.5s'});
-        $('aside.col-sm-4').addClass('hidden-xs').addClass('hidden-sm');
-        rightSide = false;
-      }
-    });
+    hideAside = function() {
+      $('aside').addClass('hidden-xs').addClass('hidden-sm').addClass('hidden-md').addClass('hidden-lg');
+    };
+
+    $scope.closeMenu = function() {
+      $('aside').css({'animation-name':'sidebar-close', 'animation-duration':'0.5s'});
+      setTimeout(hideAside, 500);
+      $('.slide-button').removeClass('hidden');
+      $('.slide-button-off').addClass('hidden');
+      rightSide = false;
+    };
 
 }]);

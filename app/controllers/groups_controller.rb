@@ -36,11 +36,6 @@ class GroupsController < ApplicationController
   end
 
   def destroy
-    tasks = Task.where(group_id: params[:id])
-    tasks.each do |task| 
-      task.group_id = nil
-      task.save
-    end
     respond_with current_user.groups.find(params[:id]).destroy
   end
 

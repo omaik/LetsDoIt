@@ -7,7 +7,7 @@ RSpec.describe UsersController, type: :controller do
   let(:user2) { FactoryGirl.create(:user) }
   before do
     sign_in user
-    user.confirm!
+    user.confirm
     @request.env['devise.mapping'] = Devise.mappings[:user]
   end
 
@@ -70,6 +70,25 @@ RSpec.describe UsersController, type: :controller do
       get :index, format: :json
       expect(response.body).to include
         ({ id: user2.id, first_name: user2.first_name, last_name: user2.last_name, sex: user2.sex, day: user2.day, month: user2.month, year: user2.year, country: user2.country, city: user2.city, password: user2.password, password_confirmation: user2.password_confirmation }.to_json)
+    end
+  end
+
+  describe 'POST #validate_user' do
+    it('respond with 200 status when email is not taken') do
+      post :validate_user, data: 'zzzzzzz@zzzz.zz', type: 'email', format: :json
+      expect(response).to have_http_status(200)
+    end
+    it('respond with 422 status when email is taken') do
+      post :validate_user, data: user.email, type: 'email', format: :json
+      expect(response).to have_http_status(422)
+    end
+    it('respond with 200 status when username is not taken') do
+      post :validate_user, data: 'blablabla', type: 'username', format: :json
+      expect(response).to have_http_status(200)
+    end
+    it('respond with 422 status when email is taken') do
+      post :validate_user, data: user.username, type: 'username', format: :json
+      expect(response).to have_http_status(422)
     end
   end
 

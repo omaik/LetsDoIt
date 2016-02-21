@@ -1,16 +1,16 @@
 Rails.application.routes.draw do
 
   root 'static_pages#index'
-
-  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks', confirmations: 'users/confirmations' }
+  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks', confirmations: 'users/confirmations', passwords: 'users/passwords' }
   get '/edit' => 'tasks#index'
-
   resources :tasks do
     member do
       post 'share'
     end
+    collection do
+      get 'stat'
+    end
   end
-
   resources :priorities
   resources :groups do
     member do
@@ -20,7 +20,11 @@ Rails.application.routes.draw do
     end
   end
   resources :categories
-  resources :users
+  resources :users do
+    collection do
+      post 'validate_user'
+    end
+  end
   resources :translations, only: :show
   resources :friendships do
     member do
@@ -82,4 +86,3 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 end
-

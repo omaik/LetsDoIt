@@ -8,9 +8,8 @@ angular.module('letsDoIt')
   '$mdDialog',
   'Upload',
   'fileUploadResource',
-  '$timeout',
   'categoryList',
-  function($scope, $state, tasksResource, prioritiesResource, $mdDialog, Upload, fileUploadResource, $timeout, categoryList) {
+  function($scope, $state, tasksResource, prioritiesResource, $mdDialog, Upload, fileUploadResource, categoryList) {
   var STATUS = '1',
       PRIORITY_ID = '3',
       CATEGORY_ID = '1';
@@ -79,8 +78,8 @@ angular.module('letsDoIt')
       category_id: $scope.task.category_id
     });
     if(attachment) {
-      fileUploadResource.createAttachment($scope.task, attachment);
-      $timeout(function(){
+      fileUploadResource.createAttachment($scope.task, attachment)
+      .then(function() {
         getAllTasks();
       });
     } else {

@@ -12,7 +12,8 @@ angular.module('letsDoIt', [
   'ngImgCrop',
   'pascalprecht.translate',
   'ngCookies',
-  'toastr'
+  'toastr',
+  'chart.js'
   ])
 
 .config(['$stateProvider', '$translateProvider',
@@ -84,6 +85,11 @@ angular.module('letsDoIt', [
         templateUrl: 'priorities/show.html',
         controller: 'prioritiesController'
       }).
+      state('enterEmail', {
+        url: '/email',
+        templateUrl: 'forgot/email.html',
+        controller: 'PasswordController'
+      }).
       state('friendship', {
         url: '/friends',
         templateUrl: 'friends/friends.html',
@@ -93,6 +99,11 @@ angular.module('letsDoIt', [
         url: '/confirmation',
         templateUrl: 'confirmation/new.html',
         controller: 'ConfirmationController'
+      }).
+      state('stat', {
+        url: '/stat',
+        templateUrl: 'stat/stat.html',
+        controller: 'statController'
       });
 
   }])
@@ -102,7 +113,7 @@ angular.module('letsDoIt', [
         'responseError': function(rejection) {
           if (rejection.status == 401 && $location.path() !== '/') {
             $rootScope.$broadcast('event:unauthorized');
-            if($location.path() !== '/users/sign_up' && $location.path() !== '/confirmation')
+            if($location.path() !== '/users/sign_up' && $location.path() !== '/confirmation' && $location.path() !== '/email')
               $location.path('/');
           return rejection;
           }
@@ -111,5 +122,10 @@ angular.module('letsDoIt', [
       };
     };
     $httpProvider.interceptors.push(interceptor);
-  });
+  })
+  .config(['ChartJsProvider', function (ChartJsProvider) {
+    ChartJsProvider.setOptions({
+      colours: ['#8870FF', '#FF0000', '#00FF00', '#0000FF']
+    });
+  }])
 

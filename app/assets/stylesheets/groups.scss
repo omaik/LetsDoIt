@@ -3,8 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .groups {
-	/*position: fixed;*/
-	/*width: 30%;*/
+	
 }
 
 .add-group-form {
@@ -25,18 +24,15 @@
 		text-decoration: none;
 		padding: 5px;
 	}
+	width: 90%;
+	overflow:hidden !important;
+	text-overflow: ellipsis;
+
 }
-.group-list-container{
-	height: 250px!important;
-	overflow-y: scroll!important;
-}
+
 
 .group-list {
 	border-bottom: solid 1px #c9c9c9;
-}
-
-.slide{
-	display: none;
 }
 
 [ng-drop].drag-enter {
@@ -62,22 +58,4 @@
 	text-align: left;
 	height: 280px;
 	overflow: visible;
-}
-
-@keyframes slidingUp {
-	0% {
-		top: 366px;
-	}
-	100% {
-		top: 70px;
-	}
-}
-
-@keyframes slidingDown {
-	0% {
-		top: 70px;
-	}
-	100% {
-		top: 366px;
-	}
 }

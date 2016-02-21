@@ -2,6 +2,7 @@
 %html{ 'ng-app': 'letsDoIt' }
   %head
     %meta{ content: 'text/html; charset=UTF-8', 'http-equiv': 'Content-Type' }/
+    %meta{ name: "viewport", content:"width=device-width, initial-scale=1"}/
     %title LetsDoIt
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
@@ -13,12 +14,12 @@
       .head.navbar.navbar-inverse.navbar-static-top
         .container-fluid
           .row{'ng-controller':'NavController'}
-            .navbar-header.col-lg-4.col-lg-offset-1.col-md-5.col-md-offset-0.col-sm-6.col-sm-offset-1
+            .navbar-header.col-lg-4.col-lg-offset-1.col-md-4.col-md-offset-1.col-sm-2.col-sm-offset-1
               %button.navbar-toggle.profile{ 'data-target': '#drop', 'data-toggle': 'collapse', type: 'button', 'ng-show':'signedIn'}
                 %img{'ng-src': '{{user.social_avatar}}',id: 'user', 'ng-show': 'user.social_avatar'}
                   = image_tag('user.png', id: 'user', 'ng-show': '!user.social_avatar')
-              %a.logo#logo.col-xs-5.col-sm-2{'ui-sref':'home', 'ng-show':'signedIn'}LetsDoIt
-              %a.logo#logo.col-xs-5.col-sm-2{'ui-sref':'login', 'ng-hide':'signedIn'}LetsDoIt
+              %a.logo#logo.col-xs-5.col-sm-2{'ui-sref':'home', 'ng-show':'signedIn', 'ng-click':'closeMenu()' }LetsDoIt
+              %a.logo#logo.col-xs-5.col-sm-2{'ui-sref':'login', 'ng-hide':'signedIn', 'ng-click':'closeMenu()' }LetsDoIt
 
             %ul.language{'ng-if':'!signedIn'}
               %li
@@ -26,36 +27,43 @@
               %span.line
               %li
                 %a.choose_xs.eng{'ng-click': 'changeLanguage("ua")'} Ua
-
+            %a#names.hidden-xs{'ng-show':'signedIn'}
+              {{user.first_name}} {{user.last_name}}
             %div#profile.profile.hidden-xs{'ng-click': 'toggleMenu()', 'ng-show':'signedIn'}
               %img{'ng-src': '{{user.social_avatar}}', id: 'user', 'ng-show': 'user.social_avatar'}
                 = image_tag('user.png', id: 'user', 'ng-show': '!user.social_avatar')
             %ul.nav.navbar-nav#drop_menu.hidden-xs{'ng-show':'signedIn'}
-              %li
+              %li{'ng-click':'closeMenu()'}
                 %a.choose_xs.eng{ 'ui-sref': 'profile({id:user.id})'}
                   {{ 'profile_menu' | translate }}
-              %li
+              %li{'ng-click':'closeMenu()'}
                 %a.choose_xs.eng{'title': 'Friends','ui-sref': 'friendship'}
                   {{ 'friendsTab' | translate }}
+              %li{'ng-click':'closeMenu()'}
+                %a.choose_xs.eng{'title': 'Statistic','ui-sref': 'stat'}
+                  {{ 'statistic' | translate }}
               %li.settings{'ng-click': 'toggleSettings()'}
                 %a.choose_xs.eng
                   {{ 'settings_menu' | translate }}
                   %b.caret
                 %ul.settings-menu
                   %li
-                    %a.eng{ 'ui-sref': 'priority'} {{ 'priorities_menu' | translate }}
-              %li{'ng-show':'signedIn'}
+                    %a.eng{ 'ui-sref': 'priority', 'ng-click':'closeMenu()'} {{ 'priorities_menu' | translate }}
+              %li{'ng-show':'signedIn', 'ng-click':'closeMenu()'}
                 %a.choose_xs.eng{'ng-click':'logout()'} {{ 'logout_menu' | translate }}
 
             / Меню при розширенi телефона
             #drop.collapse.navbar-collapse.col-lg-6.col-sm-6.col-md-5.col-sm-5.col-lg-offset-5.col-md-offset-4.col-sm-offset-2.hidden-md{'ng-show':'signedIn'}
               %ul.nav.navbar-nav{'ng-show':'signedIn'}
-                %li
+                %li{'ng-click':'closeMenu()'}
                   %a.choose_xs.eng{ 'ui-sref': 'profile({id:user.id})'}
                     {{ 'profile_menu' | translate }}
-                %li
+                %li{'ng-click':'closeMenu()'}
                   %a.choose_xs.eng{'title': 'Friends','ui-sref': 'friendship'}
                     {{ 'friendsTab' | translate }}
+                %li{'ng-click':'closeMenu()'}
+                  %a.choose_xs.eng{'title': 'Statistic','ui-sref': 'stat'}
+                    {{ 'statistic' | translate }}
                 %li.dropdown
                   %a.choose_xs.eng.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
                     {{ 'settings_menu' | translate }}
@@ -63,14 +71,14 @@
                   %ul.dropdown-menu
                     %li
                       %a.choose_xs.eng{ 'ui-sref': 'priority'} {{ 'priorities_menu' | translate }}
-                %li{'ng-show':'signedIn'}
+                %li{'ng-show':'signedIn', 'ng-click':'closeMenu()'}
                   %a.choose_xs.eng{'ng-click':'logout()'} {{ 'logout_menu' | translate }}
 
     %section#main-section{'ng-controller': 'MainController'}
       %ui-view
-      %aside.col-sm-4.hidden-xs.hidden-sm
+      %aside.hidden-xs.hidden-sm.hidden-md.hidden-lg
         %div{'ui-view':'categories'}
         %div{'ui-view':'groups'}
       %div.after.hidden-md.hidden-lg
-      %section.col-xs-12.col-sm-12.col-md-8.col-lg-8
+      %section.col-xs-12.col-sm-12.col-md-12.col-lg-12
         %div{'ui-view':'tasks'}

@@ -1,28 +1,22 @@
 .authclass {
-  h1 {
-    text-align: center;
-    font-family: Tahoma;
-  }
-
   form {
+    margin-bottom: 15px;
     input.ng-dirty.ng-valid.md-input {
       border-bottom:2px solid #2B2;
     }
     input.ng-dirty.ng-invalid.md-input {
       border-bottom:2px solid #B22;
     }
-    input[type='submit'], button.md-raised.md-primary {
+    input[type='submit'], button.md-raised {
       width: 100%;
       margin: 0;
       font-size: 1.2em;
       font-weight: bold;
       color:#fff;
+      background: rgb(108,91,123) !important;
       &:disabled {
-        background: #339;
-        opacity: 0.3;
-      }
-      &:hover {
-        background: #228;
+        opacity: 0.5;
+        color: #fff !important;
       }
     }
   }
@@ -41,4 +35,13 @@
   font-size: 16px;
   font-family: Tahoma;
   opacity: 0.7;
+}
+.sign-up-container {
+  padding:0 !important;
+  h1 {
+      padding-top:10px;
+      font-size: 30px;
+      text-align: center;
+      font-family: Tahoma;
+    }
 }

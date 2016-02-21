@@ -8,14 +8,14 @@
           %div{'ng-messages':'editProfile.name.$error', 'role':'alert', 'class':'errors'}
           %p
             .alert.alert-danger{'ng-show': 'errHandle'}
-              %p{'ng-bind': 'profileErrMsg'}
+              %p {{ 'profileErrMsg' | translate }}
           %md-input-container.md-block
             %label {{'firstName' | translate }}
             %input{'ng-model': 'profile.first_name', type: 'text', 'maxlength':'30', 'ng-pattern':'formatPattern', 'name':'fName'}
             %div{'ng-messages':'editProfile.fName.$error', 'role':'alert', 'class':'errors'}
               %div{'ng-repeat':'(type, message) in errorMessages'}
                 %div{'ng-message-exp':'type'}
-                  {{ 'firstName' | translate }} {{message}}
+                  {{ 'firstName' | translate }} {{ message | translate}}
 
           %md-input-container.md-block
             %label {{'lastName' | translate }}
@@ -23,7 +23,7 @@
             %div{'ng-messages':'editProfile.lName.$error', 'role':'alert', 'class':'errors'}
               %div{'ng-repeat':'(type, message) in errorMessages'}
                 %div{'ng-message-exp':'type'}
-                  {{ 'lastName' | translate }} {{message}}
+                  {{ 'lastName' | translate }} {{ message | translate}}
 
           %md-input-container
             %label {{'sex' | translate }}
@@ -60,7 +60,7 @@
             %div{'ng-messages':'editProfile.country.$error', 'role':'alert', 'class':'errors'}
               %div{'ng-repeat':'(type, message) in errorMessages'}
                 %div{'ng-message-exp':'type'}
-                  {{ 'country' | translate }} {{message}}
+                  {{ 'country' | translate }} {{ message | translate}}
 
           %md-input-container.md-block
             %label {{'city' | translate }}
@@ -68,11 +68,15 @@
             %div{'ng-messages':'editProfile.city.$error', 'role':'alert', 'class':'errors'}
               %div{'ng-repeat':'(type, message) in errorMessages'}
                 %div{'ng-message-exp':'type'}
-                  {{ 'city' | translate }} {{message}}
+                  {{ 'city' | translate }} {{ message | translate}}
         %div.col-sm-2.col-sm-offset-1{'class':'edit-profile-class'}
-          %label {{ 'photo' | translate }}:
-          %br
-          %input{type: 'file', 'ngf-select':'', 'ng-model':'avatar', 'id':'fileInput'}
+          %label {{'photo' | translate}}
+          %label.label.file-upload-label
+            %span.input-label-button
+            %mark.glyphicon.glyphicon-picture
+              %md-tooltip {{ 'setPhoto' | translate }}
+            %input{type: 'file', 'ngf-select':'', 'ng-model':'avatar', 'id':'fileInput'}
+            %br
           .cropArea{'ng-show':'avatar'}
             %img-crop.img-responsive{'image':'image.myImage', 'result-image':'image.croppedImage'}
           %div{'ng-show':'avatar'}{{ 'croppedImage' | translate }}:
