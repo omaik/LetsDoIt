@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     member do
       post 'share'
     end
+    collection do
+      get 'stat'
+    end
   end
 
   resources :priorities

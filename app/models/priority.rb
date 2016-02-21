@@ -1,5 +1,6 @@
 class Priority < ActiveRecord::Base
   belongs_to :user
+  has_many :tasks
   scope :for_user, -> (owner_id) { where('user_id = ? OR user_id IS NULL', owner_id) }
 
   validates :name,

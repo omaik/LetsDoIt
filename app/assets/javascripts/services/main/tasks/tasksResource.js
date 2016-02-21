@@ -11,6 +11,10 @@ angular.module('letsDoIt')
       method: 'POST',
       params: { id: '@id' },
       url: 'tasks/:id/share'
+    },
+    stat: {
+      method: 'GET',
+      url: 'tasks/stat.json'
     }
   });
 }]);

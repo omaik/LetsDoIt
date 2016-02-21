@@ -24,14 +24,14 @@ angular.module('letsDoIt')
         message: false,
         pattern: /^[a-zA-Z\u0400-\u04FF]+$/
       };
-      
+
       friendshipResource.getFriendship().get().$promise.then(function(response){
         relations = response;
         $scope.data.friends =  relations.friends;
         $scope.data.requested = relations.requested;
         $scope.data.pending = relations.pending;
       });
-      
+
       fayeResourse.subscribe(subChanel, function(msg) {
         var index = 0;
         if (msg.notification === 'friendship'){
@@ -56,30 +56,30 @@ angular.module('letsDoIt')
                   index = $scope.data.friends.indexOf(msg.friendship.data);
                   $scope.$apply(function() {
                     $scope.data.friends.splice(index, 1);
-                  });                   
+                  });
                   break;
                 case 'requested':
                   index = $scope.data.requested.indexOf(msg.friendship.data);
                   $scope.$apply(function() {
                     $scope.data.requested.splice(index, 1);
-                  });                       
+                  });
                   break;
                 case 'pending':
                   index = $scope.data.friends.indexOf(msg.friendship.data);
                   $scope.$apply(function() {
                     $scope.data.pending.splice(index, 1);
-                  });                       
-                  break;                  
+                  });
+                  break;
               }
               break;
           }
         }
-      });              
-      
+      });
+
       function publishData(pubCh, data){
         fayeResourse.publish(pubCh, data);
       }
-      
+
       $scope.setTab = function(tab){
         if (tab === 3){
           $scope.data.message = false;
@@ -87,25 +87,25 @@ angular.module('letsDoIt')
           $scope.data.results = [];
         }
       };
-      
+
       $scope.find = function(search){
         friendshipResource.findFriend(search).query().$promise.then(function(response){
           if(response.length === 0){
             $scope.data.message = true;
             $scope.data.results = [];
-          } 
+          }
           else {
             $scope.data.message = false;
             $scope.data.results = response;
           }
         });
       };
-      
+
       $scope.request = function(person){
-        var index = $scope.data.results.indexOf(person), 
+        var index = $scope.data.results.indexOf(person),
         msg = {notification: 'friendship', friendship: {action: 'request', data: currentUsr}},
         pubChanel = baseChanel + person.id;
-        
+
         relations.pending.push(person);
         $scope.data.results.splice(index, 1);
         toastr.info($translate.instant('requestSent') + ' ' + person.first_name + ' ' + person.last_name, {
@@ -114,24 +114,24 @@ angular.module('letsDoIt')
         friendshipResource.sendRequest(person.id).save();
         publishData(pubChanel, msg);
       };
-      
+
       $scope.accept = function(person){
         var index = $scope.data.requested.indexOf(person),
         msg = {notification: 'friendship', friendship: {action: 'accept', data: currentUsr}},
-        pubChanel = baseChanel + person.id;        
-  
+        pubChanel = baseChanel + person.id;
+
         relations.friends.push(person);
         $scope.data.requested.splice(index, 1);
         toastr.info(person.first_name + ' ' + person.last_name + ' ' + $translate.instant('requestAccepted'), {
           closeButton: true,
-        });  
+        });
         friendshipResource.acceptRequest(person.id).save();
         publishData(pubChanel, msg);
-      };      
-            
+      };
+
       $scope.deleteFunc = function(person, param){
         var index = 0;
-        
+
         switch(param){
           case 'friends':
             index = $scope.data.friends.indexOf(person);
@@ -148,7 +148,7 @@ angular.module('letsDoIt')
         }
         friendshipResource.deleteFriendship(person.id).delete();
       };
-      
+
       $scope.confirmDialog = function(ev, person, param){
         var confirm, content = '',
         msg = {notification: 'friendship', friendship: {action: 'delete', data: currentUsr}};
@@ -164,7 +164,7 @@ angular.module('letsDoIt')
           case 'requested':
             content = $translate.instant('refuseContent') + ' ' + person.first_name + ' ' + person.last_name + '?';
             msg.friendship.deleteResource = 'pending';
-            break;            
+            break;
         }
         confirm = $mdDialog.confirm()
           .title($translate.instant('deleteTitle'))
@@ -181,4 +181,3 @@ angular.module('letsDoIt')
         });
       };
   }]);
-

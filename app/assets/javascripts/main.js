@@ -12,7 +12,8 @@ angular.module('letsDoIt', [
   'ngImgCrop',
   'pascalprecht.translate',
   'ngCookies',
-  'toastr'
+  'toastr',
+  'chart.js'
   ])
 
 .config(['$stateProvider', '$translateProvider',
@@ -93,6 +94,11 @@ angular.module('letsDoIt', [
         url: '/confirmation',
         templateUrl: 'confirmation/new.html',
         controller: 'ConfirmationController'
+      }).
+      state('stat', {
+        url: '/stat',
+        templateUrl: 'stat/stat.html',
+        controller: 'statController'
       });
 
   }])
@@ -111,5 +117,10 @@ angular.module('letsDoIt', [
       };
     };
     $httpProvider.interceptors.push(interceptor);
-  });
+  })
+  .config(['ChartJsProvider', function (ChartJsProvider) {
+    ChartJsProvider.setOptions({
+      colours: ['#8870FF', '#FF0000', '#00FF00', '#0000FF']
+    });
+  }])
 

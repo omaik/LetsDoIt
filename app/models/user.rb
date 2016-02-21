@@ -1,10 +1,10 @@
 class User < ActiveRecord::Base
+  attr_accessor :login
 
   has_and_belongs_to_many :tasks
   has_many :priorities
   has_and_belongs_to_many :groups
   has_and_belongs_to_many :categories
-  attr_accessor :login
   has_many :friendships, foreign_key: :user_id
   has_many :friends, ->{ Friendship.accepted }, through: :friendships
   has_many :pending_friendships, ->{ Friendship.pending }, class_name: 'Friendship', foreign_key: :user_id
@@ -49,4 +49,64 @@ class User < ActiveRecord::Base
       where(conditions.to_hash).first
     end
   end
+
+  def stat
+    due_date, finished = slice_date_stat(*collect_date_stat)
+    { category: categories_stat, due_date: due_date, finished: finished,
+      priority: priorities_stat }
+  end
+
+  private
+
+  def collect_date_stat
+    dates = ((Date.today - 31.days)..(Date.today + 30.days)).to_a
+    values = Array.new(dates.length, 0)
+    self.tasks.each do |task|
+      values[dates.index(task.due_date.to_date)] += 1 if task.due_date
+    end
+    [dates, values]
+  end
+
+  def slice_date_stat(dates, values)
+    current_index = dates.index(Date.today)
+    dates.map! { |x| x.strftime("%d-%m") }
+    due_date_dates = dates.slice!(current_index..-1)
+    due_date_values = values.slice!(current_index..-1)
+    [[due_date_dates, due_date_values], [dates, values]]
+  end
+
+  def categories_stat
+    statistic = { value:{ all: [], uncompleted: [], completed: [] }, label: []}
+    self.categories.each do |category|
+      statistic[:value][:all] << category.tasks.length
+      statistic[:value][:uncompleted] << category.tasks
+                                      .where('due_date>=?', Date.today)
+                                      .length
+      statistic[:label] << category.name
+    end
+    slice_completed(statistic)
+  end
+
+  def priorities_stat
+    statistic = { value: { all: [], uncompleted: [], completed: [] },
+                  color:[],
+                  label:[] }
+    Priority.for_user(self.id).each do |priority|
+      statistic[:value][:all] << priority.tasks.length
+      statistic[:value][:uncompleted] << priority.tasks
+                                                 .where('due_date>=?', Date.today)
+                                                 .length
+      statistic[:color] << priority.color
+      statistic[:label] << priority.name
+    end
+    slice_completed(statistic)
+  end
+
+  def slice_completed(statistic)
+    statistic[:value][:completed]  = statistic[:value][:all]
+                                       .zip(statistic[:value][:uncompleted])
+                                       .map { |x, y| x - y }
+    statistic
+  end
+
 end

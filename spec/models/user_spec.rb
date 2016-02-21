@@ -42,5 +42,11 @@ describe User do
     before { user.city = "a" * 51 }
     it { should_not be_valid }
   end
+
+  describe "method stat" do
+    it "should respond with stat_data" do
+      expect(user.stat.keys).to eq([:category, :due_date, :finished, :priority])
+    end
+  end
 end
 
